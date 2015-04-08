@@ -8,6 +8,15 @@ Route::get('/index', array(
 	'as' => 'index',
 	'uses' => 'EmployerController@index'	
 ));
+/*
+| Authenticated group
+*/
+Route::group(array('before'=>'auth'), function() {
+	Route::get('/jobseeker/sign-out', array(
+		'as' => 'jobseeker-sign-out',
+		'uses' => 'JobseekerController@getSignOut'
+	));
+});
 
 /*
 | Unauthenticated group

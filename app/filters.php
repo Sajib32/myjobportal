@@ -92,3 +92,11 @@ Route::filter('guest.jobseeker', function()
 {
 	if (Auth::jobseeker()->check()) return Redirect::to('/');
 });
+
+Route::filter('auth.jobseeker', function()
+{
+	if (Auth::jobseeker()->guest())
+	{
+		return Redirect::guest(URL::route('jobseeker-sign-in'));
+	}
+});

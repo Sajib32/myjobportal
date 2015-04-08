@@ -102,7 +102,7 @@ class JobseekerController extends \BaseController {
 
 			if($auth) {
 				// Redirect to the intended page
-				return Redirect::intended('/');
+				return View::make('jobseeker.home');
 			} else {
 				return Redirect::route('jobseeker-sign-in')
 			   ->with('global', 'Email/password wrong, or account not activated.');
@@ -111,5 +111,10 @@ class JobseekerController extends \BaseController {
 
 		return Redirect::route('jobseeker-sign-in')
 			   ->with('global', 'There was a problem signing in you.');
+	}
+
+	public function getSignOut() {
+		Auth::jobseeker()->logout();
+		return Redirect::route('jobseeker-home');
 	}
 }
