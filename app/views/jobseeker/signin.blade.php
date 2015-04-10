@@ -15,8 +15,15 @@
 				{{ $errors->first('password') }}
 			@endif
 		</div>
+
+		<div class="field">
+			<input type="checkbox" name="remember" id="remember">
+			<label for="remember">
+				Remember me
+			</label>
+		</div>
  
-	<input type="submit" value="Sign In">
-	{{ Form::token() }}
+		<input type="submit" value="Sign In">
+		{{ Form::token() }}
 	
 </form>

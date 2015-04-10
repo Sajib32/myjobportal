@@ -12,4 +12,9 @@ use UserTrait, RemindableTrait;
 	protected $fillable = ['username', 'email', 'password', 'password_temp', 'code', 'active'];
 
 	protected $table = 'jobseekers';
+
+	public function getAuthPassword() 
+	{
+		return $this->password;
+	}
 }

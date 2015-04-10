@@ -12,6 +12,22 @@ Route::get('/index', array(
 | Authenticated group
 */
 Route::group(array('before'=>'auth'), function() {
+	
+	Route::group(array('before'=>'csrf'), function() {
+		/*
+		| Change password (POST)
+		*/
+		Route::post('/jobseeker/change-password', array(
+			'as' => 'jobseeker-change-password-post',
+			'uses' => 'JobseekerController@postChangePassword'
+		));
+	});
+
+	Route::get('/jobseeker/change-password', array(
+		'as' => 'jobseeker-change-password',
+		'uses' => 'JobseekerController@getChangePassword'
+	));
+
 	Route::get('/jobseeker/sign-out', array(
 		'as' => 'jobseeker-sign-out',
 		'uses' => 'JobseekerController@getSignOut'
@@ -36,16 +52,34 @@ Route::group(array('before'=>'guest.jobseeker'), function() {
 		Route::post('jobseeker/sign-in', array(
 		'as' => 'jobseeker-sign-in-post',
 		'uses' => 'JobseekerController@postSignIn'
-	));
+		));
+		/*
+		| Forgot password (GET)
+		*/
+		Route::post('jobseeker/forgot-password', array(
+			'as' => 'jobseeker-forgot-password-post',
+			'uses' => 'JobseekerController@postForgotPassword'
+		));
 	});
 	Route::get('/jobseeker/home', array(
 		'as' => 'jobseeker-home',
 		'uses' => 'JobseekerController@home'
 	));
 	/*
+	| Forgot password (GET)
+	*/
+	Route::get('jobseeker/forgot-password', array(
+		'as' => 'jobseeker-forgot-password',
+		'uses' => 'JobseekerController@getForgotPassword'
+	));
+
+	Route::get('/jobseeker/recover/{code}', array(
+		'as' => 'jobseeker-recover',
+		'uses' => 'JobseekerController@getRecover'
+	));
+	/*
 	| Create jobseeker account sign in (GET)
 	*/
-
 	Route::get('jobseeker/sign-in', array(
 		'as' => 'jobseeker-sign-in',
 		'uses' => 'JobseekerController@getSignIn'
