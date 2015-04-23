@@ -15,7 +15,14 @@ class CreateJobseekersTable extends Migration {
 		Schema::create('jobseekers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->text('username');
+			$table->text('fullname');
+			$table->text('mothersname');
+			$table->text('fathersname');
+			$table->string('gender');
+			$table->string('marital');
+			$table->string('religion');
+			$table->text('dateofbirth');
+			$table->text('nationalid');
 			$table->text('email');
 			$table->text('password');
 			$table->text('password_temp');

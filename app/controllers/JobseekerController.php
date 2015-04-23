@@ -3,7 +3,71 @@
 class JobseekerController extends \BaseController {
 
 	public function home() {
-		return View::make('jobseeker.home');
+		return View::make('layout.jobseekmain');
+	}
+	public function getResume() {
+		return View::make('jobseeker.resume');
+	}
+	public function postResume() {
+
+		$rules = array (
+			'txtName' => 'required',
+			'txtFName' => 'required',
+			'txtMName' => 'required'
+		);
+		$messages = array(
+				'required' => 'This field is required'
+			);
+
+		$validator = Validator::make(Input::all(), $rules, $messages);
+
+
+			if($validator->fails()) {
+				return 'fails';
+
+
+			} else {
+				$fullname = Input::get('txtName');
+			$mothersname = Input::get('txtFName');
+			$fathersname = Input::get('txtMName');
+			
+			$gender = Input::get('cboGender');
+			$marital = Input::get('cboMStatus');
+			$religion = Input::get('txtReligion');
+ 			$dateofbirth = Input::get('cboGender');
+ 			$nationalid = Input::get('txtNationalId');
+			$email = Input::get('txtEmail1');
+			$password = Input::get('txtPassword');
+
+			// Activate code
+			$code = str_random(60);
+
+			$jobseeker = Jobseeker::create(array(
+				'fullname' => $fullname,
+				'mothersname' => $mothersname,
+				'fathersname' => $fathersname,
+				'gender' => $gender,
+				'marital' => $marital,
+				'religion' => $religion,
+				'dateofbirth' => $dateofbirth,
+				'nationalid' => $nationalid,
+				'email' => $email,
+				'password' => Hash::make($password),
+				'code' => $code,
+				'active' => 0
+			));
+			
+			
+
+			if($jobseeker) {
+				Mail::send('emails.auth.activate', array('link' => URL::route('jobseeker-activate', $code), 'fullname' => $fullname), function($message) use ($jobseeker) {
+					$message->to($jobseeker->email, $jobseeker->fullname)->subject('Activate your account');
+				});
+
+				return Redirect::route('jobseeker-verification')
+					 ->with('global','Your account has been created! We have sent you an email to activate your account');
+			}
+		}
 	}
 
 	public function getProfile() {
@@ -17,7 +81,7 @@ class JobseekerController extends \BaseController {
 		$validator = Validator::make(Input::all(),
 			array(
 				'email' => 'required|max:50|email|unique:jobseekers',
-				'jobseekername' => 'required|max:20|min:3|unique:jobseekers',
+				'username' => 'required|max:20|min:3|unique:jobseekers',
 				'password' => 'required|min:6',
 				'password_again' => 'required|same:password',
 			)
@@ -56,7 +120,7 @@ class JobseekerController extends \BaseController {
 	}
 
 	public function getActivate($code) {
-		$jobseeker = Jobseeker::where('code', '=', $code)->where('active', '=', 0);
+		$jobseeker = Jobseeker::where('code', '=', $code)->where('active', '=', 0)->get();
 
 			if($jobseeker->count()){
 				$jobseeker = $jobseeker->first();
@@ -66,8 +130,7 @@ class JobseekerController extends \BaseController {
 			$jobseeker->code = '';
 
 			if($jobseeker->save()) {
-				return Redirect::route('jobseeker-showprofile')
-					->with('global', 'Actived! you can now sign in');
+				return View::make('jobseeker.validation');
 			}
 		}	
 		
@@ -94,31 +157,31 @@ class JobseekerController extends \BaseController {
 				   ->withInput();
 		} else {
 
-			$remember = (Input::has('remember')) ? true : false;
 
 			Config::set('auth.model', 'Jobseeker');
 			$auth = Auth::jobseeker()->attempt(array(
 				'email' => Input::get('email'),
 				'password' => Input::get('password'),
 				'active' => 1
-			), $remember);
+			));
 
 			if($auth) {
 				// Redirect to the intended page
-				return View::make('jobseeker.home');
+
+				return Redirect::route('jobseeker-step_02_view');
 			} else {
 				return Redirect::route('jobseeker-sign-in')
-			   ->with('global', 'Email/password wrong, or account not activated.');
+			   			->with('global', 'Email/password wrong, or account not activated.');
 			}
 		}
 
-		return Redirect::route('jobseeker-home')
+		return Redirect::route('jobseeker-sign-in')
 			   ->with('global', 'There was a problem signing in you.');
 	}
 
 	public function getSignOut() {
 		Auth::jobseeker()->logout();
-		return Redirect::route('jobseeker-home');
+		return Redirect::route('jobseeker-sign-in');
 	}
 
 	public function getChangePassword() {
@@ -185,8 +248,8 @@ class JobseekerController extends \BaseController {
 				$jobseeker->password_temp = Hash::make($password);
 
 				if($jobseeker->save()) {
-					Mail::send('emails.auth.forgot', array('link' => URL::route('jobseeker-recover', $code), 'jobseekername' => $jobseeker->jobseekername, 'password' =>$password), function($message) use ($jobseeker) {
-					$message->to($jobseeker->email, $jobseeker->jobseekername)->subject('Your new password');
+					Mail::send('emails.auth.forgot', array('link' => URL::route('jobseeker-recover', $code), 'fullname' => $jobseeker->fullname, 'password' =>$password), function($message) use ($jobseeker) {
+					$message->to($jobseeker->email, $jobseeker->fullname)->subject('Your new password');
 				});
 					return Redirect::route('jobseeker-showprofile')
 						   ->with('global', 'We have sent a new password by email.');
@@ -218,5 +281,116 @@ class JobseekerController extends \BaseController {
 		return Redirect::route('home')
 				->with('global', 'Could not recover your account');
 
+	}
+
+	public function getContact() {
+		return View::make('jobseeker.contact');
+	}
+	public function getVerification() {
+		return View::make('jobseeker.resumes-verifyaccount');
+	}
+	public function getStepTwo() 
+	{			
+		$user = Auth::jobseeker()->get();
+		
+		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name')
+						->join('qualifications', 'jobseekers.id', '=', 'qualifications.jobseeker_id')
+						->where('jobseekers.id', '=', $user->id)
+						->get();
+		$proqualification = Jobseeker::select('proqualifications.id', 'proqualifications.jobseeker_id', 'proqualifications.certification')
+				->join('proqualifications', 'jobseekers.id', '=', 'proqualifications.jobseeker_id')
+				->where('jobseekers.id', '=', $user->id)
+				->get();
+		$training = Jobseeker::select('trainings.id', 'trainings.jobseeker_id', 'trainings.institute')
+				->join('trainings', 'jobseekers.id', '=', 'trainings.jobseeker_id')
+				->where('jobseekers.id', '=', $user->id)
+				->get();
+
+		return View::make('jobseeker.test')->with('qualification', $qualification)
+											->with('proqualification', $proqualification)
+											->with('training', $training);	
+	}
+	public function postStepTwo() 
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$input = Input::all();
+
+		if(isset($_POST['ctl00$MainBodyContent$save_education_info'])){
+		$qualification = Qualification::create(array
+			(	
+			 'level_of_education' => $input['ctl00$MainBodyContent$level_educationText'],
+			 'exam_title' =>  $input['ctl00$MainBodyContent$exam_titleText'],
+			 'institute_name' =>  $input['ctl00$MainBodyContent$institute_nameText'],
+			 'insOther' =>  $input['ctl00$MainBodyContent$insOtherText'],
+			 'result' =>  $input['ctl00$MainBodyContent$resultText'],
+			 'year_of_passing' =>  $input['ctl00$MainBodyContent$year_passingText'],
+			 'duration' =>  $input['ctl00$MainBodyContent$durationText'],
+			 'achievement' =>  $input['ctl00$MainBodyContent$achievementText']
+			)
+		);
+
+		$qualification->jobseeker()->associate($jobseeker);
+		$qualification->save();
+
+		return Redirect::route('jobseeker-showStepTwo');
+
+	}
+	if(isset($_POST['ctl00$MainBodyContent$SaveProfessionalInfo'])){
+		$proqualification = Proqualification::create(array
+			(
+				'certification' => $input['ctl00$MainBodyContent$certificateText'],
+				'institute' => $input['ctl00$MainBodyContent$instituteText'],
+				'location' => $input['ctl00$MainBodyContent$locationText'],
+				'from' => $input['ctl00$MainBodyContent$fromDateText'],
+				'to' => $input['ctl00$MainBodyContent$toDateText'],
+			)
+		);
+		$proqualification->jobseeker()->associate($jobseeker);
+		$proqualification->save();	
+		
+		return Redirect::route('jobseeker-showStepTwo');
+
+	}
+
+	if(isset($_POST['ctl00$MainBodyContent$saveTrainingInfo'])){
+		$training = Training::create(array
+			(
+				'title' => $input['ctl00$MainBodyContent$training_titleText'],
+				'topics' => $input['ctl00$MainBodyContent$topicsText'],
+				'institute' => $input['ctl00$MainBodyContent$instituteTrainingText'],
+				'location' => $input['ctl00$MainBodyContent$locationTrainingText'],
+				'country' => $input['ctl00$MainBodyContent$countryTrainingText'],
+				'year' => $input['ctl00$MainBodyContent$yearTrainingText'],
+				'duration' => $input['ctl00$MainBodyContent$durationTrainingText'],
+			)
+		);
+
+		$training->jobseeker()->associate($jobseeker);
+		$training->save();	
+
+		return Redirect::route('jobseeker-showStepTwo');
+		}	
+	}
+	public function showStepTwo()
+	{
+		$user = Auth::jobseeker()->get();
+		
+		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name')
+						->join('qualifications', 'jobseekers.id', '=', 'qualifications.jobseeker_id')
+						->where('jobseekers.id', '=', $user->id)
+						->get();
+		$proqualification = Jobseeker::select('proqualifications.id', 'proqualifications.jobseeker_id', 'proqualifications.certification')
+				->join('proqualifications', 'jobseekers.id', '=', 'proqualifications.jobseeker_id')
+				->where('jobseekers.id', '=', $user->id)
+				->get();
+		$training = Jobseeker::select('trainings.id', 'trainings.jobseeker_id', 'trainings.institute')
+				->join('trainings', 'jobseekers.id', '=', 'trainings.jobseeker_id')
+				->where('jobseekers.id', '=', $user->id)
+				->get();
+
+		return View::make('jobseeker.test')->with('qualification', $qualification)
+										   ->with('proqualification', $proqualification)
+										   ->with('training', $training);
 	}
 }

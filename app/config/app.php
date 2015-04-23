@@ -123,7 +123,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		"Ollieread\Multiauth\MultiauthServiceProvider"
+		"Ollieread\Multiauth\MultiauthServiceProvider",
+		'Bllim\LaravelToJqueryValidation\LaravelToJqueryValidationServiceProvider',
 
 	),
 

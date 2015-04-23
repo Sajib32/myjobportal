@@ -1,0 +1,42 @@
+.footer {
+    background:#000000;
+    text-align: center;
+    height: 68px;
+    padding-top: 26px;
+}
+.pic {
+    margin-bottom: -3px;
+    padding: 3px;
+}
+
+.menu-footer {
+    background-color: #3a3a3c;
+    border-top: 1px solid #e7e7e7;
+    color: #777;
+    margin-top: 50px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    width: 100%;
+}
+
+.foot { color: #ffffff; }
+
+.back {     background-color: #a09b9b;
+    line-height: 7px;
+    margin-top: -9px;
+    padding-top: 14px; 
+word-spacing: 2px;}
+
+.right { float: right; margin-right: -35px;}
+.hovering {  font-size: 12px;
+    line-height: 23px;} 
+.hovering a:hover { color: red; }
+.signupform {  padding-top: 9px; }
+.email { padding-left: 127px; }
+.password {  padding-left: 106px; }
+.signin { padding-left: 80px; }
+.remember {  padding-left: 141px }
+.forgot {   padding-left: 114px;   }
+.new { padding-left: 6px; }
+.rows { border: 1px solid; }
+.center { padding-left: 412px;}

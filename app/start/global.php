@@ -45,12 +45,21 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | shown, which includes a detailed stack trace during debug.
 |
 */
-
+/*
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
 });
+*/
+App::error(function(Exception $exception, $code)
+{
+    $message = $exception;
 
+    if($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
+        $message = 'URL '.Request::url().' not found - '.$exception;
+    }
+    Log::error($message);
+});
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
