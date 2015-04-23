@@ -23,12 +23,16 @@ class OtherController extends \BaseController {
 		return View::make('jobseeker.others')->with('others', $others)
 											 ->with('languages', $languages);
 	}
+	
+
 	public function postOthers()
 	{
+
 		$user = Auth::jobseeker()->get();
 		$jobseeker = Jobseeker::find($user->id);
 		$input = Input::all();
 
+		if(isset($_POST['ctl00$MainBodyContent$save_specilization_info'])){
 		$others = Other::create(array
 			(
 				'category_name' => $input['ctl00$MainBodyContent$categoryName'],
@@ -41,14 +45,10 @@ class OtherController extends \BaseController {
 		$others->save();	
 		
 		return Redirect::route('jobseeker-others');
-	}
-	public function postLanguage()
-	{
-		$user = Auth::jobseeker()->get();
-		$jobseeker = Jobseeker::find($user->id);
-		$input = Input::all();
 
-$c = count(Input::get('TitleText'));
+	}
+	if(isset($_POST['ctl00$MainBodyContent$saveLanguageInfo'])){
+		$c = count(Input::get('TitleText'));
 
 $title = Input::get('TitleText');
 $reading = Input::get('ReadingText');
@@ -57,14 +57,22 @@ $speaking = Input::get('SpeakingText');
 
 for($i=0; $i<$c; $i++){ // iterate through each entry and create an array of Language models
    $languages = new Language;
-   $languages->TitleText = $title[$i];
-   $languages->ReadingText = $reading[$i];
-   $languages->langWrittingText = $writting[$i];
-   $languages->SpeakingText = $speaking[$i];
+   $languages->title = $title[$i];
+   $languages->reading = $reading[$i];
+   $languages->writting = $writting[$i];
+   $languages->speaking = $speaking[$i];
 
-   $languages->save();
+		$languages->jobseeker()->associate($jobseeker);
+		$languages->save();
+   
 	}
+		return Redirect::route('jobseeker-others');
+	}
+
+	if(isset($_POST['ctl00$MainBodyContent$SaveReference_Info'])){
 		
-		return var_dump($languages);
-	}
+		}	
+	
+	} 
+
 }
