@@ -14,10 +14,10 @@ class OtherController extends \BaseController {
 				->join('languages', 'jobseekers.id', '=', 'languages.jobseeker_id')
 				->where('jobseekers.id', '=', $user->id)
 				->get(array(
-						'languages.title',
-						'languages.reading',
-						'languages.writting',
-						'languages.speaking',
+					'languages.title',
+					'languages.reading',
+					'languages.writting',
+					'languages.speaking'
 					));
 
 		return View::make('jobseeker.others')->with('others', $others)
@@ -47,27 +47,51 @@ class OtherController extends \BaseController {
 		return Redirect::route('jobseeker-others');
 
 	}
-	if(isset($_POST['ctl00$MainBodyContent$saveLanguageInfo'])){
-		$c = count(Input::get('TitleText'));
+	 if(isset($_POST['ctl00$MainBodyContent$saveLanguageInfo'])){
+	 	
+	 /*	$c = count($input['TitleText']);
+ $title = Input::get('TitleText');
+ $reading = Input::get('ReadingText');
+ $writting = Input::get('langWrittingText');
+ $speaking = Input::get('SpeakingText');
 
-$title = Input::get('TitleText');
-$reading = Input::get('ReadingText');
-$writting = Input::get('langWrittingText');
-$speaking = Input::get('SpeakingText');
-
-for($i=0; $i<$c; $i++){ // iterate through each entry and create an array of Language models
-   $languages = new Language;
+  for($i=0; $i<$c; $i++){ // iterate through each entry and create an array of Language models
+   if($input['TitleText'][$i]){
+   	   $languages = new Language;
    $languages->title = $title[$i];
-   $languages->reading = $reading[$i];
-   $languages->writting = $writting[$i];
-   $languages->speaking = $speaking[$i];
+    $languages->reading = $reading[$i];
+    $languages->writting = $writting[$i];
+    $languages->speaking = $speaking[$i];
 
-		$languages->jobseeker()->associate($jobseeker);
+	 }	
+   }
+   		 $languages->jobseeker()->associate($jobseeker);
 		$languages->save();
    
-	}
 		return Redirect::route('jobseeker-others');
+
 	}
+
+	*/	
+	
+
+$count = count($input['TitleText']); // here we will know how many entries have been posted
+
+for($i=0; $i<$count; $i++){
+   if($input['TitleText'][$i]){ // iterate through each entry and create an array of inputs
+      $lang = new Language;
+      $lang->title = $input['TitleText'][$i]; 
+      $lang->reading = $input['ReadingText'][$i];
+      $lang->writting = $input['langWrittingText'][$i];
+      $lang->speaking = $input['SpeakingText'][$i];
+   
+   }
+   $lang->jobseeker()->associate($jobseeker);
+		$lang->save();
+}
+
+return Redirect::route('jobseeker-others'); // save the array of models at once
+}
 
 	if(isset($_POST['ctl00$MainBodyContent$SaveReference_Info'])){
 		
