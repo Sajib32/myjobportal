@@ -1,7 +1,7 @@
 <?php
 
 class Qualification extends \Eloquent {
-	protected $fillable = ['jobseeker_id','level_of_education','exam_title', 'institute_name', 'insOther', 'result', 'year_of_passing', 'duration',
+	protected $fillable = ['level_of_education','exam_title', 'institute_name', 'insOther', 'result', 'year_of_passing', 'duration',
 							'achievement'];
 
 	protected $table = 'qualifications';

@@ -34,6 +34,10 @@ Route::group(array('before'=>'auth'), function() {
 			'as' => 'jobseeker-others-post',
 			'uses' => 'OtherController@postOthers'
 		));
+		Route::post('/jobseeker/edit', array(
+			'as' => 'jobseeker-edit-post',
+			'uses' => 'JobseekerController@postEdit'
+		));
 	});
 
 
@@ -60,6 +64,10 @@ Route::group(array('before'=>'auth'), function() {
 	Route::get('/jobseeker/others', array(
 		'as' => 'jobseeker-others',
 		'uses' => 'OtherController@getOthers'
+	));
+		Route::get('/jobseeker/edit/{id}', array(
+		'as' => 'jobseeker-edit',
+		'uses' => 'JobseekerController@getEdit'
 	));
 });
 

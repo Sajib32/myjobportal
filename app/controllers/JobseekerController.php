@@ -376,7 +376,8 @@ class JobseekerController extends \BaseController {
 	{
 		$user = Auth::jobseeker()->get();
 		
-		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name')
+		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name',
+			'qualifications.level_of_education')
 						->join('qualifications', 'jobseekers.id', '=', 'qualifications.jobseeker_id')
 						->where('jobseekers.id', '=', $user->id)
 						->get();
@@ -392,5 +393,21 @@ class JobseekerController extends \BaseController {
 		return View::make('jobseeker.test')->with('qualification', $qualification)
 										   ->with('proqualification', $proqualification)
 										   ->with('training', $training);
+	}
+
+	public function getEdit($id)
+	{
+		$qualification = Input::get($id);
+		return View::make('jobseeker.edit-qualification')
+					->with('qualification', Qualification::find($id));
+	}
+	public function postEdit()
+	{
+		
+		$task = Qualification::find(Input::get('id'));
+		$task->level_of_education = Input::get('ctl00$MainBodyContent$level_educationText');
+		$task->save();
+		echo $task;
+		return Redirect::route('jobseeker-showStepTwo');
 	}
 }

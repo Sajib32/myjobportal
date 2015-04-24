@@ -19,9 +19,15 @@ class OtherController extends \BaseController {
 					'languages.writting',
 					'languages.speaking'
 					));
+		$references = Jobseeker::select('references.name','references.organization','references.designation',
+		 		'references.address', 'references.mobile', 'references.email', 'references.relation')
+				->join('references', 'jobseekers.id', '=', 'references.jobseeker_id')
+				->where('jobseekers.id', '=', $user->id)
+				->get();
 
 		return View::make('jobseeker.others')->with('others', $others)
-											 ->with('languages', $languages);
+											 ->with('languages', $languages)
+											 ->with('references', $references);
 	}
 	
 
@@ -94,9 +100,22 @@ return Redirect::route('jobseeker-others'); // save the array of models at once
 }
 
 	if(isset($_POST['ctl00$MainBodyContent$SaveReference_Info'])){
+		$references = Reference::create(array
+			(
+				'name' => $input['ctl00$MainBodyContent$refNameText'],
+				'organization' => $input['ctl00$MainBodyContent$refOrganizationText'],
+				'designation' => $input['ctl00$MainBodyContent$refDesignationText'],
+				'address' => $input['ctl00$MainBodyContent$refAddressText'],
+				'mobile' => $input['ctl00$MainBodyContent$refMobileText'],
+				'email' => $input['ctl00$MainBodyContent$refEmailText'],
+				'relation' => $input['ctl00$MainBodyContent$refRelationText'],
+			)
+		);
+		$references->jobseeker()->associate($jobseeker);
+		$references->save();	
 		
-		}	
+		return Redirect::route('jobseeker-others');
+	}	
 	
-	} 
-
+}
 }

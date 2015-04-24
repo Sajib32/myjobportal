@@ -65,22 +65,7 @@
 </head>
 <body>
     <form method="post" action="FileUpload.aspx" id="mainForm" class="form-horizontal" role="form" enctype="multipart/form-data">
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['mainForm'];
-if (!theForm) {
-    theForm = document.mainForm;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
+    {{ Form::token() }}
 
         <!-- navbar -->
         <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px;">
