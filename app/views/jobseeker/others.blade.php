@@ -286,8 +286,74 @@
                                 <br />
                                 <h4>References</h4>
                                 <br />
+<!--
+                                @if($references->isEmpty())
+                                    <span id="MainBodyContent_noReference">Currently no data exist! Please click on the following button to add your reference information.</span>
+                                @else
+                                <div>
+    <table class="display table table-hover table-bordered table-striped" cellspacing="0" align="Right" id="MainBodyContent_GridViewReference" style="border-collapse:collapse;">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Email</th>
+            <th scope="col">Relation</th>
+            <th scope="col">Created on</th>
+            <th scope="col" style="width:70px;">Actions</th>
+        </tr>
+        @foreach($references as $r)
+        <tr>
+            <td>
+                {{ $r->name }} <br/> <strong>Organigation:</strong> <br/>{{ $r->organization }}
+            </td>
+            <td>{{ $r->address }}</td>
+
+            <td>{{ $r->mobile }}</td>
+            <td>&nbsp;</td><td>{{ $r->relation }}</td>
+            <td>Apr 23, 2015</td><td>
+                <a id="MainBodyContent_GridViewReference_referenceEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewReference$ctl02$referenceEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
+                <a onclick="Confirm();" id="MainBodyContent_GridViewReference_referenceLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewReference$ctl02$referenceLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
+            </td>
+        </tr>
+         @endforeach
+    </table>
+</div>
+@endif
+-->
+@if($references->isEmpty())
+                                    <span id="MainBodyContent_noReference">Currently no data exist! Please click on the following button to add your reference information.</span>
+                                @else
+                                <div>
+    <table class="display table table-hover table-bordered table-striped" cellspacing="0" align="Right" id="MainBodyContent_GridViewLanguage" style="border-collapse:collapse;">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Email</th>
+            <th scope="col">Relation</th>
+            <th scope="col">Created on</th>
+            <th scope="col" style="width:70px;">Actions</th>
+        </tr>
+        @foreach($references as $r)
+        <tr>
+                        <td>
+                {{ $r->name }} <br/> <strong>Organigation:</strong> <br/>{{ $r->organization }}
+            </td>
+            <td>{{ $r->address }}</td>
+
+            <td>{{ $r->mobile }}</td>
+            <td>&nbsp;</td><td>{{ $r->relation }}</td>
+            <td>Apr 23, 2015</td><td>
+            <td>
+                <a id="MainBodyContent_GridViewReference_referenceEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewReference$ctl02$referenceEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
+                <a onclick="Confirm();" id="MainBodyContent_GridViewReference_referenceLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewReference$ctl02$referenceLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+</div>
+@endif
                                 
-                                <span id="MainBodyContent_noReference">Currently no data exist! Please click on the following button to add your reference information.</span>
                                 <br />
                                 <br />
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#referenceModal">
@@ -1173,14 +1239,6 @@
                                                 <div class="field-box">
                                                     <label>Address:<span style="color: #ff0000;"> *</span></label>
                                                     <input name="ctl00$MainBodyContent$refAddressText" id="MainBodyContent_refAddressText" class="form-control refAddressText" type="text" />
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Phone (Off):</label>
-                                                    <input name="ctl00$MainBodyContent$refPhoneOffText" id="MainBodyContent_refPhoneOffText" class="form-control refPhoneOffText" type="text" />
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Phone (Res):</label>
-                                                    <input name="ctl00$MainBodyContent$refPhoneResText" id="MainBodyContent_refPhoneResText" class="form-control refPhoneResText" type="text" />
                                                 </div>
                                                 <div class="field-box">
                                                     <label>Mobile:<span style="color: #ff0000;"> *</span></label>

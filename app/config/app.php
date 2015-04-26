@@ -125,7 +125,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		"Ollieread\Multiauth\MultiauthServiceProvider",
 		'Bllim\LaravelToJqueryValidation\LaravelToJqueryValidationServiceProvider',
-
+		'Intervention\Image\ImageServiceProvider',
 	),
 
 	/*
@@ -192,7 +192,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-
+		'Image'				=> 'Intervention\Image\Facades\Image',
 	),
 
 );

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,23 +61,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/form-wizard.css') }}">
 </head>
 <body>
-    <form method="post" action="FileUpload.aspx" id="mainForm" class="form-horizontal" role="form" enctype="multipart/form-data">
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['mainForm'];
-if (!theForm) {
-    theForm = document.mainForm;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
+    <form method="post" action="{{ URL::route('jobseeker-photo-post') }}" id="mainForm" class="form-horizontal" role="form" enctype="multipart/form-data">
+    {{ Form::token() }} 
 
         <!-- navbar -->
         <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px;">
@@ -226,17 +208,19 @@ function __doPostBack(eventTarget, eventArgument) {
                         <div class="row form-wrapper payment-info">
                             <div class="col-md-12">
                                 <div class="col-md-4">
+                                @foreach($photo as $p)
                                     <div>
 	<table class="display" cellspacing="0" align="Left" id="MainBodyContent_GridViewContactAddress" style="border-collapse:collapse;">
 		<tr>
 			<td>
-                                                    <img id="MainBodyContent_GridViewContactAddress_ImageProfile_0" class="img-thumbnail img-responsive" src="img/no-img-gallery.png" style="margin-bottom: 10px; height: 208px; width: 180px;" />
-                                                    <br />
-                                                    <strong>Image Size: 55 x 45 mm </strong>
-                                                </td>
+                <img class="img-thumbnail img-responsive" src="{{ asset($p->image) }}" style="margin-bottom: 10px; height: 208px; width: 180px;" />
+                <br />
+                <strong>Image Size: 55 x 45 mm </strong>
+            </td>
 		</tr>
 	</table>
 </div>
+@endforeach
                                     <span id="MainBodyContent_noAddressInfo"></span>
                                 </div>
                                 <div class="col-md-3">
@@ -246,7 +230,7 @@ function __doPostBack(eventTarget, eventArgument) {
                                             <div style="float: left;">
                                                 <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span>
                                                     <span class="fileinput-exists">Change</span>
-                                                    <input type="file" name="ctl00$MainBodyContent$ImageUpload" id="MainBodyContent_ImageUpload" class="ImageUpload" />
+                                                    <input type="file" name="image" id="MainBodyContent_ImageUpload" class="ImageUpload" />
                                                 </span>
                                                 <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                             </div>
@@ -267,37 +251,7 @@ function __doPostBack(eventTarget, eventArgument) {
 
                             <div class="col-md-12" style="height: 30px; clear: both;"></div>
 
-                            <div class="col-md-12">
-                                
-                                <div class="field-box">
-                                    <label>Download previous CV: </label>
-                                    <a href="uploads/cv/4039579739.pdf" target="_blank" onclick="return confirm('Do you want to download your Resume?')" class="btn-flat icon large" data-toggle="tooltip" title="Download CV" data-placement="top"><i class="icon-download-alt"></i>4039579739.pdf</a>
-                                </div>
-                                <br />
-                                
-                            </div>
-                            <div class="col-md-12">
-                                <div class="field-box clearfix">
-                                    <label style="width: 150px;">
-                                        Upload Full Resume:
-                                        <br />
-                                        (Allowed Type: pdf)</label>
-                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="input-group">
-                                            <div class="form-control" data-trigger="fileinput">
-                                                <i class="icon-envelope-alt"></i>
-                                                <span class="fileinput-filename"></span>
-                                            </div>
-                                            <span class="input-group-addon btn btn-default btn-file">
-                                                <span class="fileinput-new">Select file</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="ctl00$MainBodyContent$FileCVUpload" id="MainBodyContent_FileCVUpload" class="FileCVUpload" style="width: 200px;" />
-                                            </span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="wizard-actions text-center">
@@ -314,7 +268,6 @@ function __doPostBack(eventTarget, eventArgument) {
             <!-- side right column -->
             <div class="col-md-2" style="position: fixed; right: 0px; top: 0px;">
                 
-                <img src="img/mid/leftbar.png" style="width: 100%; height: auto;" />
                 
             </div>
             <!-- end main container -->

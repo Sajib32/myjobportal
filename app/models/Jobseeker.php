@@ -43,5 +43,12 @@ use UserTrait, RemindableTrait;
 	{
 		return $this->hasMany('Language', 'jobseekers');
 	}
-
+	public function references()
+	{
+		return $this->hasMany('Reference', 'jobseekers');
+	}
+	public function photograph()
+	{
+		return $this->hasOne('Reference', 'jobseekers');
+	}
 }

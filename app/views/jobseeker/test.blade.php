@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/elements.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/icons.css') }}">
 
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/font-awesome.css') }}">
+
     <!-- libraries -->
     <link rel="stylesheet" href="{{ URL::asset('css/lib/uniform.default.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/lib/select2.css') }}">
@@ -232,7 +234,7 @@
         <tr>
             
             <td>
-                {{ $q->institute_name }}
+                {{ $q->level_of_education }}
             </td><td>{{ $q->institute_name }}</td><td>{{ $q->institute_name }}</td><td>
                 Name of School
                 <br/><strong>Name:</strong> {{ $q->institute_name }}
@@ -241,8 +243,10 @@
                 CGPA 5.00 (Out of Scale 5.00)
                 <br/> <strong>Year of Passing: </strong>2007
             </td><td>2</td><td>&nbsp;</td><td>
-                <a id="MainBodyContent_AcademicGridView_academicQualificationEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$AcademicGridView$ctl02$academicQualificationEditLink&#39;,&#39;&#39;)">r</a>
-                <a onclick="Confirm();" id="MainBodyContent_AcademicGridView_academicQualificationLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$AcademicGridView$ctl02$academicQualificationLink&#39;,&#39;&#39;)">rrr</i></a>
+                <a href="{{ URL::route('jobseeker-edit', array($q->id)) }}"
+class="btn btn-info">Edit</a>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
+                <a onclick="Confirm();" id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
             </td>
            
         </tr>

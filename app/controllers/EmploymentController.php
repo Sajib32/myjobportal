@@ -31,7 +31,6 @@ class EmploymentController extends \BaseController {
 				'datefrom' => $input['ctl00$MainBodyContent$fromDateText'],
 				'dateto' => $input['ctl00$MainBodyContent$toDateText'],
 				'exp_category' => $input['ctl00$MainBodyContent$expCategory'],
-				'skills' => $input['ctl00$MainBodyContent$chooseEmpText'],
 			)
 		);
 		$employment->jobseeker()->associate($jobseeker);
