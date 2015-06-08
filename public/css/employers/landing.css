@@ -1,0 +1,16 @@
+.scrore_board_number{height:45px;padding-top:8px;}
+.scrore_board_number span{
+	background:#073954;
+	display:block;
+margin:0 2px;
+	padding: 0px 4px;
+	float:left;
+	font-family:lets_go_digitalregular;
+	font-size:25px;
+	font-weight:bold;
+	color:#FFFFFF;
+	text-align:center
+}
+
+
+

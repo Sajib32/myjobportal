@@ -1,7 +1,7 @@
 <?php
 
 class Proqualification extends \Eloquent {
-	protected $fillable = ['certification', 'institute', 'location', 'from', 'to'];
+	protected $fillable = ['certification', 'institute', 'location', 'from', 'to','created_at'];
 
 	protected $table = 'proqualifications';
 

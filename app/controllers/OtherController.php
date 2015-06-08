@@ -6,24 +6,18 @@ class OtherController extends \BaseController {
 	{
 		$user = Auth::jobseeker()->get();
 
-		$others = Jobseeker::select('others.category_name','others.skill_desc','others.field_of_spec')
-				->join('others', 'jobseekers.id', '=', 'others.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
-		$languages = Jobseeker::select('languages.title','languages.reading','languages.writting','languages.speaking')
-				->join('languages', 'jobseekers.id', '=', 'languages.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get(array(
-					'languages.title',
-					'languages.reading',
-					'languages.writting',
-					'languages.speaking'
-					));
-		$references = Jobseeker::select('references.name','references.organization','references.designation',
-		 		'references.address', 'references.mobile', 'references.email', 'references.relation')
-				->join('references', 'jobseekers.id', '=', 'references.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
+		$others = Other::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+		//$others = Jobseeker::select('others.category_name','others.skill_desc','others.field_of_spec')
+				//->join('others', 'jobseekers.id', '=', 'others.jobseeker_id')
+				//->where('jobseekers.id', '=', $user->id)
+				//->get();
+		$languages = Language::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+				$references = Reference::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+		//$references = Jobseeker::select('references.name','references.organization','references.designation',
+		 		//'references.address', 'references.mobile', 'references.email', 'references.relation')
+				//->join('references', 'jobseekers.id', '=', 'references.jobseeker_id')
+				//->where('jobseekers.id', '=', $user->id)
+				//->get();
 
 
 		return View::make('jobseeker.others')->with('others', $others)
@@ -43,7 +37,6 @@ class OtherController extends \BaseController {
 		$others = Other::create(array
 			(
 				'category_name' => $input['ctl00$MainBodyContent$categoryName'],
-				'field_of_spec' => $input['ctl00$MainBodyContent$categoryAreas'],
 				'skill_desc' => $input['ctl00$MainBodyContent$SkillDescriptionText'],
 				'extra_curri' => $input['ctl00$MainBodyContent$extraCurricularText'],
 			)
@@ -117,5 +110,90 @@ return Redirect::route('jobseeker-others'); // save the array of models at once
 		
 		return Redirect::route('jobseeker-others');
 		}		
+	}
+	public function getSpecInfoEdit($id)
+	{
+		$spec = Other::find($id);
+
+		return View::make('jobseeker.SpecInfoEdit')->with('spec', $spec);
+	}
+	public function postSpecInfoEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$other = Other::find(Input::get('id'));
+		$input = Input::all();
+
+		$other->category_name = $input['ctl00$MainBodyContent$categoryName'];
+		$other->skill_desc = $input['ctl00$MainBodyContent$SkillDescriptionText'];
+		$other->extra_curri = $input['ctl00$MainBodyContent$extraCurricularText'];
+		
+		$other->jobseeker()->associate($jobseeker);
+		$other->save();
+
+		return Redirect::route('jobseeker-others');
+	}
+	public function getSpecInfoDel($id)
+	{
+		$other = Other::find($id);
+		$other->delete();
+
+		return Redirect::route('jobseeker-others');
+	}
+	public function getRefEdit($id)
+	{
+		$ref = Reference::find($id);
+
+		return View::make('jobseeker.RefInfoEdit')->with('ref', $ref);
+	}
+	public function postRefEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$ref = Reference::find(Input::get('id'));
+		$input = Input::all();
+
+		$ref->name = $input['ctl00$MainBodyContent$refNameText'];
+		$ref->organization = $input['ctl00$MainBodyContent$refOrganizationText'];
+		$ref->designation = $input['ctl00$MainBodyContent$refDesignationText'];
+		$ref->address = $input['ctl00$MainBodyContent$refAddressText'];
+		$ref->mobile = $input['ctl00$MainBodyContent$refMobileText'];
+		$ref->email = $input['ctl00$MainBodyContent$refEmailText'];
+		$ref->relation = $input['ctl00$MainBodyContent$refRelationText'];
+		
+		$ref->jobseeker()->associate($jobseeker);
+		$ref->save();
+
+		return Redirect::route('jobseeker-others');
+	}
+	public function getRefDel($id)
+	{
+		$ref = Reference::find($id);
+		$ref->delete();
+
+		return Redirect::route('jobseeker-others');
+	}
+	public function getLanEdit($id)
+	{
+		$lan = language::find($id);
+
+		return View::make('jobseeker.LanInfoEdit')->with('lan', $lan);
+	}
+	public function postLanEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$lan = Language::find(Input::get('id'));
+		$input = Input::all();
+
+		$lan->title = $input['ctl00$MainBodyContent$langTitleText'];
+		$lan->reading = $input['ctl00$MainBodyContent$langReadingText'];
+		$lan->writting = $input['ctl00$MainBodyContent$langWrittingText'];
+		$lan->speaking = $input['ctl00$MainBodyContent$langSpeakingText'];
+		
+		$lan->jobseeker()->associate($jobseeker);
+		$lan->save();
+
+		return Redirect::route('jobseeker-others');
 	}
 }

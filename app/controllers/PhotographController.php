@@ -7,7 +7,7 @@ class PhotographController extends \BaseController {
 		$user = Auth::jobseeker()->get();
 		$jobseeker = Jobseeker::find($user->id);
 
-		$photo = Photograph::where('jobseeker_id', '=', $user->id)->get();
+		$photo = Photograph::where('jobseeker_id', '=', $user->id)->first();
 		
 		return View::make('jobseeker.fileupload')
         			->with('photo', $photo);
@@ -29,5 +29,11 @@ class PhotographController extends \BaseController {
 
         return Redirect::route('jobseeker-photo');
 	}
+	public function getPhotoDel($id)
+	{
+		$photo = Photograph::find($id);
+		$photo->delete();
 
+		return Redirect::route('jobseeker-photo');
+	}
 }

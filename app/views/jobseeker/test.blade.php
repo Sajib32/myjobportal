@@ -2,9 +2,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title>
-	Midland Bank e-Recruitment System
-</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    Online Job Portal
+</title>
+{{ HTML::style('assets/css/seekerfooter.css') }}
+{{ HTML::style('assets/css/font-awesome.min.css') }}
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
@@ -13,14 +14,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/layout.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/elements.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/icons.css') }}">
-
-    <link rel="stylesheet" href="{{ URL::asset('css/lib/font-awesome.css') }}">
-
     <!-- libraries -->
     <link rel="stylesheet" href="{{ URL::asset('css/lib/uniform.default.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/lib/select2.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/lib/bootstrap.datepicker.css') }}">
-
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/font-awesome.css') }}">
 
     <!-- this page specific styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/new-user.css') }}">
@@ -41,19 +39,6 @@
             min-height: 100%;
             width: 100%;
         }
-
-        .loading {
-            font-family: Arial;
-            font-size: 10pt;
-            border: 2px solid #FF0000;
-            width: 200px;
-            height: 100px;
-            display: none;
-            position: fixed;
-            background-color: White;
-            z-index: 999;
-        }
-
         .error {
             color: Red;
             display: inline-block;
@@ -67,6 +52,7 @@
     </style>
 </head>
 <body>
+<div class="container">
     <form method="post" action="{{ URL::route('jobseeker-step_02_view-post') }}" id="mainForm" class="form-horizontal" role="form">
         {{ Form::token() }}
         <!-- navbar -->
@@ -78,7 +64,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" title="Midland Bank e-Recruitment Home Page" href="Career.aspx">
+                <a class="navbar-brand" title="Online Job Portal" href="Career">
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right hidden-xs">
@@ -89,20 +75,20 @@
                 </li>
                 <li class="settings">
                     
-                    <a href='Profile.aspx' role='button'>
+                    <a href='' role='button'>
                         <span id="userNameLabel">Welcome Md. Monirul Islam</span>
                     </a>
                     
                 </li>
                 
                 <li class="settings">
-                    <a href="#" role="button" onclick="confirmLogout()">
+                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
                         <span id="logoutNameLabel">Logout</span>
                     </a>
                 </li>
                 
                 <li class="settings">
-                    <a href="Faq.aspx" role="button">
+                    <a href="Faq" role="button">
                         <span id="Label2">FAQ</span>
                     </a>
                 </li>
@@ -120,43 +106,14 @@
             <div id="sidebar-nav" class="col-md-2">
                 <ul id="dashboard-menu">
                     <li>
-                        <a href="JobList.aspx">
+                        <a href="JobList">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-inbox"></i>
-                            <span>Inbox(0)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CVStatus.aspx">
-                            <i class="icon-signal"></i>
-                            <span>Resume Status</span>
-                        </a>
-                    </li>
-                    <li>
-
-                        <a href="AdmitCard.aspx">
-                            <i class="icon-cloud-download"></i>
-                            <span>Admit Card</span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="AppliedJobs.aspx">
-                            <i class="icon-tags"></i>
-                            <span>Job Cart</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="JobList.aspx">
-                            <i class="icon-tasks"></i>
-                            <span>Available Jobs</span>
-                        </a>
-                    </li>
+                    
+                    
+                   
                     <li>
                         <a class="dropdown-toggle" href="#">
                             <i class="icon-group"></i>
@@ -164,9 +121,9 @@
                             <i class="icon-chevron-down"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="Profile.aspx">View Resume</a></li>
-                            <li><a href="Default.aspx">Edit Resume</a></li>
-                            <li><a href="ChangePassword.aspx">Change Password</a></li>
+                            <li><a href="Profile">View Resume</a></li>
+                            <li><a href="Default">Edit Resume</a></li>
+                            <li><a href="ChangePassword">Change Password</a></li>
                             <li><a href="#">Notification</a></li>
                         </ul>
                     </li>
@@ -192,9 +149,7 @@
     <li data-target="#step1" class="active"><span class="step">1</span>         <a href="Default.aspx">         <span class="title">General
         <br />
         information</span>             </a>     </li>
-    <li data-target="#step2" class="active"><span class="step">2</span>         <a href="Contact.aspx">         <span class="title">Contact
-        <br />
-        information</span>             </a>     </li>
+   
     <li data-target="#step3" class="active"><span class="step">3</span>         <a href="Academic.aspx">         <span class="title">Academic
         <br />
         Qualification</span>             </a>     </li>
@@ -233,22 +188,33 @@
         @foreach($qualification as $q)
         <tr>
             
-            <td>
-                {{ $q->level_of_education }}
-            </td><td>{{ $q->institute_name }}</td><td>{{ $q->institute_name }}</td><td>
-                Name of School
+            <td>{{ $q->examlevel->name }}</td>
+            <td>{{ $q->exam_title }}</td>
+            <td>{{ $q->major }}</td>
+            @if($q->institute == '3' || $q->institute =='4')
+            <td>Name of School
                 <br/><strong>Name:</strong> {{ $q->institute_name }}
-            </td><td>
-                <strong>Grade: </strong><br/>
-                CGPA 5.00 (Out of Scale 5.00)
-                <br/> <strong>Year of Passing: </strong>2007
-            </td><td>2</td><td>&nbsp;</td><td>
-                <a href="{{ URL::route('jobseeker-edit', array($q->id)) }}"
-class="btn btn-info">Edit</a>
-                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
-                <a onclick="Confirm();" id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
             </td>
-           
+            @else
+             <td><strong>Name:</strong> {{ $q->institute_name }}</td>
+            @endif
+            @if($q->result == 'First Division' || $q->result == 'Second Division' || $q->result == 'Third Division')
+            <td>
+                <strong> {{ $q->result }} /Class: </strong><br/>
+                    Marks: {{ $q->marks }}
+                <br/> <strong>Year of Passing: </strong>{{ $q->year_of_passing }}
+            </td>
+            @else
+            <td>
+                <strong>Grade: </strong><br/>
+                CGPA {{ $q->result }} (Out of Scale {{ $q->marks }})
+                <br/> <strong>Year of Passing: </strong>{{ $q->year_of_passing }}
+            </td>
+            @endif
+            <td>{{ $q->duration }}</td><td>{{ $q->achievement }}</td><td>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="{{ URL::route('jobseeker-edit', array($q->id)) }}"><i class="icon-edit icon-2x"></i></a>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="{{ URL::route('jobseeker-delete', array($q->id)) }}"><i class="icon-remove icon-2x"></i></a>
+            </td>
         </tr>
          @endforeach
     </table>
@@ -280,17 +246,15 @@ class="btn btn-info">Edit</a>
         </tr>
         @foreach($proqualification as $qs)
         <tr>
-            <td>
-                {{ $qs->certification }}
-            </td>
             <td>{{ $qs->certification }}</td>
-            <td>{{ $qs->certification }}</td>
-            <td>Apr 19, 2015</td>
-            <td>Apr 21, 2015</td>
-            <td>Apr 19, 2015</td>
-            <td>
-                <a id="MainBodyContent_GridViewProfessional_ProfessionalQualificationEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewProfessional$ctl02$ProfessionalQualificationEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
-                <a onclick="Confirm();" id="MainBodyContent_GridViewProfessional_professionalQualificationLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewProfessional$ctl02$professionalQualificationLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
+            <td>{{ $qs->institute }}</td>
+            <td>{{ $qs->location }}</td>
+            <td>{{ $qs->from }}</td>
+            <td>{{ $qs->to }}</td>
+            <td>{{ $qs->created_at }}</td>
+            <td> 
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="{{ URL::route('jobseeker-proquaedit', array($qs->id)) }}"><i class="icon-edit icon-2x"></i></a>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="{{ URL::route('jobseeker-delete-proq', array($qs->id)) }}"><i class="icon-remove icon-2x"></i></a>
             </td>
         </tr>
         @endforeach
@@ -327,19 +291,17 @@ class="btn btn-info">Edit</a>
         </tr>
         <tr>
             @foreach($training as $t)
+            <td>{{ $t->title }}</td>
+            <td>{{ $t->topics }}</td>
+            <td>{{ $t->institute }}</td>
+            <td>{{ $t->location }}</td>
+            <td>{{ $t->country }}</td>
+            <td>{{ $t->year }}</td>
+            <td>{{ $t->duration }}</td>
+            <td>{{ $t->created_at }}</td>
             <td>
-                dsfasd
-            </td>
-            <td>{{ $t->institute }}</td>
-            <td>{{ $t->institute }}</td>
-            <td>{{ $t->institute }}</td>
-            <td>{{ $t->institute }}</td>
-            <td>2000</td>
-            <td>2</td>
-            <td>Apr 19, 2015</td>
-            <td>
-                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationEditLink&#39;,&#39;&#39;)"><i class="icon-edit icon-2x"></i></a>
-                <a onclick="Confirm();" id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="javascript:__doPostBack(&#39;ctl00$MainBodyContent$GridViewTraining$ctl02$trainingQualificationLink&#39;,&#39;&#39;)"><i class="icon-remove icon-2x"></i></a>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationEditLink_0" href="{{ URL::route('jobseeker-trainedit', array($t->id)) }}"><i class="icon-edit icon-2x"></i></a>
+                <a id="MainBodyContent_GridViewTraining_trainingQualificationLink_0" href="{{ URL::route('jobseeker-delete-train', array($t->id)) }}"><i class="icon-remove icon-2x"></i></a>
             </td>
         </tr>
         @endforeach
@@ -369,14 +331,10 @@ class="btn btn-info">Edit</a>
                                             <div class="field-box">
                                                 <label>Level of Education:<span style="color: #ff0000;"> *</span></label>
                                                 <div class="ui-select">
-                                                    <select name="ctl00$MainBodyContent$level_educationText" id="MainBodyContent_level_educationText">
-	<option value="1">Secondary</option>
-	<option value="2">Higher Secondary</option>
-	<option value="3">Diploma</option>
-	<option value="4">Bachelor/Honors</option>
-	<option value="5">Masters</option>
-	<option value="6">Doctoral</option>
-
+                                                    <select name="examlevel[]" id="MainBodyContent_level_educationText">
+    @foreach(ExamLevel::all() as $exam)
+    <option value="{{ $exam->id }}">{{ $exam->name }}</option>
+    @endforeach
 </select>
                                                 </div>
                                             </div>
@@ -389,119 +347,19 @@ class="btn btn-info">Edit</a>
                                                 <label>Concentration/ Major/Group:<span style="color: #ff0000;"> *</span></label>
                                                 <input name="ctl00$MainBodyContent$concentration_groupText" id="MainBodyContent_concentration_groupText" class="form-control concentration_groupText" type="text" />
                                             </div>
-                                            <div class="field-box">
-                                                <label>Institute Name:<span style="color: #ff0000;"> *</span></label>
-                                                <div class="ui-select" style="width: 450px;">
-                                                    <select name="ctl00$MainBodyContent$institute_nameText" id="MainBodyContent_institute_nameText" class="institute_nameText">
-	<option value="1">Ahsanullah University of Science and Technology</option>
-	<option value="2">America Bangladesh University</option>
-	<option value="3">American International University-Bangladesh</option>
-	<option value="4">ASA University Bangladesh</option>
-	<option value="5">Asian University of Bangladesh</option>
-	<option value="6">Atish Dipankar University of Science and Technology</option>
-	<option value="7">Bangabandhu Agricultural University</option>
-	<option value="8">Bangladesh Agricultural University</option>
-	<option value="9">Bangladesh Islami University</option>
-	<option value="10">Bangladesh Open University</option>
-	<option value="11">Bangladesh University of Business and Technology(BUBT)</option>
-	<option value="12">Bangladesh University of Engineering and Technology</option>
-	<option value="13">Bangladesh University of Professionals (BUP)</option>
-	<option value="14">Begum Gulchemonara Trust University</option>
-	<option value="15">Brac University  </option>
-	<option value="16">Central Women`s University</option>
-	<option value="17">Chittagong University</option>
-	<option value="18">Chittagong University of Engineering and Technology (CUET)</option>
-	<option value="19">City University</option>
-	<option value="20">Comilla University</option>
-	<option value="21">Daffodil International University</option>
-	<option value="22">Darul Ihsan University</option>
-	<option value="23">Dhaka International University</option>
-	<option value="24">University of Dhaka</option>
-	<option value="25">Dhaka University of Engineering and Technology (DUET)  </option>
-	<option value="26">East West University</option>
-	<option value="27">Eastern University  </option>
-	<option value="28">Gano Bishwabidyalaya</option>
-	<option value="29">Green University of Bangladesh  </option>
-	<option value="30">Hajee Mohammad Danesh Science and Technology University</option>
-	<option value="31">IBA, Dhaka University  </option>
-	<option value="32">IBA, Rajshahi University  </option>
-	<option value="33">IBAIS University  </option>
-	<option value="34">Independent University Bangladesh</option>
-	<option value="35">Bangladesh  International University</option>
-	<option value="36">Islamic University Chittagong</option>
-	<option value="37">International Islamic University Chittagong  </option>
-	<option value="38">International University of Business Agriculture and Technology (IUBAT)</option>
-	<option value="39">Islamic University, Kushtia  </option>
-	<option value="40">Islamic University of Technology (IUT)</option>
-	<option value="41">Jagannath University  </option>
-	<option value="42">Jahangirnagar University</option>
-	<option value="43">Khulna University</option>
-	<option value="44">Khulna University of Engineering and Technology (KUET)</option>
-	<option value="45">Manarat International University</option>
-	<option value="46">Mawlana Bhasani Science and Technology University</option>
-	<option value="47">Metropolitan University</option>
-	<option value="48">Sylhet Metropolitan University </option>
-	<option value="49">Military Institute of Science &amp; Technology (MIST)  </option>
-	<option value="50">National University</option>
-	<option value="51">North South University</option>
-	<option value="52">Northern University-Bangladesh</option>
-	<option value="53">Noakhali Science &amp; Technology University</option>
-	<option value="54">Patuakhali Science and Technology University  </option>
-	<option value="55">Premier University </option>
-	<option value="56">Chittagong  Presidency University</option>
-	<option value="57">Presidency University  </option>
-	<option value="58">Prime University</option>
-	<option value="59">Primeasia University</option>
-	<option value="60">Pundra University of Science and Technology</option>
-	<option value="61">Queens University</option>
-	<option value="62">Rajshahi University</option>
-	<option value="63">Rajshahi University of Engineering and Technology (RUET)</option>
-	<option value="64">Santa Marium University of Creative Technology</option>
-	<option value="65">Shahjalal University of Science &amp; Technology</option>
-	<option value="66">Sher-e-Bangla Agricultural University</option>
-	<option value="67">South East University</option>
-	<option value="68">Southern University</option>
-	<option value="69">Stamford University</option>
-	<option value="70">State University of Bangladesh</option>
-	<option value="71">Sylhet International University</option>
-	<option value="72">The Millenium University</option>
-	<option value="73">The People&#39;s University of Bangladesh</option>
-	<option value="74">The University of Asia Pacific</option>
-	<option value="75">United International University</option>
-	<option value="76">University of Development Alternative</option>
-	<option value="77">University of Information Technology &amp; Science</option>
-	<option value="78">University of Liberal Arts Bangladesh</option>
-	<option value="79">University of Science and Technology</option>
-	<option value="80">University of South Asia</option>
-	<option value="81">Uttara University</option>
-	<option value="82">Victoria University of Bangladesh</option>
-	<option value="83">World University of Bangladesh</option>
-	<option value="84">Others University (Local)</option>
-	<option value="85">Others University (Foreign)</option>
-	<option value="86">Others Institue (Local)</option>
-	<option value="87">Others Institue (Foreign)</option>
-	<option value="88">Name of School</option>
-	<option value="89">Name of College</option>
-
-</select>
-                                                </div>
+                                              <div class="field-box">
+                                                <label>Full name of the Institute:<span style="color: #ff0000;"> *</span></label>
+                                                <input name="ctl00$MainBodyContent$insOtherText" id="MainBodyContent_concentration_groupText" class="form-control concentration_groupText" type="text" />
                                             </div>
-                                            <div class="field-box" id="insOthersDiv" style="display: none;">
-                                                <label>Name of the Institute</label>
-                                                <input name="ctl00$MainBodyContent$insOtherText" id="MainBodyContent_insOtherText" class="form-control insOtherText" type="text" />
-                                            </div>
+                                            
                                             <div class="field-box">
                                                 <label>Result:<span style="color: #ff0000;"> *</span></label>
                                                 <div class="ui-select">
                                                     <select name="ctl00$MainBodyContent$resultText" id="MainBodyContent_resultText" class="resultText">
-	<option value="1">First Division/Class</option>
-	<option value="2">Second  Division/Class</option>
-	<option value="3">Third Division/Class</option>
-	<option value="4">Grade</option>
-	<option value="5">Appeared</option>
-	<option value="6">Enrolled</option>
-	<option value="7">Awarded</option>
-	<option value="8">Do not mention</option>
+    <option value="1">First Division/Class</option>
+    <option value="2">Second Division/Class</option>
+    <option value="3">Third Division/Class</option>
+    <option value="4">Grade</option>
 
 </select>
                                                 </div>
@@ -522,68 +380,8 @@ class="btn btn-info">Edit</a>
                                                 </div>
                                             </div>
                                             <div class="field-box">
-                                                <label>Year of Passing:<span style="color: #ff0000;"> *</span></label>
-                                                <div class="ui-select">
-                                                    <select name="ctl00$MainBodyContent$year_passingText" id="MainBodyContent_year_passingText" class="year_passingText">
-	<option value="2018">2018</option>
-	<option value="2017">2017</option>
-	<option value="2016">2016</option>
-	<option value="2015">2015</option>
-	<option value="2014">2014</option>
-	<option value="2013">2013</option>
-	<option value="2012">2012</option>
-	<option value="2011">2011</option>
-	<option value="2010">2010</option>
-	<option value="2009">2009</option>
-	<option value="2008">2008</option>
-	<option value="2007">2007</option>
-	<option value="2006">2006</option>
-	<option value="2005">2005</option>
-	<option value="2004">2004</option>
-	<option value="2003">2003</option>
-	<option value="2002">2002</option>
-	<option value="2001">2001</option>
-	<option selected="selected" value="2000">2000</option>
-	<option value="1999">1999</option>
-	<option value="1998">1998</option>
-	<option value="1997">1997</option>
-	<option value="1996">1996</option>
-	<option value="1995">1995</option>
-	<option value="1994">1994</option>
-	<option value="1993">1993</option>
-	<option value="1992">1992</option>
-	<option value="1991">1991</option>
-	<option value="1990">1990</option>
-	<option value="1989">1989</option>
-	<option value="1988">1988</option>
-	<option value="1987">1987</option>
-	<option value="1986">1986</option>
-	<option value="1985">1985</option>
-	<option value="1984">1984</option>
-	<option value="1983">1983</option>
-	<option value="1982">1982</option>
-	<option value="1981">1981</option>
-	<option value="1980">1980</option>
-	<option value="1979">1979</option>
-	<option value="1978">1978</option>
-	<option value="1977">1977</option>
-	<option value="1976">1976</option>
-	<option value="1975">1975</option>
-	<option value="1974">1974</option>
-	<option value="1973">1973</option>
-	<option value="1972">1972</option>
-	<option value="1971">1971</option>
-	<option value="1970">1970</option>
-	<option value="1969">1969</option>
-	<option value="1968">1968</option>
-	<option value="1967">1967</option>
-	<option value="1966">1966</option>
-	<option value="1965">1965</option>
-	<option value="1964">1964</option>
-	<option value="1963">1963</option>
-	<option value="1962">1962</option>
-</select>
-                                                </div>
+                                                <label>Year of Passing:<span style="color: #ff0000;"> *(e.g. 2000)</span></label>
+                                               <input name="year_of_passing" id="MainBodyContent_durationText" class="form-control durationText" type="text" />
                                             </div>
                                             <div class="field-box">
                                                 <label>Duration:<span style="color: #ff0000;"> *</span></label>
@@ -639,63 +437,63 @@ class="btn btn-info">Edit</a>
                                                 <label>Training Year:<span style="color: #ff0000;"> *</span></label>
                                                 <div class="ui-select">
                                                     <select name="ctl00$MainBodyContent$yearTrainingText" id="MainBodyContent_yearTrainingText">
-	<option value="2018">2018</option>
-	<option value="2017">2017</option>
-	<option value="2016">2016</option>
-	<option value="2015">2015</option>
-	<option value="2014">2014</option>
-	<option value="2013">2013</option>
-	<option value="2012">2012</option>
-	<option value="2011">2011</option>
-	<option value="2010">2010</option>
-	<option value="2009">2009</option>
-	<option value="2008">2008</option>
-	<option value="2007">2007</option>
-	<option value="2006">2006</option>
-	<option value="2005">2005</option>
-	<option value="2004">2004</option>
-	<option value="2003">2003</option>
-	<option value="2002">2002</option>
-	<option value="2001">2001</option>
-	<option selected="selected" value="2000">2000</option>
-	<option value="1999">1999</option>
-	<option value="1998">1998</option>
-	<option value="1997">1997</option>
-	<option value="1996">1996</option>
-	<option value="1995">1995</option>
-	<option value="1994">1994</option>
-	<option value="1993">1993</option>
-	<option value="1992">1992</option>
-	<option value="1991">1991</option>
-	<option value="1990">1990</option>
-	<option value="1989">1989</option>
-	<option value="1988">1988</option>
-	<option value="1987">1987</option>
-	<option value="1986">1986</option>
-	<option value="1985">1985</option>
-	<option value="1984">1984</option>
-	<option value="1983">1983</option>
-	<option value="1982">1982</option>
-	<option value="1981">1981</option>
-	<option value="1980">1980</option>
-	<option value="1979">1979</option>
-	<option value="1978">1978</option>
-	<option value="1977">1977</option>
-	<option value="1976">1976</option>
-	<option value="1975">1975</option>
-	<option value="1974">1974</option>
-	<option value="1973">1973</option>
-	<option value="1972">1972</option>
-	<option value="1971">1971</option>
-	<option value="1970">1970</option>
-	<option value="1969">1969</option>
-	<option value="1968">1968</option>
-	<option value="1967">1967</option>
-	<option value="1966">1966</option>
-	<option value="1965">1965</option>
-	<option value="1964">1964</option>
-	<option value="1963">1963</option>
-	<option value="1962">1962</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
+    <option value="2013">2013</option>
+    <option value="2012">2012</option>
+    <option value="2011">2011</option>
+    <option value="2010">2010</option>
+    <option value="2009">2009</option>
+    <option value="2008">2008</option>
+    <option value="2007">2007</option>
+    <option value="2006">2006</option>
+    <option value="2005">2005</option>
+    <option value="2004">2004</option>
+    <option value="2003">2003</option>
+    <option value="2002">2002</option>
+    <option value="2001">2001</option>
+    <option selected="selected" value="2000">2000</option>
+    <option value="1999">1999</option>
+    <option value="1998">1998</option>
+    <option value="1997">1997</option>
+    <option value="1996">1996</option>
+    <option value="1995">1995</option>
+    <option value="1994">1994</option>
+    <option value="1993">1993</option>
+    <option value="1992">1992</option>
+    <option value="1991">1991</option>
+    <option value="1990">1990</option>
+    <option value="1989">1989</option>
+    <option value="1988">1988</option>
+    <option value="1987">1987</option>
+    <option value="1986">1986</option>
+    <option value="1985">1985</option>
+    <option value="1984">1984</option>
+    <option value="1983">1983</option>
+    <option value="1982">1982</option>
+    <option value="1981">1981</option>
+    <option value="1980">1980</option>
+    <option value="1979">1979</option>
+    <option value="1978">1978</option>
+    <option value="1977">1977</option>
+    <option value="1976">1976</option>
+    <option value="1975">1975</option>
+    <option value="1974">1974</option>
+    <option value="1973">1973</option>
+    <option value="1972">1972</option>
+    <option value="1971">1971</option>
+    <option value="1970">1970</option>
+    <option value="1969">1969</option>
+    <option value="1968">1968</option>
+    <option value="1967">1967</option>
+    <option value="1966">1966</option>
+    <option value="1965">1965</option>
+    <option value="1964">1964</option>
+    <option value="1963">1963</option>
+    <option value="1962">1962</option>
 </select>
                                                 </div>
                                             </div>
@@ -789,12 +587,12 @@ class="btn btn-info">Edit</a>
                                     <label style="width: 115px;">Subject:</label>
                                     <div class="ui-select" style="width: 78%;">
                                         <select name="ctl00$chatItemName" id="chatItemName" class="chatItemName">
-	<option value="I Can’t Login The Career Site">I Can’t Login The Career Site</option>
-	<option value="I Can’t Create Login ID">I Can’t Create Login ID</option>
-	<option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
-	<option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
-	<option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
-	<option value="others">Others</option>
+    <option value="I Can’t Login The Career Site">I Can’t Login The Career Site</option>
+    <option value="I Can’t Create Login ID">I Can’t Create Login ID</option>
+    <option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
+    <option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
+    <option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
+    <option value="others">Others</option>
 
 </select>
                                     </div>
@@ -826,16 +624,95 @@ class="btn btn-info">Edit</a>
                 </div>
             </div>
         </div>
-
-        <footer class="col-md-12" style="background: #ff0000; clear: both; padding: 10px; color: #FFFFFF; position: fixed; bottom: 0px; left: 0px;">
-            <div class="col-md-6">
-                2014 © <a style="color: #FFFFFF" title="Midland Bank Ltd. official website" href="http://www.midlandbankbd.net/" target="_blank">Midland Bank Ltd.</a> All Rights Reserved. &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="http://www.midlandbankbd.net/terms_of_service" target="_blank">Terms of Service</a>&nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="GuideLine.aspx" target="_blank">How to Apply</a>
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="#">Feedback</a>
-            </div>
-            <div class="col-md-6 text-right">Powered by IT Division of Midland Bank Limited</div>
-            <div class="clearfix"></div>
-        </footer>
     </form>
+</div>
+<footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <div class="widget-content">
+              {{ HTML::image('/assets/img/Logo.jpg', '', array('width'=>'205px','height'=>'50px')) }}
+              <p>This is the site where you will get everything about jobs</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <h6 class="widget-title">Navigation</h6>
+
+            <div class="widget-content">
+              <div class="row">
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Candidates</a></li>
+                    <li><a href="#">Partners</a></li>
+                  </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Follow Us</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Youtube</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Popular Jobs</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Web Developer</a></li>
+                <li><a href="#">Web Designer</a></li>
+                <li><a href="#">UX Engineer</a></li>
+                <li><a href="#">Account Manager</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
+
+        <ul class="footer-social">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-linkedin"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+          <li><a href="#" class="fa fa-pinterest"></a></li>
+          <li><a href="#" class="fa fa-dribbble"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>    
     <!-- scripts -->
     <script src="{{ URL::asset('js/jquery-2.1.0.min.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -853,7 +730,7 @@ class="btn btn-info">Edit</a>
 
         function confirmLogout() {
             if (confirm("Do you want to Logout?")) {
-                location.href = "Logout.aspx";
+                location.href = "Logout";
             }
         }
 
@@ -943,7 +820,7 @@ class="btn btn-info">Edit</a>
 
             jQuery('.institute_nameText').change(function () {
                 var selectValue = $(".institute_nameText option:selected").val();
-                if (selectValue == 84 || selectValue == 85 || selectValue == 86 || selectValue == 87 || selectValue == 88 || selectValue == 89) {
+                if (selectValue == 3 || selectValue == 4) {
                     $('#insOthersDiv').show("slow");
                 } else {
                     $('#insOthersDiv').hide("slow");
@@ -993,7 +870,7 @@ class="btn btn-info">Edit</a>
             }
 
             var selectValue = $(".institute_nameText option:selected").val();
-            if (selectValue == 84 || selectValue == 85 || selectValue == 86 || selectValue == 87 || selectValue == 88 || selectValue == 89) {
+            if (selectValue == 3 || selectValue == 4) {
                 jQuery('.insOtherText').rules('add', {
                     required: true
                 });

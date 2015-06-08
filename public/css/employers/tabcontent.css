@@ -1,0 +1,87 @@
+
+ul.tabs
+{
+    padding: 6px 0;
+    font-size: 0;
+    margin:0;
+    list-style-type: none;
+    text-align: left; /*set to left, center, or right to align the tabs as desired*/
+}
+        
+ul.tabs li
+{
+    display: inline;
+    margin: 0;
+    margin-right:1px; /*distance between tabs*/
+}
+        
+ul.tabs li a
+{
+    font: normal 10.5px/1.5em Verdana;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    padding: 7px 10px;
+    border: 1px solid #7d8b8b;
+    border-bottom-color:#7d8b8b;
+    color: #319500; font-weight:bold;
+    background: #F0F0F0 url(../../resource/tab_blue.png) 0 0 repeat-x;
+    border-radius: 5px 5px 0 0;
+    outline:none;
+}
+        
+ul.tabs li a:visited
+{
+    color: #319500;
+}
+        
+ul.tabs li a:hover
+{
+    border: 1px solid #C0C0C0; /*Mouse Over Border*/
+	background:#F0F0F0 url(../../resource/tab_gray.png) 0 0 repeat-x;
+}
+        
+ul.tabs li.selected a
+{
+	position: relative;
+	top: 0px;
+	font-weight:bold;
+	background: white;
+	border: 1px solid #7d8b8b;
+	border-bottom-color: #AEFC67;
+	color: #FF3300;
+    background:#F0F0F0 url(../../resource/tab_green.png) 0 0 repeat-x;
+}
+        
+        
+ul.tabs li.selected a:hover
+{
+    /*selected tab style */
+    text-decoration: none;
+}
+        
+div.tabcontent
+{
+    display: block;
+}
+
+div.tabcontents
+{
+    border: 1px solid #7d8b8b; padding: 5px;
+    background-color:#AEFC67;
+    border-radius: 0 5px 5px 5px;
+}
+
+    /*bellow category tab */
+
+div.tabcontentcat
+{
+    display: block;
+}
+
+div.tabcontentscat
+{
+    border: 1px solid #7d8b8b; padding: 1px;
+    background-color:#FCFCFC;
+    border-radius: 0 5px 5px 5px;
+}

@@ -5,8 +5,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title>
-	Midland Bank e-Recruitment System
-</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="shortcut icon" href="img/mid/small.png" />
+	Online job Portal
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
        <!-- bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
@@ -95,10 +95,7 @@ function __doPostBack(eventTarget, eventArgument) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" title="Midland Bank e-Recruitment Home Page" href="Career.aspx">
-                    <img src="img/mid/logo_rr.png" style="height: 48px; width: auto;" alt="logo" />
-                    <img src="img/mid/logo.png" style="height: 48px; width: auto;" alt="logo" />
-                </a>
+               
             </div>
             <ul class="nav navbar-nav pull-right hidden-xs">
                 <li class="settings hidden-xs hidden-sm">
@@ -108,20 +105,20 @@ function __doPostBack(eventTarget, eventArgument) {
                 </li>
                 <li class="settings">
                     
-                    <a href='Profile.aspx' role='button'>
+                    <a href='Profile' role='button'>
                         <span id="userNameLabel">Welcome Md. Monirul Islam</span>
                     </a>
                     
                 </li>
                 
                 <li class="settings">
-                    <a href="#" role="button" onclick="confirmLogout()">
+                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
                         <span id="logoutNameLabel">Logout</span>
                     </a>
                 </li>
                 
                 <li class="settings">
-                    <a href="Faq.aspx" role="button">
+                    <a href="Faq" role="button">
                         <span id="Label2">FAQ</span>
                     </a>
                 </li>
@@ -139,43 +136,12 @@ function __doPostBack(eventTarget, eventArgument) {
             <div id="sidebar-nav" class="col-md-2">
                 <ul id="dashboard-menu">
                     <li>
-                        <a href="JobList.aspx">
+                        <a href="JobList">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-inbox"></i>
-                            <span>Inbox(0)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CVStatus.aspx">
-                            <i class="icon-signal"></i>
-                            <span>Resume Status</span>
-                        </a>
-                    </li>
-                    <li>
-
-                        <a href="AdmitCard.aspx">
-                            <i class="icon-cloud-download"></i>
-                            <span>Admit Card</span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="AppliedJobs.aspx">
-                            <i class="icon-tags"></i>
-                            <span>Job Cart</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="JobList.aspx">
-                            <i class="icon-tasks"></i>
-                            <span>Available Jobs</span>
-                        </a>
-                    </li>
+                    
                     <li>
                         <a class="dropdown-toggle" href="#">
                             <i class="icon-group"></i>
@@ -183,10 +149,9 @@ function __doPostBack(eventTarget, eventArgument) {
                             <i class="icon-chevron-down"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="Profile.aspx">View Resume</a></li>
-                            <li><a href="Default.aspx">Edit Resume</a></li>
-                            <li><a href="ChangePassword.aspx">Change Password</a></li>
-                            <li><a href="#">Notification</a></li>
+                            <li><a href="Profile">View Resume</a></li>
+                            <li><a href="Default">Edit Resume</a></li>
+                            <li><a href="ChangePassword">Change Password</a></li>
                         </ul>
                     </li>
                     <li>
@@ -208,20 +173,20 @@ function __doPostBack(eventTarget, eventArgument) {
             <div class="col-md-12 col-xs-12">
                 <div id="fuelux-wizard" class="wizard row">
                     ﻿ <ul class="wizard-steps">
-    <li data-target="#step1" class="active"><span class="step">1</span>         <a href="Default.aspx">         <span class="title">General
+    <li data-target="#step1" class="active"><span class="step">1</span>         <a href="Default">         <span class="title">General
         <br />
         information</span>             </a>     </li>
-    <li data-target="#step2" class="active"><span class="step">2</span>         <a href="Contact.aspx">         <span class="title">Contact
+    <li data-target="#step2" class="active"><span class="step">2</span>         <a href="Contact">         <span class="title">Contact
         <br />
         information</span>             </a>     </li>
-    <li data-target="#step3" class="active"><span class="step">3</span>         <a href="Academic.aspx">         <span class="title">Academic
+    <li data-target="#step3" class="active"><span class="step">3</span>         <a href="Academic">         <span class="title">Academic
         <br />
         Qualification</span>             </a>     </li>
-    <li data-target="#step4"><span class="step">4</span>         <a href="Employment.aspx">             <span class="title">Employment</span>
+    <li data-target="#step4"><span class="step">4</span>         <a href="Employment">             <span class="title">Employment</span>
             </a>
     </li>
-    <li data-target="#step5"><span class="step">5</span>         <a href="Others.aspx">         <span class="title">Others</span>             </a>     </li>
-    <li data-target="#step6"><span class="step">6</span>         <a href="FileUpload.aspx">         <span class="title">Photograph /
+    <li data-target="#step5"><span class="step">5</span>         <a href="Others">         <span class="title">Others</span>             </a>     </li>
+    <li data-target="#step6"><span class="step">6</span>         <a href="FileUpload">         <span class="title">Photograph /
         <br />
         CV as pdf format</span>             </a>     </li>
 </ul>
@@ -736,9 +701,9 @@ function __doPostBack(eventTarget, eventArgument) {
                     </div>
                 </div>
                 <div class="wizard-actions text-center">
-                    <a style="margin-left: 15px;" href="Contact.aspx" class="btn-glow primary btn-prev pull-left"><i class="icon-chevron-left"></i>Prev</a>
+                    <a style="margin-left: 15px;" href="Contact" class="btn-glow primary btn-prev pull-left"><i class="icon-chevron-left"></i>Prev</a>
                     
-                    <a class="btn-glow primary btn-next pull-right" href="Employment.aspx" data-last="Finish">Next <i class="icon-chevron-right"></i></a>
+                    <a class="btn-glow primary btn-next pull-right" href="Employment" data-last="Finish">Next <i class="icon-chevron-right"></i></a>
                 </div>
             </div>
         </div>
@@ -749,7 +714,7 @@ function __doPostBack(eventTarget, eventArgument) {
             <!-- side right column -->
             <div class="col-md-2" style="position: fixed; right: 0px; top: 0px;">
                 
-                <img src="img/mid/leftbar.png" style="width: 100%; height: auto;" />
+                
                 
             </div>
             <!-- end main container -->
@@ -807,20 +772,7 @@ function __doPostBack(eventTarget, eventArgument) {
                 </div>
             </div>
         </div>
-        <div class="loading" align="center">
-            <h5>Loading. Please wait...</h5>
-            <br />
-            <img src="img/mid/loading.gif" alt="" />
-        </div>
-
-        <footer class="col-md-12" style="background: #ff0000; clear: both; padding: 10px; color: #FFFFFF; position: fixed; bottom: 0px; left: 0px;">
-            <div class="col-md-6">
-                2014 © <a style="color: #FFFFFF" title="Midland Bank Ltd. official website" href="http://www.midlandbankbd.net/" target="_blank">Midland Bank Ltd.</a> All Rights Reserved. &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="http://www.midlandbankbd.net/terms_of_service" target="_blank">Terms of Service</a>&nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="GuideLine.aspx" target="_blank">How to Apply</a>
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="#">Feedback</a>
-            </div>
-            <div class="col-md-6 text-right">Powered by IT Division of Midland Bank Limited</div>
-            <div class="clearfix"></div>
-        </footer>
+   
     </form>
     <!-- scripts -->
     <script src="{{ URL::asset('js/jquery-2.1.0.min.js') }}"></script>
@@ -839,7 +791,7 @@ function __doPostBack(eventTarget, eventArgument) {
 
         function confirmLogout() {
             if (confirm("Do you want to Logout?")) {
-                location.href = "Logout.aspx";
+                location.href = "Logout";
             }
         }
 

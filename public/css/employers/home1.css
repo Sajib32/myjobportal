@@ -1,0 +1,510 @@
+/*@font-face {
+    font-family: SolaimanLipi;
+    src: url('http://www.bdjobstoday.com/images/SolaimanLipi.ttf');
+}*/
+
+/* @font-face {
+	font-family: TonnyBanglaMJ;
+    src: url('http://www.bdjobstoday.com/images/TonnyBanglaMJ.ttf'),
+		 url('http://www.bdjobstoday.com/images/TonnyBanglaMJ.eot');
+			}*/
+
+.logo
+  {
+	height:60px;
+	width:300px;
+	
+  }
+  
+.body {
+	background-color: #EAEAEA;
+}
+
+.menu {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; Text-decoration: none; COLOR: #007EFD; FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+
+.bulet {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	COLOR: red;
+	LINE-HEIGHT: 15px;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	TEXT-DECORATION: none;
+	padding-top: 7px;
+}
+.bulethome {
+    FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: red; LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+.print {
+	font: bold 9px/1.5em Verdana;	
+	COLOR: red; 
+}
+
+.details {
+	font: 11px/1.4em Verdana, SolaimanLipi;
+	COLOR: #666666; text-transform:none;
+	TEXT-ALIGN: justify;
+}
+
+.name {
+	font: 15px/1.4em Arial, SolaimanLipi;
+	COLOR: #000;
+	text-transform:none;
+	TEXT-ALIGN: left;
+	font-weight: bold;
+}
+.email {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; Text-decoration: underline; COLOR: #007EFD; FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+
+
+.detailsbd {
+	font: 14px/1.7em;
+	COLOR: #666666;
+	TEXT-ALIGN: justify;
+	font-family: TonnyBanglaMJ, SutonnyMJ;
+
+}
+.detailsbox {
+	font: 9px/1.3em Verdana, SolaimanLipi;	
+	COLOR: #999999; 
+	TEXT-ALIGN: justify;
+}
+
+.detailscap {
+	font: 9px/1.3em Verdana, SolaimanLipi;	
+	COLOR: #999999; 
+	TEXT-ALIGN: justify;
+}
+
+.detailsnoncap {
+	font: 9px/1.3em Verdana, SolaimanLipi;	
+	COLOR: #999999; TEXT-DECORATION: none
+	TEXT-ALIGN: justify;
+}
+
+.homemenu{
+	font: normal 8.5pt Verdana, SolaimanLipi;
+	COLOR: #ff0000;
+}
+.ad_box {
+	text-decoration: none;
+	border: 2px solid #7d8b8b;
+	border-radius: 7px;
+	font-size: 12px;
+	font: 600 11px/1.3em Arial;
+	color: #333333;
+	background-color: #ffffff;
+	text-align: center;
+	width: 800px;
+	vertical-align: middle;
+	}
+	
+.ad_boxx {
+	text-decoration: none;
+	border: 2px solid #7d8b8b;
+	border-radius: 7px;
+	font-size: 12px;
+	font: 600 11px/1.3em Arial;
+	color: #333333;
+	background-color: #ffffff;
+	text-align: center;
+	width: 450px;
+	vertical-align: middle;
+	}
+	
+.button {
+	text-decoration: none;
+	border: 1px solid #7d8b8b;
+	border-radius: 3px;
+	font-size: 10px;
+	font: 600 11px/1.3em Arial;
+	color: #333333;
+	background-color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 27px;
+	}
+.img
+  {
+	border:1px solid #FFCC33;
+	height:45px;
+	width:45px;
+	padding:3px;
+  }
+.STYLE1{
+	font: normal 11px/1.5em Verdana, SolaimanLipi;	
+	COLOR: #ff0000;
+
+}
+
+.STYLEBD1 {
+	font: normal 11.5pt TonnyBanglaMJ, SutonnyMJ;
+	COLOR: #ff0000;	
+
+}
+
+.STYLE2 {
+	font: normal 9.5px/1.6em Arial, SolaimanLipi;
+	COLOR: #F99500;
+}
+
+
+.STYLEBD2 {
+	COLOR: #F99500;
+	font-family: TonnyBanglaMJ, SutonnyMJ;
+	font-size: 9.5pt;
+	font-weight: normal;
+}
+
+
+.STYLE3 {
+	font: bold 10.5px/1.5em Verdana, SolaimanLipi;	
+ 	COLOR: red; LINE-HEIGHT: 15px; 
+}
+.STYLEBD3 {
+	font: normal 10pt TonnyBanglaMJ, SutonnyMJ;		
+ 	COLOR: red; LINE-HEIGHT: 17px; 
+}
+
+.STYLE4 {
+	font: 11px/1.5em Verdana;
+	COLOR: #0000FF; LINE-HEIGHT: 15px;
+}
+.STYLE5 {
+	font: BOLD 11px/1.5em Verdana;
+	 COLOR: #007efd; LINE-HEIGHT: 15px; 
+}
+.STYLE6 {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; Text-decoration: none; COLOR: #000000; FONT-FAMILY: Arial, Helvetica, sans-serif; 
+}
+
+.STYLE7 {
+	font: bold 11.5px/1.5em Verdana, SolaimanLipi;	
+	COLOR: #FFFFFF;
+	LINE-HEIGHT: 15px;
+}
+.trsd {
+	background-color: #BFBFBF;
+	height: 26px;
+}
+
+.STYLE9 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; Text-decoration: none; COLOR: #007EFD; LINE-HEIGHT: 15px; FONT-FAMILY: Arial, Helvetica, sans-serif; 
+}
+
+.STYLE10 {
+	font: bold 11px/1.5em Verdana;	
+	COLOR: #319500;
+	LINE-HEIGHT: 15px;
+}
+
+.address {
+	font: 10px/1.3em Verdana, SolaimanLipi;
+	COLOR: #666666;
+	TEXT-ALIGN: center;
+}
+
+.white {
+	font: bold 10.5px/1.5em Verdana;	
+	COLOR: #FFFFFF;
+	LINE-HEIGHT: 15px;
+}
+
+.link01:link {
+	COLOR: #007efd; TEXT-DECORATION: none
+}
+.link01:visited {
+	COLOR: #007efd; TEXT-DECORATION: none
+}
+.link01:hover {
+	COLOR: #ff6600; border-bottom: 1px dotted #ff6600; border-top: 1px dotted #ff6600; TEXT-DECORATION: none
+}
+
+.link02:link {
+	COLOR: #007efd; TEXT-DECORATION: none
+}
+.link02:visited {
+	COLOR: #007efd; TEXT-DECORATION: none
+}
+.link02:hover {
+	COLOR: #ff3300; TEXT-DECORATION: none
+}
+
+.link03:link {
+	COLOR: red; TEXT-DECORATION: none
+}
+.link03:visited {
+	COLOR: red; TEXT-DECORATION: none
+}
+.link03:hover {
+	COLOR: #007efd; border-bottom: 1px dotted #ff6600; TEXT-DECORATION: none
+}
+
+.link04:link {
+	COLOR: #00AA00; TEXT-DECORATION: none
+}
+.link04:visited {
+	COLOR: #00AA00; TEXT-DECORATION: none
+}
+.link04:hover {
+	COLOR: #ff3300; TEXT-DECORATION: none
+}
+
+.link05:link {
+	COLOR: #008000; TEXT-DECORATION: none
+}
+.link05:visited {
+	COLOR: #0000FF; TEXT-DECORATION: none
+}
+.link05:hover {
+	COLOR: #ff3300; TEXT-DECORATION: none
+}
+
+.link06:link {
+	COLOR: red; text-decoration: blink;
+}
+.link06:visited {
+	COLOR: red; TEXT-DECORATION: none
+}
+.link06:hover {
+	COLOR: red; TEXT-DECORATION: none
+}
+
+.linkwhite:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.linkwhite:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.linkwhite:hover {
+	COLOR: #99FF33; TEXT-DECORATION: none
+}
+
+.boxtl{height:30px; width:10px; background:url(../images/top_left.gif);}
+.boxtm{height:30px; width:400px; background:url(../images/top_mid.gif); vertical-align:middle;}
+.boxtr{height:30px; width:10px; background:url(../images/top_right.gif);}
+.boxbody{BORDER-LEFT: #7d8b8b 1px solid; width:418px; BORDER-RIGHT: #7d8b8b 1px solid}
+.boxbl{height:20px; width:10px; background:url(../images/bottom_left.gif);}
+.boxbm{height:20px; width:400px; background:url(../images/bottom_mid.gif); vertical-align:middle;}
+.boxbr{height:20px; width:10px; background:url(../images/bottom_right.gif);}
+
+
+.bortl{height: 5px; width: 6px; background:url(../images/mainborder_top_left.gif);}
+.bortr{height: 5px; width: 6px; background:url(../images/mainborder_top_right.gif);}
+.borbl{height: 5px; width: 6px; background:url(../images/mainborder_bottom_left.gif);}
+.borbr{height: 5px; width: 6px; background:url(../images/mainborder_bottom_right.gif);}
+.bortop{BORDER-TOP: #EAEAEA 1px solid}
+.borleft{BORDER-LEFT: #EAEAEA 1px solid}
+.borright{BORDER-RIGHT: #EAEAEA 1px solid}
+.borbottom{BORDER-BOTTOM: #EAEAEA  1px solid}
+
+.box2tl{height:30px; width:10px; background:url(../images/top_left.gif);}
+.box2tm{height:30px; width:695px; background:url(../images/top_mid.gif); vertical-align:middle;}
+.box2tr{height:30px; width:10px; background:url(../images/top_right.gif);}
+.box2body{BORDER-LEFT: #7d8b8b 1px solid; width:710; BORDER-RIGHT: #7d8b8b 1px solid}
+.box2bl{height:20px; width:10px; background:url(../images/bottom_left.gif);}
+.box2bm{height:20px; width:695px; background:url(../images/bottom_mid.gif); vertical-align:middle;}
+.box2br{height:20px; width:10px; background:url(../images/bottom_right.gif);}
+
+.boxdtltl{height:30px; width:10px; background:url(../images/top_left.gif);}
+.boxdtltm{height:30px; background:url(../images/top_mid.gif); vertical-align:middle;}
+.boxdtltr{height:30px; width:10px; background:url(../images/top_right.gif);}
+.boxdtlbody{BORDER-LEFT: #7d8b8b 1px solid; width:100%; BORDER-RIGHT: #7d8b8b 1px solid}
+.boxdtlbl{height:20px; width:10px; background:url(../images/bottom_left.gif);}
+.boxdtlbm{height:20px; background:url(../images/bottom_mid.gif); vertical-align:middle;}
+.boxdtlbr{height:20px; width:10px; background:url(../images/bottom_right.gif);}
+
+.box3tl{height:30px; width:10px; background:url(../images/top_left.gif);}
+.box3tm{height:30px; width:275px; background:url(../images/top_mid.gif); vertical-align:middle;}
+.box3tr{height:30px; width:10px; background:url(../images/top_right.gif);}
+.box3body{BORDER-LEFT: #7d8b8b 1px solid; width:292px; BORDER-RIGHT: #7d8b8b 1px solid}
+.box3bl{height:20px; width:10px; background:url(../images/bottom_left.gif);}
+.box3bm{height:20px; width:275px; background:url(../images/bottom_mid.gif); vertical-align:middle;}
+.box3br{height:20px; width:10px; background:url(../images/bottom_right.gif);}
+
+
+
+.box4tl{height:30px; width:10px; background:url(../images/top_left.gif);}
+.box4tm{height:30px; width:1000px; background:url(../images/top_mid.gif); vertical-align:middle;}
+.box4tr{height:30px; width:10px; background:url(../images/top_right.gif);}
+.box4body{BORDER-LEFT: #7d8b8b 1px solid; width:1017px; BORDER-RIGHT: #7d8b8b 1px solid}
+.box4bl{height:20px; width:10px; background:url(../images/bottom_left.gif);}
+.box4bm{height:20px; width:1000px; background:url(../images/bottom_mid.gif); vertical-align:middle;}
+.box4br{height:20px; width:10px; background:url(../images/bottom_right.gif);}
+
+
+/* Search */
+
+#search {
+	float: center;
+	padding-top: 10px; 
+}
+
+#searchinput {
+	font: normal font-size: 11px/1.3em 100% Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+#searchinput {
+	width: 150px;
+	background: #FFFFFF url('images/Search_box.gif') repeat-x;
+	border: 1pt solid #C0C0C0; padding-left:5px; padding-right:5px; padding-top:2px; padding-bottom:2px;
+}
+
+#searchsubmit {
+	width: 60px;
+	height:22px;
+	font: 600 11px/1.3em Verdana;
+	COLOR: #3DBB00;
+	font-variant: small-caps;
+	cursor: pointer;
+	padding-left:2px;
+	padding-right:2px;
+	padding-top:0;
+	padding-bottom:2;
+}
+
+/*- Search End-- */
+
+/* Navigation start*/
+
+.text_box {
+	padding: 3px 6px;
+	text-decoration: none;
+	border: 1px solid #999999; border-radius: 4px; 
+	color: #333333; background-color: #E2E2E2;
+	text-align: center;
+	}
+	
+.text_box a:hover {
+	background-color: #CCCCCC; text-decoration: none; 
+}
+
+.text_box_nolink
+  {
+	padding: 3px 6px;
+	text-decoration: blink;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	margin: 5px;
+	background-color: #00AA00;
+	text-align: center;
+	font-size: 12px;
+	color: white;
+	font-weight: 700;
+	}
+
+.text_box_red
+  {
+	padding: 3px 6px;
+	text-decoration: none;
+	border: 1px solid #FFCCOO;
+	border-radius: 4px;
+	margin: 5px;
+	background-color: #FF6600;
+	text-align: center;
+	font-size: 12px;
+	color: white;
+	font-weight: 700;
+	}
+.text_box_free
+  {
+	text-decoration: none;
+	border: 1px solid #7d8b8b;
+	border-radius: 7px;
+	font-size: 12px;
+	font: 600 11px/1.3em Arial;
+	color: #333333;
+	background-color: #ffffff;
+	text-align: center;
+	width: 715;
+	vertical-align: middle;
+	}
+
+.job_seeker
+  {
+	padding: 3px 6px;
+	text-decoration: blink;
+	margin: 5px;
+	text-align: center;
+	font-size: 12px;
+	color: red;
+	font-weight: 700;
+	}
+
+/* Navigation end*/
+
+#loading {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 49%;
+	top: 54%;
+	margin-top: -40px;
+	margin-left: -100px;
+	background-image: url(ajax-loader.gif); background-position:center;
+	background-repeat: no-repeat;
+}
+
+.block_deep {
+	text-decoration: none;
+	border: 1px solid #AEAEAE; 
+	background-color: #AEAEAE; color: white;
+	font-size: 12px;
+	font: 600 11px/1.3em Arial;
+	}
+	
+.block_light {
+	text-decoration: none;
+	border: 1px solid #AEAEAE;  
+	background-color: #F5F5F5; color: #999999;
+	font-size: 12px; text-transform:none;
+	font: 500 11px/1.3em Arial;
+	}
+	
+.border_right {
+	border-right: 1px solid #AEAEAE; 
+	}
+	
+.border_white {
+	border-right: 1px solid #ffffff;
+	}
+	
+.border_table { 
+border-left: 1px solid #AEAEAE;
+}
+
+
+/* CV AND COVER LETTER */
+.cover_box {
+	text-decoration: none;
+	border: 1px dotted #777777;
+	font-size: 13px;
+	color: #000000;
+	background-color: #ffffff;
+	text-align: justify;
+	width: 750px;
+	margin-left: 1.5cm;
+	margin-top: 3cm;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 25px;
+	}
+.cover_text {
+	font-size: 12px;
+	color: #000000;
+	text-align: justify;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 25px;
+	}
+
+.cover_img
+  {
+	height:170px;
+	width:155px;
+	padding:5px;
+	float: right;
+	
+  }/* END CV AND COVER LETTER */

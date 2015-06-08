@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
@@ -17,6 +16,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
+	app_path().'/helpers',
 
 ));
 
@@ -60,6 +60,7 @@ App::error(function(Exception $exception, $code)
     }
     Log::error($message);
 });
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

@@ -88,6 +88,8 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/* Jobseeker's Zone */
 Route::filter('guest.jobseeker', function()
 {
 	if (Auth::jobseeker()->check()) return Redirect::to('/');
@@ -100,3 +102,36 @@ Route::filter('auth.jobseeker', function()
 		return Redirect::guest(URL::route('jobseeker-sign-in'));
 	}
 });
+
+/* Employer's Zone */
+Route::filter('guest.employer', function()
+{
+	if (Auth::employer()->check()) return Redirect::to('/');
+});
+
+Route::filter('auth.employer', function()
+{
+	if (Auth::employer()->guest())
+	{
+		return Redirect::guest(URL::route('jobseeker-sign-in'));
+	}
+});
+
+/* Admin */
+/* Employer's Zone */
+Route::filter('guest.admin', function()
+{
+	if (Auth::admin()->check())
+	{
+		return Redirect::to('/');
+	} 
+});
+
+Route::filter('auth.admin', function()
+{
+	if (Auth::admin()->guest())
+	{
+		return Redirect::guest(URL::route('admin'));
+	}
+});
+

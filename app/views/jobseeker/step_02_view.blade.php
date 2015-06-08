@@ -4,9 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>bdjobs.com :: Largest Job Site in Bangladesh</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- Bootstrap CSS -->
@@ -146,8 +144,6 @@
 
   </script>
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-
-
 <script type="text/javascript">
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -25,7 +25,12 @@ return array(
 			'driver' => 'eloquent',
 			'model' => 'Employer',
 			'table' => 'employers'
-		)
+		),
+		'admin' => array(
+			'driver' => 'eloquent',
+			'model' => 'Admin',
+			'table' => 'admin'
+		),
 	),
 	// 'driver' => 'eloquent',
 

@@ -14,7 +14,7 @@ class CreateLanguageTable extends Migration {
 	{
 		Schema::create('languages', function($table){
 			$table->increments('id');
-			$table->integer('jobseeker_id')->unsigned()->index();;
+			$table->integer('jobseeker_id')->unsigned()->index();
 			$table->text('title');
 			$table->text('reading');
 			$table->text('writting');

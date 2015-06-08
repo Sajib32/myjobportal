@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><title>
-    Online Job Portal
+<head>
+<title>
+    Online JOb Portal Career
 </title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{{ HTML::style('assets/css/seekerfooter.css') }}
+{{ HTML::style('assets/css/font-awesome.min.css') }}
     <!-- bootstrap -->
-    <link rel="stylesheet" href="http://localhost:8000/css/bootstrap.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/bootstrap-overrides.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
 
     <!-- global styles -->
-    <link rel="stylesheet" href="http://localhost:8000/css/layout.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/elements.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/icons.css">
-
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/layout.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/elements.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/icons.css') }}">
     <!-- libraries -->
-    <link rel="stylesheet" href="http://localhost:8000/css/lib/uniform.default.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/lib/select2.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/lib/bootstrap.datepicker.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/uniform.default.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/select2.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/bootstrap.datepicker.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/font-awesome.css') }}">
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="http://localhost:8000/css/new-user.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/smoke/smoke.css">
-
-
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/new-user.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/print.css') }}" media="print">
     <!--[if lt IE 9]>
           <script src="js/html5.js"></script>
         <![endif]-->
@@ -42,30 +40,22 @@
             min-height: 100%;
             width: 100%;
         }
-
-        .loading {
-            font-family: Arial;
-            font-size: 10pt;
-            border: 2px solid #FF0000;
-            width: 200px;
-            height: 100px;
-            display: none;
-            position: fixed;
-            background-color: White;
-            z-index: 999;
-        }
-
         .error {
             color: Red;
             display: inline-block;
         }
     </style>
-    <link rel="stylesheet" href="http://localhost:8000/css/smoke/form-wizard.css">
+    
+    <link rel="stylesheet" href="{{ URL::asset('css/compiled/form-wizard.css') }}">
+</head>
 <body>
-    <form action="{{ URL::route('jobseeker-start-post') }}" method="post"  id="mainForm" class="form-horizontal" role="form">
-        
+<div class="container">
+    <form method="post" action="{{ URL::route('jobseeker-start-post') }}" id="mainForm" class="form-horizontal" role="form">
+    {{ Form::hidden('id', $jobseeker->id) }}
+    {{ Form::token() }}
+
         <!-- navbar -->
-        <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px;">
+        <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px; z-index:999;">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
                     <span class="sr-only">Toggle navigation</span>
@@ -73,7 +63,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+                <a class="navbar-brand" title="Online JOb Portal Career Page" href="">
+                  
+                </a>
             </div>
             <ul class="nav navbar-nav pull-right hidden-xs">
                 <li class="settings hidden-xs hidden-sm">
@@ -81,17 +73,23 @@
                         <span id="informationStatus"></span>
                     </a>
                 </li>
+                @if(Auth::jobseeker()->check())
                 <li class="settings">
                     
-                    <a href="{{ URL::route('jobseeker-start') }}" role='button'>
-                        <span id="Label1">Create New Account</span>
+                    <a href="" role='button'>
+                        <span id="userNameLabel">Welcome {{ Auth::jobseeker()->get()->fullname }}</span>
                     </a>
                     
                 </li>
                 
-                
                 <li class="settings">
-                    <a href="" target="_blank" role="button">
+                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
+                        <span id="logoutNameLabel">Logout</span>
+                    </a>
+                </li>
+                @endif
+                <li class="settings">
+                    <a href="Faq" role="button">
                         <span id="Label2">FAQ</span>
                     </a>
                 </li>
@@ -104,32 +102,72 @@
         <div class="col-md-12">
             <!-- sidebar -->
             
-            <div id="sidebar-nav" class="col-md-2" style="padding-top: 0px;">
-                
+
+            
+            <div id="sidebar-nav" class="col-md-2">
+                <ul id="dashboard-menu">
+                    <li>
+                        <a href="JobList">
+                            <i class="icon-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                   
+                    
+                    <li>
+                        <a class="dropdown-toggle" href="#">
+                            <i class="icon-group"></i>
+                            <span>Profile</span>
+                            <i class="icon-chevron-down"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="Profile">View Resume</a></li>
+                            <li><a href="Default">Edit Resume</a></li>
+                            <li><a href="ChangePassword">Change Password</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" onclick="confirmLogout()">
+                            <i class="icon-reply"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
             
             <!-- end sidebar -->
 
             <div class="content col-md-8">
+
                 
     <div id="pad-wrapper">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <div id="fuelux-wizard" class="wizard row">
                     <ul class="wizard-steps">
-                        <li data-target="#step1" class="active"><span class="step">1</span>                               <span class="title">General
+                        <li data-target="#step1" class="active"><span class="step">1</span>
+                                <a href="{{ URL::route('jobseeker-start') }}"><span class="title">General
                                 <br />
-                            information</span>                           </li>
-
-                        <li data-target="#step3"><span class="step">2</span>                               <span class="title">Academic
+                            information</span>
+                                    </a></li>
+                  
+                        <li data-target="#step3"><span class="step">3</span>
+                                <a href="{{ URL::route('jobseeker-showStepTwo') }}"><span class="title">Academic
                                 <br />
-                            Qualification</span>                            </li>
-                        <li data-target="#step4"><span class="step">3</span>                                 <span class="title">Employment</span>
+                            Qualification</span>
+                                    </a></li>
+                        <li data-target="#step4"><span class="step">4</span>
+                                <a href="Employment"><span class="title">Employment</span>
+                        </a>
                         </li>
-                        <li data-target="#step5"><span class="step">4</span>                                <span class="title">Others</span>                            </li>
-                        <li data-target="#step6"><span class="step">5</span>                                <span class="title">Photograph /
+                        <li data-target="#step5"><span class="step">5</span>
+                                <a href="Others"><span class="title">Others</span>
+                                    </a></li>
+                        <li data-target="#step6"><span class="step">6</span>
+                                <a href="FileUpload"><span class="title">Photograph /
                                 <br />
-                            CV as pdf format</span>                            </li>
+                            CV as pdf format</span>
+                                    </a></li>
                     </ul>
                 </div>
                 <div id="MainBodyContent_divResultSubmitted" style="text-align: center;"></div>
@@ -138,199 +176,107 @@
                         <div class="col-md-6">
                             <div class="field-box">
                                 <label>Name(Full name):<span style="color: #ff0000;"> *</span></label>
-                                <input name="fullname"{{ (Input::old('fullname')) ? ' value="' . e(Input::old('fullname')) . '"' : '' }} type="text" id="MainBodyContent_fullnameText" class="form-control fullnameText" />
-                                @if ($errors->has('fullname'))<p style="color:red;">{{ $errors->first('fullname') }}</p>@endif
+                                <input name="ctl00$MainBodyContent$fullnameText" type="text" value="{{ $jobseeker->fullname }}" id="MainBodyContent_fullnameText" class="form-control fullnameText" />
                             </div>
-  
+                      
                             <div class="field-box">
                                 <label>Mother's Name:<span style="color: #ff0000;"> *</span></label>
-                                <input name="mothername"{{ (Input::old('mothername')) ? ' value="' . e(Input::old('mothername')) . '"' : '' }} id="MainBodyContent_mothernameText" class="form-control mothernameText" type="text" />
-                                @if ($errors->has('mothername'))<p style="color:red;">{{ $errors->first('mothername') }}</p>@endif
+                                <input name="ctl00$MainBodyContent$mothernameText" value="{{ $jobseeker->mothersname }}" id="MainBodyContent_mothernameText" class="form-control mothernameText" type="text" />
                             </div>
                             <div class="field-box">
                                 <label>Father's Name:<span style="color: #ff0000;"> *</span></label>
-                                <input name="fathername"{{ (Input::old('fathername')) ? ' value="' . e(Input::old('fathername')) . '"' : '' }} id="MainBodyContent_fathernameText" class="form-control fathernameText" type="text" />
-                                @if ($errors->has('fathername'))<p style="color:red;">{{ $errors->first('fathername') }}</p>@endif
+                                <input name="ctl00$MainBodyContent$fathernameText" value="{{ $jobseeker->fathersname }}" id="MainBodyContent_fathernameText" class="form-control fathernameText" type="text" />
                             </div>
-
+                            <div class="field-box">
+                            {{ Form::label('present', 'Present Address'); }}
+                            {{ Form::textarea('present', $jobseeker->present_address, ['size' => '55x5']) }}
+                                
+                            </div>
+                             <div class="field-box">
+                            {{ Form::label('permanent', 'Permanent Address'); }}
+                            {{ Form::textarea('permanent', $jobseeker->permanent_address, ['size' => '55x5']) }}
+                                
+                            </div>
+                 
+                     
+                
                             <div class="field-box">
                                 <div style="width: 87%;">
                                     <div class="col-md-6" style="margin-left: -15px;">
-                                        <label>Gender:</label>
+                                        <label>Gender:<span style="color: #ff0000;"> *</span></label>
                                         <div class="ui-select">
-                                            <select name="ctl00$MainBodyContent$genderText" id="MainBodyContent_genderText">
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-
-</select>
+                                        {{ Form::select('ctl00$MainBodyContent$genderText', ['Male'=>'Male', 'Female'=>'Female'],$jobseeker->gender) }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Marital Status:</label>
+                                        <label>Marital Status:<span style="color: #ff0000;"> *</span></label>
                                         <div class="ui-select">
-                                            <select name="ctl00$MainBodyContent$maritalText" id="MainBodyContent_maritalText" class="maritalText">
-    <option value="Single">Single</option>
-    <option value="Married">Married</option>
-
-</select>
+                                        {{ Form::select('ctl00$MainBodyContent$maritalText', ['Single'=>'Single', 'Married'=>'Married'],$jobseeker->marital) }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="field-box">
-                                <div class="col-md-6" style="margin-left: -15px;">
-                                    <label>Religion:</label>
-                                    <div class="ui-select">
-                                        <select name="ctl00$MainBodyContent$ReligionText" id="MainBodyContent_ReligionText">
-    <option value="Islam">Islam</option>
-    <option value="Hinduism">Hinduism</option>
-    <option value="Buddhism">Buddhism</option>
-    <option value="Christianity">Christianity</option>
-    <option value="Others">Others</option>
 
-</select>
-                                    </div>
-                                </div>
 
-                            </div>
+
+
+
+
+
                         </div>
 
                         <div class="col-md-6">
                             <div class="field-box">
                                 <label>Date of Birth:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$dobText" type="text" id="MainBodyContent_dobText" class="form-control input-datepicker dobText" />
-                            </div>
-                            <div class="field-box">
-                                <label>National ID:</label>
-                                <input name="ctl00$MainBodyContent$nationalText" type="text" id="MainBodyContent_nationalText" class="form-control" />
+                                <input name="ctl00$MainBodyContent$dobText" type="text" value="{{ $jobseeker->dateofbirth }}" id="MainBodyContent_dobText" class="form-control input-datepicker dobText" />
                             </div>
                             <div class="field-box">
                                 <label>Email Address:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$emailText" id="MainBodyContent_emailText" class="form-control emailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
+                                <input name="ctl00$MainBodyContent$emailText" value="{{ $jobseeker->email }}" id="MainBodyContent_emailText" class="form-control emailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
                             </div>
                             <div class="field-box">
-                                <label>User Password:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$password" id="MainBodyContent_password" class="form-control password" data-toggle="tooltip" data-trigger="focus" title="Please insert password" data-placement="top" type="password" />
+                                <label>Confirm Email Address:<span style="color: #ff0000;"> *</span></label>
+                                <input name="ctl00$MainBodyContent$confirmEmailText" value="{{ $jobseeker->confirm_email }}" id="MainBodyContent_confirmEmailText" class="form-control confirmEmailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
                             </div>
                             <div class="field-box">
-                                <label>Password_again:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$password_again" id="MainBodyContent_password_again" class="form-control confirmpassword" data-toggle="tooltip" data-trigger="focus" title="Please insert the same password" data-placement="top" type="password" />
+                                <label>National ID:</label>
+                                <input name="ctl00$MainBodyContent$nationalText" type="text" value="{{ $jobseeker->nationalid }}" id="MainBodyContent_nationalText" class="form-control" />
                             </div>
-  
-
-                            </div>
-
-                    </div>
-                </div>
-            </div>
-
-                                            <div class="clearfix" style="margin-bottom: 30px;"></div>
-
-
-                    <div class="col-md-6">
-                        <h4>Parmanent Address</h4>
-
-                        <div id="permanent_address">
-                            <br />
+                          
                             <div class="field-box">
-                                <label>Address:</label>
-                                <input name="ctl00$MainBodyContent$paraddress_oneText" id="MainBodyContent_paraddress_oneText" class="form-control" type="text" />
-                            </div>
-                            <div class="field-box">
-                                <label>&nbsp;</label>
-                                <input name="ctl00$MainBodyContent$paraddress_twoText" id="MainBodyContent_paraddress_twoText" class="form-control" type="text" />
-                            </div>
-
-
-                        </div>
-                </div>
-                                    <div class="col-md-6">
-                        <h4>Parmanent Address</h4>
-
-                        <div id="permanent_address">
-                            <br />
-                            <div class="field-box">
-                                <label>Address:</label>
-                                <input name="ctl00$MainBodyContent$paraddress_oneText" id="MainBodyContent_paraddress_oneText" class="form-control" type="text" />
-                            </div>
-                            <div class="field-box">
-                                <label>&nbsp;</label>
-                                <input name="ctl00$MainBodyContent$paraddress_twoText" id="MainBodyContent_paraddress_twoText" class="form-control" type="text" />
-                            </div>
-                            
-
-                        </div>
-                </div>
-
-
-        <div class="wizard-actions text-center">
-            <a style="margin-left: 15px;" href="Default.aspx" class="btn-glow primary btn-prev pull-left"><i class="icon-chevron-left"></i>Prev</a>
-            <input type="submit" name="ctl00$MainBodyContent$SaveContactInfo" value="Save Changes" onclick="ConfirmApply();" id="MainBodyContent_SaveContactInfo" class="btn-glow success" style="margin-left: 15px;" />
-            <a class="btn-glow primary btn-next pull-right" href="Academic.aspx" data-last="Finish">Next <i class="icon-chevron-right"></i></a>
-        </div>
-    </div>
-    </div>
-
-
-            </div>
-            
-            <!-- end main container -->
-
-        </div>
-            <div class="wizard-actions text-center">
-                <input type="submit" name="ctl00$MainBodyContent$SaveInformation1" value="Save and Continue" onclick="ConfirmStart();" id="MainBodyContent_SaveInformation1" class="btn-glow success SaveInformation1" />
-             {{ Form::token() }}
-            </div>
-        </div>
-    </div>
-
-            </div>
-
-            <!-- end main container -->
-
-        </div>
-
-        <div class="modal fade" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="educationLabel">Signin With your existing Applicant Account</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row form-wrapper">
-                            <div class="col-md-12">
-                                <div class="field-box">
-                                    <label style="width: 115px;">Email Address:</label>
-                                    <input name="ctl00$emailFieldText" type="text" id="emailFieldText" class="form-control" oncopy="return false" onpaste="return false" oncut="return false" autocomplete="off" placeholder="E-mail address" style="width: 400px;" />
-                                </div>
-                                <div class="field-box">
-                                    <label style="width: 115px;">Password:</label>
-                                    <input name="ctl00$passwordFieldText" type="password" id="passwordFieldText" class="form-control" autocomplete="off" placeholder="Your password" style="width: 400px;" />
-                                </div>
-    
-
-                                </div>
-                                <br />
-                                <div class="field-box">
-                                    <a href="ForgotPassword.aspx" class="forgot">Forgot password?</a>
-                                    <div class="remember">
-                                        <input id="remember-me" type="checkbox" />
-                                        <label style="width: 115px;" for="remember-me">Remember me</label>
+                                <div class="col-md-6" style="margin-left: -15px;">
+                                    <label>Religion:<span style="color: #ff0000;"> *</span></label>
+                                    <div class="ui-select">
+                                    {{ Form::select('ctl00$MainBodyContent$ReligionText', ['Islam'=>'Islam', 'Hinduism'=>'Hinduism','Buddhism'=>'Buddhism','Christianity'=>'Christianity','Others'=>'Others'],$jobseeker->religion) }}                                 
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                        <input type="submit" name="ctl00$topSigninBtn" value="Log in" id="topSigninBtn" class="btn btn-primary btn-sm pull-left" />
-                    </div>
                 </div>
             </div>
+            <div class="wizard-actions text-center">
+                <a disabled class="btn-glow primary btn-prev pull-left" href="#"><i class="icon-chevron-left"></i>Prev</a>
+                <input type="submit" name="ctl00$MainBodyContent$SaveGeneralInfo" value="Update Changes" onclick="ConfirmApply();" id="MainBodyContent_SaveGeneralInfo" class="btn-glow success SaveGeneralInfo" />
+                <a class="btn-glow primary btn-next pull-right" href="{{ URL::route('jobseeker-showStepTwo') }}">Next <i class="icon-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+            </div>
+            <!-- side right column -->
+            <div class="col-md-2" style="position: fixed; right: 0px; top: 0px;">
+                
+              
+                
+            </div>
+            <!-- end main container -->
+
         </div>
 
-        <div class="modal fade" id="chatModalLabel" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
+        <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -349,7 +295,7 @@
     <option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
     <option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
     <option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
-    <option value="Others">Others</option>
+    <option value="others">Others</option>
 
 </select>
                                     </div>
@@ -381,34 +327,104 @@
                 </div>
             </div>
         </div>
+    </form>
+</div>
 
-        <footer class="col-md-12" style="background: #ff0000; clear: both; padding: 10px; color: #FFFFFF; position: fixed; bottom: 0px;">
-            <div class="col-md-6">
-                2014 © <a style="color: #FFFFFF" title="Midland Bank Ltd. official website" href="http://www.midlandbankbd.net/" target="_blank">Midland Bank Ltd.</a> All Rights Reserved. 
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="http://www.midlandbankbd.net/terms_of_service" target="_blank">Terms of Sesrvice</a>
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="GuideLine.aspx" target="_blank">How to Apply</a>
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="#">Feedback</a>
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <div class="widget-content">
+              {{ HTML::image('/assets/img/Logo.jpg', '', array('width'=>'205px','height'=>'50px')) }}
+              <p>This is the site where you will get everything about jobs</p>
             </div>
-            <div class="col-md-6 text-right">Powered by IT Division of Midland Bank Limited</div>
-            <div class="clearfix"></div>
-        </footer>
-    
+          </div>
+        </div>
 
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function () { $('form').submit(); });//]]>
-</script>
-</form>
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <h6 class="widget-title">Navigation</h6>
+
+            <div class="widget-content">
+              <div class="row">
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Candidates</a></li>
+                    <li><a href="#">Partners</a></li>
+                  </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Follow Us</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Youtube</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Popular Jobs</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Web Developer</a></li>
+                <li><a href="#">Web Designer</a></li>
+                <li><a href="#">UX Engineer</a></li>
+                <li><a href="#">Account Manager</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
+
+        <ul class="footer-social">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-linkedin"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+          <li><a href="#" class="fa fa-pinterest"></a></li>
+          <li><a href="#" class="fa fa-dribbble"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer> <!-- end #footer -->
+    <!--/.footer-bottom--> 
+
     <!-- scripts -->
-    <script src="http://localhost:8000/js/jquery-2.1.0.min.js"></script>
-    <script src="http://localhost:8000/js/bootstrap.min.js"></script>
-    <script src="http://localhost:8000/js/theme.js"></script>
-    <script src="http://localhost:8000/css/smoke/smoke.min.js"></script>
+    <script src="{{ URL::asset('js/jquery-2.1.0.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('js/theme.js') }}"></script>
 
     <script type="text/javascript">
-        function showSmokeAlert() {
-            smoke.alert('Thanks for submitting your request to Midland Bank e-Recruitment System. We will contact you shortly.', {}, function () { });
-        }
         $(window).scroll(function () {
             if ($(window).scrollTop() >= 1) {
                 $('.navbar-inverse').addClass('fixed');
@@ -420,7 +436,7 @@ $(document).ready(function () { $('form').submit(); });//]]>
 
         function confirmLogout() {
             if (confirm("Do you want to Logout?")) {
-                location.href = "Logout.aspx";
+                location.href = "Logout";
             }
         }
 
@@ -428,7 +444,7 @@ $(document).ready(function () { $('form').submit(); });//]]>
 
         jQuery('.chatItemName').change(function () {
             var selectValue = $(".chatItemName option:selected").val();
-            if (selectValue == "Others") {
+            if (selectValue == "others") {
                 $('.chatOtherDiv').show("slow");
             } else {
                 $('.chatOtherDiv').hide("slow");
@@ -477,23 +493,23 @@ $(document).ready(function () { $('form').submit(); });//]]>
         }
     </script>
     
-    <script src="http://localhost:8000/js/bootstrap.datepicker.js"></script>
-    <script src="http://localhost:8000/js/Validate/jquery.validate.min.js"></script> 
-   <script src="http://localhost:8000/js/Validate/additional-methods.min.js"></script>
+    <script src="{{ URL::asset('js/bootstrap.datepicker.js') }}"></script>
+        <script src="{{ URL::asset('js/Validate/jquery.validate.min.js') }}"></script>
+        <script src="{{ URL::asset('js/Validate/additional-methods.min.js') }}"></script>
 
 
+    <!-- call this page plugins -->
     <script type="text/javascript">
         $(function () {
-           /*
             var selectMarital = $(".maritalText option:selected").val();
             if (selectMarital == "Married") {
                 $('.spouseDiv').show("slow");
             } else {
                 $('.spouseDiv').hide("slow");
             }
-            */
+
             jQuery('.dobText').attr("readonly", "readonly");
-/*
+
             jQuery('.maritalText').change(function () {
                 var selectValue = $(".maritalText option:selected").val();
                 if (selectValue == "Married") {
@@ -502,7 +518,7 @@ $(document).ready(function () { $('form').submit(); });//]]>
                     $('.spouseDiv').hide("slow");
                 }
             });
-            */
+
             // datepicker plugin
             $('.input-datepicker').datepicker({
                 format: 'DD, d MM, yyyy'
@@ -510,7 +526,7 @@ $(document).ready(function () { $('form').submit(); });//]]>
                 $(this).datepicker('hide');
             });
 
-            $('.SaveInformation1').on("click", function (e) {
+            $('.SaveGeneralInfo').on("click", function (e) {
 
                 jQuery('form').validate({
                     errorClass: "error"
@@ -532,20 +548,12 @@ $(document).ready(function () { $('form').submit(); });//]]>
                     required: true,
                     email: true
                 });
-                //jQuery('.confirmEmailText').rules('add', {
-                  //  required: true,
-                    //email: true,
-                    //equalTo: ".emailText"
-                //});
-                jQuery('.password').rules('add', {
+                jQuery('.confirmEmailText').rules('add', {
                     required: true,
-                    password: true
+                    email: true,
+                    equalTo: ".emailText"
                 });
-                jQuery('.password_again').rules('add', {
-                    required: true,
-                    password: true,
-                    equalTo: ".password"
-                });
+
                 var selectValue = $(".maritalText option:selected").val();
                 if (selectValue == "Married") {
                     jQuery('.spouseNameText').rules('add', {
@@ -555,7 +563,6 @@ $(document).ready(function () { $('form').submit(); });//]]>
 
                 if ($('form').valid()) {
                     //alert("Hello");
-                    ShowProgress();
                     $($get("SaveInformation1")).click();
                 } else {
                     // alert("Error");
@@ -565,19 +572,19 @@ $(document).ready(function () { $('form').submit(); });//]]>
             });
         });
 
-        function ConfirmStart() {
-            var confirm_start = document.createElement("INPUT");
-            confirm_start.type = "hidden";
-            confirm_start.name = "confirm_start";
-            if (confirm("Do you want to Continue?")) {
-                confirm_start.value = "Yes";
+        function ConfirmApply() {
+            var confirm_profile = document.createElement("INPUT");
+            confirm_profile.type = "hidden";
+            confirm_profile.name = "confirm_profile";
+            if (confirm("Do you want to Change or Update your Profile?")) {
+                confirm_profile.value = "Yes";
             } else {
-                confirm_start.value = "No";
+                confirm_profile.value = "No";
             }
-            document.forms[0].appendChild(confirm_start);
+            document.forms[0].appendChild(confirm_profile);
         }
-
     </script>
 
 </body>
 </html>
+

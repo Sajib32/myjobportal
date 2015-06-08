@@ -1,0 +1,1 @@
+<h1>We have sent a new password.</h1>

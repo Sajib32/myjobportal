@@ -157,16 +157,9 @@
                     <div class="row">
                         <div class="col-lg-4 hovering">
                              <ul style="list-style:none">
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Accounting/Finance</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Bank/ Non-Bank Fin. Institution (36)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Commercial/Supply Chain (83)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Education/Training (251)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Engineer/Architects (200)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Garments/Textile (322)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>HR/Org. Development (77)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Gen Mgt/Admin (261)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Design/Creative (38)</a></li>
-                                <li><i class="fa fa-arrow-circle-right"></i><a href='#'>Production/Operation (37)</a></li>
+                             @foreach($categories as $cat)
+                                <li><i class="fa fa-arrow-circle-right"></i><a href="{{ action('HomeController@getCategoriesJobs', $cat->id) }}">{{ $cat->name }}</a></li>
+                             @endforeach
                              </ul>
                         </div>
                         <div class="col-lg-4 hovering">

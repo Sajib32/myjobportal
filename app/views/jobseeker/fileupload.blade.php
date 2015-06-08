@@ -2,10 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title>
-	Midland Bank e-Recruitment System
+    Online Job Portal
 </title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
@@ -40,18 +38,6 @@
             width: 100%;
         }
 
-        .loading {
-            font-family: Arial;
-            font-size: 10pt;
-            border: 2px solid #FF0000;
-            width: 200px;
-            height: 100px;
-            display: none;
-            position: fixed;
-            background-color: White;
-            z-index: 999;
-        }
-
         .error {
             color: Red;
             display: inline-block;
@@ -62,6 +48,7 @@
 </head>
 <body>
     <form method="post" action="{{ URL::route('jobseeker-photo-post') }}" id="mainForm" class="form-horizontal" role="form" enctype="multipart/form-data">
+    
     {{ Form::token() }} 
 
         <!-- navbar -->
@@ -73,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" title="Midland Bank e-Recruitment Home Page" href="Career.aspx">
+                <a class="navbar-brand" title="" href="Career">
                 </a>
             </div>
             <ul class="nav navbar-nav pull-right hidden-xs">
@@ -84,20 +71,20 @@
                 </li>
                 <li class="settings">
                     
-                    <a href='Profile.aspx' role='button'>
+                    <a href='Profile' role='button'>
                         <span id="userNameLabel">Welcome Md. Monirul Islam</span>
                     </a>
                     
                 </li>
                 
                 <li class="settings">
-                    <a href="#" role="button" onclick="confirmLogout()">
+                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
                         <span id="logoutNameLabel">Logout</span>
                     </a>
                 </li>
                 
                 <li class="settings">
-                    <a href="Faq.aspx" role="button">
+                    <a href="Faq" role="button">
                         <span id="Label2">FAQ</span>
                     </a>
                 </li>
@@ -115,43 +102,14 @@
             <div id="sidebar-nav" class="col-md-2">
                 <ul id="dashboard-menu">
                     <li>
-                        <a href="JobList.aspx">
+                        <a href="JobList">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-inbox"></i>
-                            <span>Inbox(0)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CVStatus.aspx">
-                            <i class="icon-signal"></i>
-                            <span>Resume Status</span>
-                        </a>
-                    </li>
-                    <li>
-
-                        <a href="AdmitCard.aspx">
-                            <i class="icon-cloud-download"></i>
-                            <span>Admit Card</span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="AppliedJobs.aspx">
-                            <i class="icon-tags"></i>
-                            <span>Job Cart</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="JobList.aspx">
-                            <i class="icon-tasks"></i>
-                            <span>Available Jobs</span>
-                        </a>
-                    </li>
+                    
+                    
+                   
                     <li>
                         <a class="dropdown-toggle" href="#">
                             <i class="icon-group"></i>
@@ -159,10 +117,9 @@
                             <i class="icon-chevron-down"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="Profile.aspx">View Resume</a></li>
-                            <li><a href="Default.aspx">Edit Resume</a></li>
-                            <li><a href="ChangePassword.aspx">Change Password</a></li>
-                            <li><a href="#">Notification</a></li>
+                            <li><a href="Profile">View Resume</a></li>
+                            <li><a href="Default">Edit Resume</a></li>
+                            <li><a href="ChangePassword">Change Password</a></li>
                         </ul>
                     </li>
                     <li>
@@ -184,20 +141,18 @@
                 <div class="col-md-12 col-xs-12">
                     <div id="fuelux-wizard" class="wizard row">
                         ﻿ <ul class="wizard-steps">
-    <li data-target="#step1" class="active"><span class="step">1</span>         <a href="Default.aspx">         <span class="title">General
+    <li data-target="#step1" class="active"><span class="step">1</span>         <a href="Default">         <span class="title">General
         <br />
         information</span>             </a>     </li>
-    <li data-target="#step2" class="active"><span class="step">2</span>         <a href="Contact.aspx">         <span class="title">Contact
-        <br />
-        information</span>             </a>     </li>
-    <li data-target="#step3" class="active"><span class="step">3</span>         <a href="Academic.aspx">         <span class="title">Academic
+
+    <li data-target="#step3" class="active"><span class="step">3</span>         <a href="Academic">         <span class="title">Academic
         <br />
         Qualification</span>             </a>     </li>
-    <li data-target="#step4" class="active"><span class="step">4</span>         <a href="Employment.aspx">             <span class="title">Employment</span>
+    <li data-target="#step4" class="active"><span class="step">4</span>         <a href="Employment">             <span class="title">Employment</span>
             </a>
     </li>
-    <li data-target="#step5" class="active"><span class="step">5</span>         <a href="Others.aspx">         <span class="title">Others</span>             </a>     </li>
-    <li data-target="#step6" class="active"><span class="step">6</span>         <a href="FileUpload.aspx">         <span class="title">Photograph /
+    <li data-target="#step5" class="active"><span class="step">5</span>         <a href="Others">         <span class="title">Others</span>             </a>     </li>
+    <li data-target="#step6" class="active"><span class="step">6</span>         <a href="FileUpload">         <span class="title">Photograph /
         <br />
         CV as pdf format</span>             </a>     </li>
 </ul>
@@ -206,23 +161,41 @@
                     <div id="MainBodyContent_divResultSubmitted"></div>
                     <div class="step-content">
                         <div class="row form-wrapper payment-info">
+                       
                             <div class="col-md-12">
+                            
+                            
+                            @if(isset($photo->image))
                                 <div class="col-md-4">
-                                @foreach($photo as $p)
+                                
                                     <div>
-	<table class="display" cellspacing="0" align="Left" id="MainBodyContent_GridViewContactAddress" style="border-collapse:collapse;">
-		<tr>
-			<td>
-                <img class="img-thumbnail img-responsive" src="{{ asset($p->image) }}" style="margin-bottom: 10px; height: 208px; width: 180px;" />
-                <br />
-                <strong>Image Size: 55 x 45 mm </strong>
-            </td>
-		</tr>
-	</table>
-</div>
-@endforeach
+                                <table class="display" cellspacing="0" align="Left" id="MainBodyContent_GridViewContactAddress" style="border-collapse:collapse;">
+                                    
+                                    <tr>
+                                        <td>
+                                            <img class="img-thumbnail img-responsive" src="{{ asset($photo->image) }}" style="margin-bottom: 10px; height: 208px; width: 180px;" />
+                                            <br />
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            
+                                                <div style="float: left;">
+                                                   
+                                                    <a href="{{ URL::route('photo-delete', array($photo->id)) }}" class="btn btn-default">Remove</a>
+                                                </div>
+                                            </div>
+                                                
+                                        </td>
+                                    </tr>
+                                    {{ $photo->image }}
+                                </table>
+                                    </div>
+                                
                                     <span id="MainBodyContent_noAddressInfo"></span>
-                                </div>
+                            </div>
+                          
+                             @else
+                           
+ 
+                                 
                                 <div class="col-md-3">
                                     <div class="field-box">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -237,25 +210,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="field-box">
-                                        <h5>File must be in JPEG(.jpg or .jpeg) or GIF(.gif) format.<br />
-                                            File size must not exceed 1 MB.<br />
-                                            Choose Image:
-                                            (Allowed Type: jpg, jpeg, png, gif)<br />
-                                            Click Browse to select file.
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
+                               @endif
 
+                           
+                            </div>
+                                 
+                               
+                             
                             <div class="col-md-12" style="height: 30px; clear: both;"></div>
 
 
                         </div>
                     </div>
                     <div class="wizard-actions text-center">
-                        <a style="margin-left: 15px;" href="Others.aspx" class="btn-glow primary btn-prev"><i class="icon-chevron-left"></i>Prev</a>
+                        <a style="margin-left: 15px;" href="Others" class="btn-glow primary btn-prev"><i class="icon-chevron-left"></i>Prev</a>
                         <input type="submit" name="ctl00$MainBodyContent$SaveOthersInfo" value="Save Changes" onclick="ConfirmFile();" id="MainBodyContent_SaveOthersInfo" class="btn-glow success SaveOthersInfo" style="margin-left: 15px;" />
                         <a class="btn-glow primary btn-next" href="#" disabled data-last="Finish">Next <i class="icon-chevron-right"></i></a>
                     </div>
@@ -288,12 +256,12 @@
                                     <label style="width: 115px;">Subject:</label>
                                     <div class="ui-select" style="width: 78%;">
                                         <select name="ctl00$chatItemName" id="chatItemName" class="chatItemName">
-	<option value="I Can’t Login The Career Site">I Can’t Login The Career Site</option>
-	<option value="I Can’t Create Login ID">I Can’t Create Login ID</option>
-	<option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
-	<option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
-	<option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
-	<option value="others">Others</option>
+    <option value="I Can’t Login The Career Site">I Can’t Login The Career Site</option>
+    <option value="I Can’t Create Login ID">I Can’t Create Login ID</option>
+    <option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
+    <option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
+    <option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
+    <option value="others">Others</option>
 
 </select>
                                     </div>
@@ -325,17 +293,6 @@
                 </div>
             </div>
         </div>
-
-        <footer class="col-md-12" style="background: #ff0000; clear: both; padding: 10px; color: #FFFFFF; position: fixed; bottom: 0px; left: 0px;">
-            <div class="col-md-6">
-                2014 © <a style="color: #FFFFFF" title="Midland Bank Ltd. official website" href="http://www.midlandbankbd.net/" target="_blank">Midland Bank Ltd.</a> All Rights Reserved. &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="http://www.midlandbankbd.net/terms_of_service" target="_blank">Terms of Service</a>&nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="GuideLine.aspx" target="_blank">How to Apply</a>
-                &nbsp; &nbsp; &nbsp;<a style="color: #FFFFFF;" href="#">Feedback</a>
-            </div>
-            <div class="col-md-6 text-right">Powered by IT Division of Midland Bank Limited</div>
-            <div class="clearfix"></div>
-        </footer>
-    
-
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function () { $('[id*=SaveOthersInfo]').submit(); });//]]>
@@ -358,7 +315,7 @@ $(document).ready(function () { $('[id*=SaveOthersInfo]').submit(); });//]]>
 
         function confirmLogout() {
             if (confirm("Do you want to Logout?")) {
-                location.href = "Logout.aspx";
+                location.href = "Logout";
             }
         }
 
@@ -401,24 +358,12 @@ $(document).ready(function () { $('[id*=SaveOthersInfo]').submit(); });//]]>
 
         // End chat window
 
-        function ShowProgress() {
-            setTimeout(function () {
-                var modalDiv = $('<div />');
-                modalDiv.addClass("modalDiv");
-                $('body').append(modalDiv);
-                var loading = $(".loading");
-                loading.show();
-                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
-                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
-                loading.css({ top: top, left: left });
-            }, 200);
-        }
     </script>
     
         <!-- scripts -->
     <script src="{{ URL::asset('js/custom.js') }}"></script>
     <script src="{{ URL::asset('js/fileinput.js') }}"></script>
-    <script src="{{ URL::asset('js/Validate/jquery.validate.min.j') }}"></script>
+    <script src="{{ URL::asset('js/Validate/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('js/Validate/additional-methods.min.js') }}"></script>
 
     <!-- call this page plugins -->
@@ -433,12 +378,7 @@ $(document).ready(function () { $('[id*=SaveOthersInfo]').submit(); });//]]>
                 }
             });
 
-            $('.FileCVUpload').bind('change', function () {
-                if (this.files[0].size > 1048576) {
-                    alert("File must be less than 1MB");
-                    $(this).val('');
-                }
-            });
+      
 
             $('.SaveOthersInfo').on("click", function (e) {
 
@@ -450,9 +390,7 @@ $(document).ready(function () { $('[id*=SaveOthersInfo]').submit(); });//]]>
                     accept: "image/jpg,image/jpeg,image/png,image/gif"
                 });
 
-                jQuery('.FileCVUpload').rules('add', {
-                    extension: "pdf"
-                });
+          
 
                 if ($('form').valid()) {
                     //alert("Hello");

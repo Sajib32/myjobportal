@@ -8,6 +8,27 @@ class JobseekerController extends \BaseController {
 	public function getResume() {
 		return View::make('jobseeker.resume');
 	}
+	public function getViewProfile()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$qualification = Qualification::where('jobseeker_id', $user->id)->get();
+		$proqua = Proqualification::where('jobseeker_id', $user->id)->get();
+		$training = Training::where('jobseeker_id', $user->id)->get();
+		$employment = Employment::where('jobseeker_id', $user->id)->get();
+		$spec = Other::where('jobseeker_id', $user->id)->get();
+		$language = Language::where('jobseeker_id', $user->id)->get();
+		$reference = Reference::where('jobseeker_id', $user->id)->get();
+
+		return View::make('jobseeker.ViewProfile')->with('jobseeker', $jobseeker)
+													->with('qualification', $qualification)
+													->with('proqua', $proqua)
+													->with('training', $training)
+													->with('employment', $employment)
+													->with('spec', $spec)
+													->with('language', $language)
+													->with('reference', $reference);
+	}
 	public function postResume() {
 
 		$rules = array (
@@ -168,7 +189,8 @@ class JobseekerController extends \BaseController {
 			if($auth) {
 				// Redirect to the intended page
 
-				return Redirect::route('jobseeker-step_02_view');
+				// return Redirect::route('jobseeker-step_02_view');
+				return Redirect::route('jobseeker-start');
 			} else {
 				return Redirect::route('jobseeker-sign-in')
 			   			->with('global', 'Email/password wrong, or account not activated.');
@@ -291,24 +313,8 @@ class JobseekerController extends \BaseController {
 	}
 	public function getStepTwo() 
 	{			
-		$user = Auth::jobseeker()->get();
 		
-		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name')
-						->join('qualifications', 'jobseekers.id', '=', 'qualifications.jobseeker_id')
-						->where('jobseekers.id', '=', $user->id)
-						->get();
-		$proqualification = Jobseeker::select('proqualifications.id', 'proqualifications.jobseeker_id', 'proqualifications.certification')
-				->join('proqualifications', 'jobseekers.id', '=', 'proqualifications.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
-		$training = Jobseeker::select('trainings.id', 'trainings.jobseeker_id', 'trainings.institute')
-				->join('trainings', 'jobseekers.id', '=', 'trainings.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
-
-		return View::make('jobseeker.test')->with('qualification', $qualification)
-											->with('proqualification', $proqualification)
-											->with('training', $training);	
+		return View::make('jobseeker.test');	
 	}
 	public function postStepTwo() 
 	{
@@ -317,24 +323,51 @@ class JobseekerController extends \BaseController {
 		$input = Input::all();
 
 		if(isset($_POST['ctl00$MainBodyContent$save_education_info'])){
-		$qualification = Qualification::create(array
-			(	
-			 'level_of_education' => $input['ctl00$MainBodyContent$level_educationText'],
-			 'exam_title' =>  $input['ctl00$MainBodyContent$exam_titleText'],
-			 'institute_name' =>  $input['ctl00$MainBodyContent$institute_nameText'],
-			 'insOther' =>  $input['ctl00$MainBodyContent$insOtherText'],
-			 'result' =>  $input['ctl00$MainBodyContent$resultText'],
-			 'year_of_passing' =>  $input['ctl00$MainBodyContent$year_passingText'],
-			 'duration' =>  $input['ctl00$MainBodyContent$durationText'],
-			 'achievement' =>  $input['ctl00$MainBodyContent$achievementText']
-			)
-		);
+		$qualification = new Qualification;
+			
+		// $qualification->examlevel_id = Input::get('ctl00$MainBodyContent$level_educationText');
+		$qualification->exam_title = Input::get('ctl00$MainBodyContent$exam_titleText');
+		$qualification->major = Input::get('ctl00$MainBodyContent$concentration_groupText');
+		
+		// $institute = Input::get('ctl00$MainBodyContent$institute_nameText');
+		/*
+		if(isset($input['institute_name'])){
+			foreach($input['institute_name'] as $insID){
+				$univID = University::find($insID);
+				if($univID->id == 3 || $univID->id == 4){
+					$qualification->institute_name = Input::get('ctl00$MainBodyContent$insOtherText');
+				} else {
+					 $qualification->institute_name = $univID->name;
+			}
+		}
+	}
+	*/
+		$qualification->institute_name = Input::get('ctl00$MainBodyContent$insOtherText');
+		$result = Input::get('ctl00$MainBodyContent$resultText');
+		if($result == '1' || $result == '2' || $result == '3')
+		{
+			$qualification->result = Input::get('ctl00$MainBodyContent$resultText');
+			$qualification->marks = Input::get('ctl00$MainBodyContent$marksText');
+		} else {
+			$qualification->result = Input::get('ctl00$MainBodyContent$cgpaText');
+			$qualification->marks = Input::get('ctl00$MainBodyContent$scaleText');
+		}
+		$qualification->year_of_passing = Input::get('year_of_passing');
+		$qualification->duration = Input::get('ctl00$MainBodyContent$durationText');
+		$qualification->achievement = Input::get('ctl00$MainBodyContent$achievementText');
 
 		$qualification->jobseeker()->associate($jobseeker);
 		$qualification->save();
+			if(isset($input['examlevel'])){
+			foreach($input['examlevel'] as $examID){
+				$exam = ExamLevel::find($examID);
+				$qualification->examlevel()->associate($exam);
+				$qualification->save();
+			}
+		}
+
 
 		return Redirect::route('jobseeker-showStepTwo');
-
 	}
 	if(isset($_POST['ctl00$MainBodyContent$SaveProfessionalInfo'])){
 		$proqualification = Proqualification::create(array
@@ -375,22 +408,182 @@ class JobseekerController extends \BaseController {
 	public function showStepTwo()
 	{
 		$user = Auth::jobseeker()->get();
-		
-		$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id', 'qualifications.institute_name')
+		$qualification = Qualification::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+	
+		/*$qualification = Jobseeker::select('qualifications.id', 'qualifications.jobseeker_id','qualifications.level_of_education',
+		 'qualifications.institute_name', 'qualifications.insOther', 'qualifications.result','qualifications.marks', 'qualifications.year_of_passing',
+		 'qualifications.duration', 'qualifications.achievement', 'qualifications.major', 
+		 'qualifications.exam_title')
 						->join('qualifications', 'jobseekers.id', '=', 'qualifications.jobseeker_id')
 						->where('jobseekers.id', '=', $user->id)
 						->get();
-		$proqualification = Jobseeker::select('proqualifications.id', 'proqualifications.jobseeker_id', 'proqualifications.certification')
-				->join('proqualifications', 'jobseekers.id', '=', 'proqualifications.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
-		$training = Jobseeker::select('trainings.id', 'trainings.jobseeker_id', 'trainings.institute')
-				->join('trainings', 'jobseekers.id', '=', 'trainings.jobseeker_id')
-				->where('jobseekers.id', '=', $user->id)
-				->get();
+						*/
+		// $proqualification = Jobseeker::select('proqualifications.id', 'proqualifications.jobseeker_id', 'proqualifications.certification')
+				//->join('proqualifications', 'jobseekers.id', '=', 'proqualifications.jobseeker_id')
+				//->where('jobseekers.id', '=', $user->id)
+				//->get();
+		$proqualification = Proqualification::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+		$training = Training::with('jobseeker')->where('jobseeker_id', $user->id)->get();
+		//$training = Jobseeker::select('trainings.id', 'trainings.jobseeker_id', 'trainings.institute')
+				//->join('trainings', 'jobseekers.id', '=', 'trainings.jobseeker_id')
+				//->where('jobseekers.id', '=', $user->id)
+				//->get();
 
 		return View::make('jobseeker.test')->with('qualification', $qualification)
 										   ->with('proqualification', $proqualification)
 										   ->with('training', $training);
 	}
-}
+	public function getEdit($id)
+	{
+		$qualification = Qualification::find($id);
+		$exam = ExamLevel::where('id',$qualification->examlevel_id)->get();
+		
+		return View::make('jobseeker.edit-qualification')
+				 ->with('qualification', $qualification)
+				->with('insname', $exam);
+	}
+	public function postEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+		$task = Qualification::find(Input::get('id'));
+		$input = Input::all();
+		
+		$task->exam_title = $input['ctl00$MainBodyContent$exam_titleText'];
+		$task->major = $input['ctl00$MainBodyContent$concentration_groupText'];
+		$task->institute_name = $input['ctl00$MainBodyContent$insOtherText'];
+		$result = Input::get('ctl00$MainBodyContent$resultText');
+		if($result == '1' || $result == '2' || $result == '3')
+		{
+			$task->result = Input::get('ctl00$MainBodyContent$resultText');
+			$task->marks = Input::get('ctl00$MainBodyContent$marksText');
+		} else {
+			$task->result = Input::get('ctl00$MainBodyContent$cgpaText');
+			$task->marks = Input::get('ctl00$MainBodyContent$scaleText');
+		}
+		$task->year_of_passing = $input['ctl00$MainBodyContent$year_passingText'];
+		$task->duration = $input['ctl00$MainBodyContent$durationText'];
+		$task->achievement = $input['ctl00$MainBodyContent$achievementText'];
+		$task->jobseeker()->associate($jobseeker);
+		$task->save();
+
+		if(isset($input['examlevel'])) {
+			foreach($input['examlevel'] as $examId) {
+				$exam = ExamLevel::find($examId);
+				$task->examlevel()->associate($exam);
+				$task->save();
+			}
+		}
+		// $task->level_of_education = Input::get('ctl00$MainBodyContent$level_educationText');
+		// $task->save();
+		// return Redirect::route('jobseeker-showStepTwo');
+
+		return Redirect::route('jobseeker-showStepTwo');
+	 
+	}
+	public function getStart()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+
+		return View::make('jobseeker.start')->with('jobseeker', $jobseeker);
+	}
+	public function postStart()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);
+
+		$personal = Jobseeker::find(Input::get('id'));
+		$input = Input::all();
+
+		$personal->fullname = $input['ctl00$MainBodyContent$fullnameText'];
+		$personal->mothersname = $input['ctl00$MainBodyContent$mothernameText'];
+		$personal->fathersname = $input['ctl00$MainBodyContent$fathernameText'];
+		$personal->present_address = $input['present'];
+		$personal->permanent_address = $input['permanent'];
+		$personal->gender = $input['ctl00$MainBodyContent$genderText'];
+		$personal->marital = $input['ctl00$MainBodyContent$maritalText'];
+		$personal->religion = $input['ctl00$MainBodyContent$ReligionText'];
+		$personal->dateofbirth = $input['ctl00$MainBodyContent$dobText'];
+		$personal->nationalid = $input['ctl00$MainBodyContent$nationalText'];
+		$personal->email = $input['ctl00$MainBodyContent$emailText'];
+		$personal->confirm_email = $input['ctl00$MainBodyContent$confirmEmailText'];
+		
+		
+		$personal->save();
+
+		return Redirect::route('jobseeker-start');
+
+	}
+	public function getProQuaEdit($id)
+	{
+		$proq = Proqualification::find($id);
+		return View::make('jobseeker.proquaedit')
+				->with('proq', $proq);
+	}
+	public function postProQuaEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);		
+		$proqua = Proqualification::find(Input::get('id'));
+		$input = Input::all();
+		if(isset($_POST['ctl00$MainBodyContent$ProfessionalQuaEditBtn'])){
+		$proqua->certification = $input['ctl00$MainBodyContent$certificateText'];
+		$proqua->institute = $input['ctl00$MainBodyContent$instituteText'];
+		$proqua->location = $input['ctl00$MainBodyContent$locationText'];
+		$proqua->from = $input['ctl00$MainBodyContent$fromDateText'];
+		$proqua->to = $input['ctl00$MainBodyContent$toDateText'];
+		
+		$proqua->jobseeker()->associate($jobseeker);
+		$proqua->save();
+
+		return Redirect::route('jobseeker-showStepTwo');
+		}
+	}	
+	public function getTrainEdit($id)
+	{
+		$train = Training::find($id);
+		return View::make('jobseeker.trainedit')
+				->with('train', $train);
+	}
+	public function postTrainEdit()
+	{
+		$user = Auth::jobseeker()->get();
+		$jobseeker = Jobseeker::find($user->id);		
+		$train = Training::find(Input::get('id'));
+		$input = Input::all();
+
+		$train->title = $input['ctl00$MainBodyContent$trainraining_titleText'];
+		$train->topics = $input['ctl00$MainBodyContent$trainopicsText'];
+		$train->institute = $input['ctl00$MainBodyContent$instituteTrainingText'];
+		$train->country = $input['ctl00$MainBodyContent$countryTrainingText'];
+		$train->year = $input['ctl00$MainBodyContent$locationTrainingText'];
+		$train->duration = $input['ctl00$MainBodyContent$yearTrainingText'];
+		
+		$train->jobseeker()->associate($jobseeker);
+		$train->save();
+
+		return Redirect::route('jobseeker-showStepTwo');
+	}
+	public function getAcademy($id)
+	{
+		$q = Qualification::find($id);
+		$q->delete();
+
+		return Redirect::route('jobseeker-showStepTwo');	
+	}
+	public function getProquaDel($id)
+	{
+		$proqua = Proqualification::find($id);
+		$proqua->delete();
+	
+		return Redirect::route('jobseeker-showStepTwo');	
+	}
+	public function getTrainDel($id)
+	{
+		$t = Training::find($id);
+		$t->delete();
+		
+		return Redirect::route('jobseeker-showStepTwo');	
+	}		
+}	

@@ -51,4 +51,8 @@ use UserTrait, RemindableTrait;
 	{
 		return $this->hasOne('Reference', 'jobseekers');
 	}
+	public function jobdetails()
+	{
+		return $this->belongsToMany('JobDetail')->withPivot('salary');
+	}
 }

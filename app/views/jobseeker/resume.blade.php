@@ -14,7 +14,14 @@
                <!--<![endif]-->
 <head>
 <script src="{{ URL::asset('js/widgets.js') }}"></script>
+ <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    {{ HTML::style('assets/css/bootstrap.css') }}
+    {{ HTML::style('assets/css/font-awesome.min.css') }}
+    {{ HTML::style('assets/css/flexslider.css') }}
+    {{ HTML::style('assets/css/style.css') }}
+    {{ HTML::style('assets/css/responsive.css') }}
 
+{{ HTML::style('assets/css/seekerfooter.css') }}
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <head>
@@ -23,10 +30,7 @@
 </head>
 
 
-<title>Post Resume  || Bdjobs.com : Largest Job Site in Bangladesh ::</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<title>Post Resume</title>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
@@ -49,80 +53,80 @@
 <SCRIPT language="JavaScript" src="{{ URL::asset('js/_DateValidation.js') }}"></SCRIPT>
 <SCRIPT language="JavaScript" src="{{ URL::asset('js/common_new.js') }}"></SCRIPT>
 
-	<script type="text/javascript">
+  <script type="text/javascript">
 
-	function CheckPassword(password)
-	{
-		var strength = new Array();
-		var button=document.getElementById("Continue");
-		var text = document.getElementById("PasswordStrength");
-		var passwordTextbox= document.getElementById("txtPassword");
-		strength[0] = "Blank";
-		strength[1] = "Very Weak";
-		strength[2] = "Weak";
-		strength[3] = "Medium";
-		strength[4] = "Strong";
-		strength[5] = "Very Strong";
-		
-		var score = 1;
-		
-		
-		if (password.length < 1)
-		{
-			text.style.color="#ff6666";		
-			text.style.fontWeight="bold";
-			passwordTextbox.style.backgroundColor="#F0EE86";
-			return strength[0]; 
-		} 
-		
-		if (password.length < 4)
-		{ 
-			text.style.color="#ff6666";		
-			text.style.fontWeight="bold";
-			passwordTextbox.style.backgroundColor="#F0EE86";	
-			return strength[1];
-		}
-		if (password.length < 8)
-		{ 
-			text.style.color="#ff6666";		
-			text.style.fontWeight="bold";
-			passwordTextbox.style.backgroundColor="#F0EE86";	
-			score++;
-		
-		}
-		if ((password.length >= 8 &&  password.length <= 12)&& password.match(/^[a-zA-Z]\d{3}$/) )
-		{
-			text.style.color="#ff6666";
-			text.style.fontWeight="bold";
-			password.style.backgroundColor="#F0EE86";	
-			score++;
-		}
-		if ((password.length >= 8 &&  password.length <= 12)&& (password.match(/^[a-zA-Z]\d{3}$/)|| (password.match(/[a-z]/) || password.match(/[A-Z]/)) ) )
-		{
-			text.style.color="Green";
-			text.style.fontWeight="bold";
-			passwordTextbox.style.backgroundColor="#F0EE86";
-			score++;
-		}
-		if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/) ))
-		{
-			text.style.color="Green"
-			text.style.fontWeight="bold"
-			passwordTextbox.style.backgroundColor="#FFF";
-			score++;
-		}
-		
-		if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/)|| password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/)||password.match(/\d+/) ))
-		{
-			text.style.color="Green";
-			text.style.fontWeight="bold";
-			passwordTextbox.style.backgroundColor="#FFF";
-			score++;
-		}
-		
-		return strength[score];
-	
-	}
+  function CheckPassword(password)
+  {
+    var strength = new Array();
+    var button=document.getElementById("Continue");
+    var text = document.getElementById("PasswordStrength");
+    var passwordTextbox= document.getElementById("txtPassword");
+    strength[0] = "Blank";
+    strength[1] = "Very Weak";
+    strength[2] = "Weak";
+    strength[3] = "Medium";
+    strength[4] = "Strong";
+    strength[5] = "Very Strong";
+    
+    var score = 1;
+    
+    
+    if (password.length < 1)
+    {
+      text.style.color="#ff6666";   
+      text.style.fontWeight="bold";
+      passwordTextbox.style.backgroundColor="#F0EE86";
+      return strength[0]; 
+    } 
+    
+    if (password.length < 4)
+    { 
+      text.style.color="#ff6666";   
+      text.style.fontWeight="bold";
+      passwordTextbox.style.backgroundColor="#F0EE86";  
+      return strength[1];
+    }
+    if (password.length < 8)
+    { 
+      text.style.color="#ff6666";   
+      text.style.fontWeight="bold";
+      passwordTextbox.style.backgroundColor="#F0EE86";  
+      score++;
+    
+    }
+    if ((password.length >= 8 &&  password.length <= 12)&& password.match(/^[a-zA-Z]\d{3}$/) )
+    {
+      text.style.color="#ff6666";
+      text.style.fontWeight="bold";
+      password.style.backgroundColor="#F0EE86"; 
+      score++;
+    }
+    if ((password.length >= 8 &&  password.length <= 12)&& (password.match(/^[a-zA-Z]\d{3}$/)|| (password.match(/[a-z]/) || password.match(/[A-Z]/)) ) )
+    {
+      text.style.color="Green";
+      text.style.fontWeight="bold";
+      passwordTextbox.style.backgroundColor="#F0EE86";
+      score++;
+    }
+    if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/) ))
+    {
+      text.style.color="Green"
+      text.style.fontWeight="bold"
+      passwordTextbox.style.backgroundColor="#FFF";
+      score++;
+    }
+    
+    if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/)|| password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/)||password.match(/\d+/) ))
+    {
+      text.style.color="Green";
+      text.style.fontWeight="bold";
+      passwordTextbox.style.backgroundColor="#FFF";
+      score++;
+    }
+    
+    return strength[score];
+  
+  }
 
     
 
@@ -157,102 +161,87 @@
     }
     function CheckREPassword()
       {
-		var password= document.getElementById("txtPassword");
-		var rePassword= document.getElementById("txtRetypePassword");
-		var badColor="#ff6666";
-		var textBdColor="#F0EE86"
-		var mess=document.getElementById("PasswordCheck");
-		if (password.value!=rePassword.value)
-		{
-			rePassword.style.backgroundColor = textBdColor;
-			mess.style.color = badColor;
-			mess.style.fontWeight="bold";
-			mess.innerHTML = "Passwords do not match!";
-		
-		}
-		else
-		{
-			rePassword.style.backgroundColor = "#FFF";
-			mess.innerHTML = " ";
-		
-		}
+    var password= document.getElementById("txtPassword");
+    var rePassword= document.getElementById("txtRetypePassword");
+    var badColor="#ff6666";
+    var textBdColor="#F0EE86"
+    var mess=document.getElementById("PasswordCheck");
+    if (password.value!=rePassword.value)
+    {
+      rePassword.style.backgroundColor = textBdColor;
+      mess.style.color = badColor;
+      mess.style.fontWeight="bold";
+      mess.innerHTML = "Passwords do not match!";
+    
+    }
+    else
+    {
+      rePassword.style.backgroundColor = "#FFF";
+      mess.innerHTML = " ";
+    
+    }
       }
      function Check_TermsAndCondition(value)
       {
           
         
-		if (document.getElementById("checkCodition_01").checked)
-		{ 
-			document.getElementById("Continue").disabled=true;
-		
-			//document.getElementById("Continue").className="BDJtabDisabled";
-		}
-		else
-			{
-			if (document.getElementById("checkCodition").checked)
-			{ 
-				document.getElementById("Continue").disabled=false;
-				document.getElementById("Continue").className="btn view-btn";
-			}
-			else
-			{
-				document.getElementById("Continue").disabled=true;
-			
-				//document.getElementById("Continue").className="BDJtabDisabled";
-			
-			}
-		}
+    if (document.getElementById("checkCodition_01").checked)
+    { 
+      document.getElementById("Continue").disabled=true;
+    
+      //document.getElementById("Continue").className="BDJtabDisabled";
+    }
+    else
+      {
+      if (document.getElementById("checkCodition").checked)
+      { 
+        document.getElementById("Continue").disabled=false;
+        document.getElementById("Continue").className="btn view-btn";
+      }
+      else
+      {
+        document.getElementById("Continue").disabled=true;
+      
+        //document.getElementById("Continue").className="BDJtabDisabled";
+      
+      }
+    }
        }
    </script>
-    
-   
-   
-
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56024242-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
 <script type="text/javascript">
 //
-//	  var _gaq = _gaq || [];
-//	  _gaq.push(['_setAccount', 'UA-36961160-1']);
-//	  _gaq.push(['_trackPageview']);
-//	
-//	  (function() {
-//		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-//	  })();
-//	
-	</script>
+//    var _gaq = _gaq || [];
+//    _gaq.push(['_setAccount', 'UA-36961160-1']);
+//    _gaq.push(['_trackPageview']);
+//  
+//    (function() {
+//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//    })();
+//  
+  </script>
 
 </head>
 
 <body>
 <noscript>
-	<style>
+  <style>
 .c1{
-	position:fixed;
-	background-color:#AE0000;
-	text-align:center;
-	width:100%;
-	height:21px;
-	color:#FFF;
-	font-size:13px;
-	font-weight:bold;
-	font-family:Arial, Helvetica, sans-serif;
-	top:0;
-	padding-top:3px;
-	margin-top:6px;
-	z-index: 101;
-	}
+  position:fixed;
+  background-color:#AE0000;
+  text-align:center;
+  width:100%;
+  height:21px;
+  color:#FFF;
+  font-size:13px;
+  font-weight:bold;
+  font-family:Arial, Helvetica, sans-serif;
+  top:0;
+  padding-top:3px;
+  margin-top:6px;
+  z-index: 101;
+  }
  </style>
  <noscript>
 <div class="c1">
@@ -269,151 +258,120 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
 
 </noscript>
 
-<div class="wrapper_top">
-                  <div class="container">
-                     <div class="row">
 
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                           <div class="wrap_top_cont">
-                                 <div class="top-menu">
-                                   <div class="top_bar_jobs"><a href="http://joblist.bdjobs.com" class="">Jobs</a></div>
-                                   &nbsp;
-                                   <div class="top_bar_mybdj"><a href="http://mybdjobs.bdjobs.com/mybdjobs/" class="current">My Bdjobs</a></div>
-                                   &nbsp;
-                                   <div class="top_bar_train"><a href="http://bdjobstraining.com">Training</a></div>
-                                   <div class="top_bar_divider"></div>
-                                   <div class="top_bar_emp"><a href="http://corporate2.bdjobs.com">Employers</a></div>
-                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                          <div class="language-btn">
-                           
-                              <div style="float: right; margin-right: 5px;">
-                                 
-                                 <div class="switch_lan_wrap">
-                                    <div class="s_left_box"><img src="http://mybdjobs.bdjobs.com/mybdjobs/images/S_W_E.gif"/></div>
-                                    <div class="s_right_box"><a href="http://mybdjobs.bdjobs.com/bn/resumes/step_01bn.asp"><img src="http://mybdjobs.bdjobs.com/mybdjobs/images/S_B_B.gif" onmouseover="this.src='http://mybdjobs.bdjobs.com/mybdjobs/images/S_Br_B.gif';"
-                                 onmouseout="this.src='http://mybdjobs.bdjobs.com/mybdjobs/images/S_B_B.gif';" alt="Bangla" title="Bangla"/></a></div>
-                                </div>
-
-
-                              </div>
-                           </div>
-                        </div>
-                        
-
-
-                     </div>
-                  </div>
-               </div>
    <div class='notifications top-left'></div>
    
                   </div>
  <!--- END OF NOTIFICATION BAR-->
-    <div class="">
+
+
+               <!--- START MENU NEV AREA-->       
+              <header id="header" class="header-style-1">
+    <div class="header-top-bar">
       <div class="container">
-      
-     <div class="row">
-         <div class="col-sm-12 col-md-12">
-           <a href="http://www.bdjobs.com"> <image class="logo" xlink:href="http://mybdjobs.bdjobs.com/mybdjobs/images/logo.svgz" src="http://mybdjobs.bdjobs.com/mybdjobs/images/logo.png" width="210" height="50" /></a>
-         </div>
-         </div>
+
+        <!-- Header Language -->
+        <div class="header-language clearfix">
+          <ul>
+            <li class="active"><a href="#">En</a></li>
+            <li><a href="#">Fr</a></li>
+            <li><a href="#">De</a></li>
+            <li><a href="#">It</a></li>
+          </ul>
+        </div> <!-- end .header-language -->
+
+        <!-- Bookmarks -->
+       
+        <!-- Header Register -->
+        <div class="header-register">
+          <a href="#" class="btn btn-link">Register</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="email" class="form-control" placeholder="Email">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Register">
+            </form>
+          </div>
+        </div> <!-- end .header-register -->
+
+        <!-- Header Login -->
+        <div class="header-login">
+          <a href="#" class="btn btn-link">Login</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Login">
+              <a href="#" class="btn btn-link">Forgot Password?</a>
+            </form>
+          </div>
+        </div> <!-- end .header-login -->
+
+      </div> <!-- end .container -->
+    </div> <!-- end .header-top-bar -->
+
+    <div class="header-nav-bar">
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="css-table logo">
+          <div class="css-table-cell">
+            <a href="index.html">
+             {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+            </a> <!-- end .logo -->
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <a href="#" id="mobile-menu-toggle"><span></span></a>
+
+        <!-- Primary Nav -->
+        <nav>
+          <ul class="primary-nav">
+            <li class="active has-submenu">
+              <a href="index.html">Home</a>
+              <ul>
+                <li><a href="index.html">Home with Boxes</a></li>
+                <li><a href="homepage-slider.html">Home with Slider</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="jobs.html">Jobs</a>
+              <ul>
+                <li><a href="jobs.html">Jobs Listings</a></li>
+                <li><a href="jobs-single.html">Jobs Details</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="candidates.html">Candidates</a>
+              <ul>
+                <li><a href="candidates.html">Candidates Listings</a></li>
+                <li><a href="candidates-sidebar.html">Candidates Listings Sidebar</a></li>
+                <li><a href="candidates-single.html">Candidates Details</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="about-us.html">About Us</a>
+              <ul>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+      </div> <!-- end .container -->
+
+      <div id="mobile-menu-container" class="container">
+        <div class="login-register"></div>
+        <div class="menu"></div>
       </div>
-    </div>
+    </div> <!-- end .header-nav-bar -->
 
-<div class="">
-                  <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-
-                        <nav class="navbar navbar-default navbar-customize" role="navigation">
-                          <div class="container-fluid" style="padding-right: 0px;">
-                            
-                            <div class="navbar-header" style="border:none">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <div class="toggle-btn">
-                                 <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                </div>
-                                Select Menu Item
-                              </button>
-                              
-                            </div>
-
-                          
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                              <ul class="nav navbar-nav nav-justified">
-                                <li><a href="http://www.bdjobs.com">Home</a></li>
-                                <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quick Links <span class="caret"></span></a>
-                                  <ul class="dropdown-menu dropdown-list" role="menu">
-                                    <li><a href="http://joblist.bdjobs.com/OtherJobs.asp?JobType=new">New Jobs</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/OtherJobs.asp?JobType=deadline">Deadline Tomorrow</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/OtherJobs.asp?JobType=parttime">Part Time</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/OtherJobs.asp?JobType=contract">Contractual</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/OtherJobs.asp?JobType=government">Government</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/locationwisejobs.asp">Location Wise</a></li>
-                                    <li><a href="http://joblist.bdjobs.com/locationwisejobs.asp?jobtype=overseas">Overseas</a></li>
-                                  </ul>
-                                </li>
-                                <li><a href="http://joblist.bdjobs.com/Company_list.asp">Companies Jobs</a></li>
-                                <li><a href="http://www.bdjobs.com/career/counsel.asp">Career Counselling</a></li>
-                                <li style="border:none"><a href="http://mybdjobs.bdjobs.com/mybdjobs/faq.asp">FAQ</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </nav>
-
-                     </div>
-                     </div>
-                  </div>
-               </div>
-               <!--- START MENU NEV AREA-->
-                <div class="steps-area">
-                     <div class="container">
-                        <div class="col-md-12">
-                           <div class="row">
-                              <div class="btn-group step_btns">
-                                 <button class="btn btn-default step_btn">
-                                    <p class="step_circle">01</p> 
-                                    <p class="step_title">Personal</p>
-                                 </button>
-
-                                 <button class="btn btn-default step_btn_disable">
-                                    <p class="step_circle">02</p> 
-                                    <p class="step_title">Education/Training</p>
-                                 </button>
-
-                                 <button class="btn btn-default step_btn_disable">
-                                    <p class="step_circle">03</p> 
-                                    <p class="step_title">Employment</p>
-                                 </button>
-
-                                 <button class="btn btn-default step_btn_disable">
-                                    <p class="step_circle">04</p> 
-                                    <p class="step_title">Others</p>
-                                 </button>
-
-                                 <button class="btn btn-default step_btn_disable">
-                                    <p class="step_circle">05</p> 
-                                    <p class="step_title">Photograph</p>
-                                 </button>
-
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="container">
-                        <div class="col-md-12">
-                        </div>
-                     </div>
-                  </div>
+  </header> <!-- end #header -->
                   <!--- START MENU NEV AREA-->
-               
+             
          <FORM id="table1" action="{{ URL::route('jobseeker-resume-post') }}" method="post">
   <div class="">
     <div class="container">
@@ -481,10 +439,11 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
                 <div class="col-md-9 col-xs-9 field-mobile-view">
                   <select required="required"  class="form-control from-control-modal combo" id="cboGender"  name="cboGender" >
                     <OPTION value="-1" selected>Select</OPTION>
-                    <OPTION value="M" >Male</OPTION>
-                    <OPTION value="F" >Female</OPTION>
+                    <OPTION value="Male" >Male</OPTION>
+                    <OPTION value="Female" >Female</OPTION>
                   </select>
-                  <span class="required"></span> </div>
+                  <span class="required"></span> 
+                </div>
               </div>
             </div>
             <div class="row modal-row">
@@ -502,23 +461,7 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
                   <span class="required"></span> </div>
               </div>
             </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Nationality:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input type="checkbox"  class="email-notification-checkbox icon" style="float:left" name="txtNationality" onClick="DisableNationality();" value="Bangladeshi"  id="bangladeshi">
-                  <div style="margin: 0px 0px 0px 20px;">
-                    <p>Bangladeshi</p>
-                  </div>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal nationality" placeholder="For other Country Please Type" type="text" name="txtNationality" id="otherNationality" value=""  >
-                  <span class="required"></span>
-                </div>
-              </div>
-            </div>
+          
             <div class="row modal-row">
               <div class="container-fluid">
                 <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
@@ -588,23 +531,7 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
             </div>
             
           </div>
-          <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
-            <div class="modal-title-top modal-header" style="text-align: left;">
-              <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Career and Application Information</h4>
-            </div>
-            <div class="row modal-row">
-            <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Objective:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <textarea class="form-control from-control-modal" placeholder="" type="text" style="height: 150px;" id="txtObjective" maxLength="250" size="80" name="txtObjective" ></textarea>
-                  
-              </div>
-            </div>
-            </div>
-           </div> 
-           
+     
           
           <!--- END ORGANIZATION TYPE--> 
         
@@ -614,31 +541,10 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
       <!--- END ORGANIZATION TYPE--> 
 
     <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
-      <div class="modal-title-top modal-header" style="text-align: left;">
-        <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Other Relevant Information</h4>
-      </div>
+     
       <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-            <p>Career Summary:</p>
-          </div>
-          <div class="col-md-9 col-xs-9 field-mobile-view">
-            <textarea class="form-control from-control-modal" placeholder="" type="text" id="txtCareerSummary" name="txtCareerSummary" onKeyUp="countLetter(this.id , 490 , 'CADD_sp1' , 'Career Summary' , 1)" onChange="countLetter(this.id , 490 , 'CADD_sp1' , 'Career Summary' , 1 );" style="height: 120px;"></textarea>
-
-        </div>
-      </div>
-      <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-            <p>Spacial Qualification:</p>
-          </div>
-          <div class="col-md-9 col-xs-9 field-mobile-view">
-            <textarea class="form-control from-control-modal" id="txtSpecialQualification" name="txtSpecialQualification" onKeyUp="countLetter(this.id , 245 , 'CADD_sp2' , 'Special Qualification' , 1)" onChange="countLetter(this.id , 245 , 'CADD_sp2' , 'Special Qualification' , 1 )"  placeholder="" type="text" style="min-height: 120px;"></textarea>
-
-        </div>
-      </div>
-
-    </div>
+     
+      
     <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
       <div class="modal-title-top modal-header" style="text-align: left;">
         <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Provide Password to edit/update your resume</h4>
@@ -704,9 +610,9 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
       <div class="row modal-row">
         <div class="container-fluid">
           <div class="col-md-12 col-xs-12 field-title field-mobile-view-title" style="text-align: left; padding-left: 25px;">
-            <p>Please accept following terms and conditions before submitting your CV at Bdjobs.com CV Bank.</p>
+            <p>Please accept following terms and conditions before submitting your CV at jobportal.com CV Bank.</p>
             <ul style="list-style: none;">
-              <li> 1. The CV can be viewed by any corporate client of Bdjobs.com (unless you change that feature from MyBdjobs control panel). </li>
+              <li> 1. The CV can be viewed by any corporate client of jobportal.com (unless you change that feature from the control panel). </li>
               <li> 2. Your CV will be automatically de-activated if you don't update it once in every six (6 ) months. </li>
             </ul>
           </div>
@@ -720,7 +626,7 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
                 <span style="font-weight: bold;">I do not agree</span>
                 <div style="margin-top: 20px; margin-bottom: 20px;">
                   <button type="submit" id="Continue" class="btn view-btn" disabled><i class="glyphicon glyphicon-circle-arrow-right btn-padding icon-padding"></i>Continue</button>
-                	{{ Form::token() }}
+                  {{ Form::token() }}
                 </div>
               </div>
             </div>
@@ -736,117 +642,94 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
   </div>
 </FORM>
 <!--- STAT FOOTER ADVERTISMENT-->
-<div class="row">
-  <div class="container">
-    <div class="col-md-12 footer-ad">
-<script type="text/javascript"><!--
-    google_ad_client = "ca-pub-5130888087776673";  
-	/* HorizontalLeaderboardMbdj */  
-    google_ad_slot = "2949535947"; 
-    google_ad_width = 728;
-    google_ad_height =  90; 
-    //-->
-    </script> 
-<script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-    </script>
-</div>
-  </div>
-</div>
+
+  
 <!--- END FOOTER ADVERTISMENT--> 
 <!-- START FOOTER AD MOBILE-->
-<div class="row">
-  <div class="container">
-    <div class="col-md-12 footer-ad-mobile">
-    
-<script type="text/javascript"><!--
-    google_ad_client = "ca-pub-5130888087776673";  
-	/* HorizontalHalfBanner */  
-    google_ad_slot = "9158813540"; 
-    google_ad_width = 234;
-    google_ad_height =  60; 
-    //-->
-    </script> 
-<script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-    </script>
-   
-     </div>
-  </div>
-</div>
+
 <!-- END FOOTER AD MOBILE-->
-<div class="footer" style="margin-top:10%;">
-         <div class="container footer-padding">
-            <div class="col-md-3 footer-01">
-               <h3>About Us</h3>
-               <a href="http://www.bdjobs.com/about.asp" target="mine">
-                  <p>About Bdjobs.com</p>
-               </a>
-               <a href="http://www.bdjobs.com/tos.asp" target="mine">
-                  <p>Terms & Conditions</p>
-               </a>
-               <a href="#" class="showintp">
-                  <p>International Partners</p>
-               </a>
-               <div class="intp">
-                  <ul>
-                     <li><a href="http://home.catho.com.br/" target="_blank">Catho.com.br <strong>Brazil</strong></a></li>
-                     <li><a href="http://www.manager.com.br/" target="_blank">Manager.com.br <strong>Brazil</strong></a></li>
-                     <li><a href="http://www.zhaopin.com/" target="_blank">Zhaopin.com <strong>China</strong></a></li>
-                     <li><a href="https://www.occ.com.mx/" target="_blank">OCCMundial.com <strong>Mexico</strong></a></li>
-                     <li><a href="http://www.jobsdb.com/" target="_blank">JobsDB.com <strong>S.E Asia</strong></a></li>
-                     <li><a href="http://www.jobstreet.com/" target="_blank">Jobstreet.com <strong>S.E Asia</strong></a></li>
-                     <li><a href="http://www.brightermonday.com/" target="_blank">Brightermonday.com <strong>East Africa</strong></a></li>
-                     <li><a href="http://www.jobberman.com/" target="_blank">Jobberman.com <strong>West Africa</strong></a></li>
-                     <li><a href="http://www.jobseeker.co.uk/" target="_blank">Jobseeker.co.uk <strong>United Kingdom</strong></a></li>
-                     <li><a href="http://www.jobseeker.com.au/" target="_blank">Jobseeker <strong>Global</strong></a></li>
-                     <li><a href="http://www.seek.com.au/" target="_blank">SEEK International <strong>Australia</strong></a></li>
+<div id="main-wrapper">
+ <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <div class="widget-content">
+              {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+              <p>This is the site where you will get everything about jobs</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <h6 class="widget-title">Navigation</h6>
+
+            <div class="widget-content">
+              <div class="row">
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Candidates</a></li>
+                    <li><a href="#">Partners</a></li>
                   </ul>
-               </div>
-               <a href="http://www.bdjobs.com/contact.htm">
-                  <p>Contact Us</p>
-               </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="col-md-3 footer-01">
-               <h3>Job Seekers</h3>
-               <a href="http://www.mybdjobs.bdjobs.com/resumes/step_01.asp">
-                  <p>Post Resume</p>
-               </a>
-               <a href="http://www.bdjobs.com/career/counsel.asp">
-                  <p>Career Counseling</p>
-               </a>
-               <a href="http://www.mybdjobs.bdjobs.com/">
-                  <p>My Bdjobs</p>
-               </a>
-               <a href="http://mybdjobs.bdjobs.com/mybdjobs/faq.asp">
-                  <p>FAQ</p>
-               </a>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Follow Us</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Youtube</a></li>
+              </ul>
             </div>
-            <div class="col-md-3 footer-01">
-               <h3>Employers</h3>
-               <a href="http://corporate2.bdjobs.com/Corporate_NewAccount.asp" target="mine">
-                  <p>Create Account</p>
-               </a>
-               <a href="http://corporate2.bdjobs.com/services.asp" target="mine">
-                  <p>Products/Service</p>
-               </a>
-               <a href="http://corporate2.bdjobs.com/" target="mine">
-                  <p>Post a Job</p>
-               </a>
-               <a href="http://corporate2.bdjobs.com/faq.asp" target="mine">
-                  <p>FAQ</p>
-               </a>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Popular Jobs</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Web Developer</a></li>
+                <li><a href="#">Web Designer</a></li>
+                <li><a href="#">UX Engineer</a></li>
+                <li><a href="#">Account Manager</a></li>
+              </ul>
             </div>
-            <div class="col-md-3 footer-01">
-               <h3>Tools & Social Media</h3>
-               <a href="http://forum.bdjobs.com" target="mine"><p>Bdjobs Forum</p></a>
-        <a href="https://www.facebook.com/mybdjobs" target="mine"> <p>Facebook</p></a>
-        <a href="http://joblist.bdjobs.com/feedback.asp" target="mine"><p>Feedback</p></a>
-        <!--<a href="https://play.google.com/store/apps/details?id=com.mcc.bdjobs" target="mine"><p>Mobile App</p></a>-->
-               <p></p>
-            </div>
-         </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
+
+      </div>
+    </div>
+  </footer>
+
+</div>
 <!--- END FOOTER AREA-->
 <div class="scroll-top-wrapper "> <span class="scroll-top-inner"> <i class="glyphicon glyphicon-circle-arrow-up"></i> </span> </div>
 <!-- JQUERY OFFICIAL CDN --> 
@@ -881,7 +764,7 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
                          offsetTop = offset.top;
                          $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
                      }
-					 $( document ).ready(function() {
+           $( document ).ready(function() {
   $('.datepicker').datepicker({ format: "mm/dd/yyyy" }).on('changeDate', function(ev){
     $(this).datepicker('hide');
 });
@@ -894,18 +777,27 @@ $(function(){
    
 });
 
-	 $(document).ready(function() {
-		$('.intp').hide();
+   $(document).ready(function() {
+    $('.intp').hide();
         $('.showintp').click(function() {
                 $('.intp').slideToggle(500);
-				$("html, body").animate({ scrollTop: $(document).height() }, 500);
+        $("html, body").animate({ scrollTop: $(document).height() }, 500);
         });
-		$('.intp ul li').click(function() {
+    $('.intp ul li').click(function() {
                 $('.intp').slideUp(500);
         });
     });
 
                   </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+{{ HTML::script('assets/js/jquery.ba-outside-events.min.js') }}
+{{ HTML::script('assets/js/jquery.responsive-tabs.js') }}
+{{ HTML::script('assets/js/jquery.flexslider-min.js') }}
+{{ HTML::script('assets/js/jquery-ui-1.10.4.custom.min.js') }}
+{{ HTML::script('assets/js/script.js') }}
+
 </div>
 </body>
 </html>
