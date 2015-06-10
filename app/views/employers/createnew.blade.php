@@ -492,7 +492,7 @@ $(document).ready(function() {
             contact_email: {
               notEmpty: {
                         message: 'This field is required'
-                    }
+                    },
                 validators: {
                     notEmpty: {
                         message: 'The email address is required'
