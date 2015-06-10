@@ -44,7 +44,6 @@
             <div class="sub-header">
                 <hgroup>
                     <h1>{{HTML::link('/','Welcome to the page')}}</h1>
-                    <h2>WelCome</h2>
                 </hgroup>
             </div>
         </header>

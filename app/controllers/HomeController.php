@@ -54,7 +54,7 @@ class HomeController extends BaseController {
    					 //$cart->items()->save($newItem);
 				} else {
 		   		$jobdetail->jobseekers()->save($seeker, ['salary' => $salary]);
-		   		echo "success";
+		   		return View::make('home.success');
 		   	}
 		}
 
@@ -75,7 +75,7 @@ class HomeController extends BaseController {
 				}else {
 
 		   		$jobdetail->jobseekers()->save($seeker, ['salary' => $salary]);
-		   		echo "success";
+		   		return View::make('home.success');
 		   		}
 		   }
 		} 

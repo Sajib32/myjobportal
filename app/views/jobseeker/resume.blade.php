@@ -1,272 +1,29 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--[if lt IE 7]>      
-   <html class="no-js lt-ie9 lt-ie8 lt-ie7">
-      <![endif]-->
-<!--[if IE 7]>         
-      <html class="no-js lt-ie9 lt-ie8">
-         <![endif]-->
-<!--[if IE 8]>         
-         <html class="no-js lt-ie9">
-            <![endif]-->
-<!--[if gt IE 8]><!--> 
-            <html class="no-js">
-               <!--<![endif]-->
+<!DOCTYPE html>
+<html>
 <head>
-<script src="{{ URL::asset('js/widgets.js') }}"></script>
- <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
-    {{ HTML::style('assets/css/bootstrap.css') }}
+    <title>Create Account</title>
+ 
+    {{ HTML::style('assets/css/bootstrapemp.css') }}
+    {{ HTML::style('assets/css/formValidationemp.css') }}
+
+    <!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+    {{ HTML::script('assets/js/jquery.minemp.js') }}
+    {{ HTML::script('assets/js/bootstrap.min.js') }}
+    {{ HTML::script('assets/js/formValidation.js') }}
+    {{ HTML::script('assets/js/bootstrap.js') }}
+<script src="{{ URL::asset('js/bootstrap.datepicker.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ URL::asset('css/lib/bootstrap.datepicker.css') }}">
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     {{ HTML::style('assets/css/font-awesome.min.css') }}
-    {{ HTML::style('assets/css/flexslider.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('assets/css/responsive.css') }}
-
-{{ HTML::style('assets/css/seekerfooter.css') }}
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
- 
 </head>
-
-
-<title>Post Resume</title>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/style-resume.css') }}">
-<!-- Responsive StyleSheet -->
-<link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/datepicker.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/catagory.css') }}">
-<!-- Google Fonts -->
-
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-<script src="{{ URL::asset('js/jquery-2.0.2.js') }}"></script>
-
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/step_01_common.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/common.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/validation.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/personal_Edit.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/charCount.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/_DateValidation.js') }}"></SCRIPT>
-<SCRIPT language="JavaScript" src="{{ URL::asset('js/common_new.js') }}"></SCRIPT>
-
-  <script type="text/javascript">
-
-  function CheckPassword(password)
-  {
-    var strength = new Array();
-    var button=document.getElementById("Continue");
-    var text = document.getElementById("PasswordStrength");
-    var passwordTextbox= document.getElementById("txtPassword");
-    strength[0] = "Blank";
-    strength[1] = "Very Weak";
-    strength[2] = "Weak";
-    strength[3] = "Medium";
-    strength[4] = "Strong";
-    strength[5] = "Very Strong";
-    
-    var score = 1;
-    
-    
-    if (password.length < 1)
-    {
-      text.style.color="#ff6666";   
-      text.style.fontWeight="bold";
-      passwordTextbox.style.backgroundColor="#F0EE86";
-      return strength[0]; 
-    } 
-    
-    if (password.length < 4)
-    { 
-      text.style.color="#ff6666";   
-      text.style.fontWeight="bold";
-      passwordTextbox.style.backgroundColor="#F0EE86";  
-      return strength[1];
-    }
-    if (password.length < 8)
-    { 
-      text.style.color="#ff6666";   
-      text.style.fontWeight="bold";
-      passwordTextbox.style.backgroundColor="#F0EE86";  
-      score++;
-    
-    }
-    if ((password.length >= 8 &&  password.length <= 12)&& password.match(/^[a-zA-Z]\d{3}$/) )
-    {
-      text.style.color="#ff6666";
-      text.style.fontWeight="bold";
-      password.style.backgroundColor="#F0EE86"; 
-      score++;
-    }
-    if ((password.length >= 8 &&  password.length <= 12)&& (password.match(/^[a-zA-Z]\d{3}$/)|| (password.match(/[a-z]/) || password.match(/[A-Z]/)) ) )
-    {
-      text.style.color="Green";
-      text.style.fontWeight="bold";
-      passwordTextbox.style.backgroundColor="#F0EE86";
-      score++;
-    }
-    if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/) ))
-    {
-      text.style.color="Green"
-      text.style.fontWeight="bold"
-      passwordTextbox.style.backgroundColor="#FFF";
-      score++;
-    }
-    
-    if ((password.length >= 8 &&  password.length <= 12) &&( password.match(/^[a-zA-Z]\d{3}$/) ||(password.match(/[a-z]/) || password.match(/[A-Z]/)) || password.match(/^[0-9]+$/)|| password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/)||password.match(/\d+/) ))
-    {
-      text.style.color="Green";
-      text.style.fontWeight="bold";
-      passwordTextbox.style.backgroundColor="#FFF";
-      score++;
-    }
-    
-    return strength[score];
-  
-  }
-
-    
-
-
-    function PasswordChanged(field)
-
-    {
-
-        var span = document.getElementById("PasswordStrength");
-
-        span.innerHTML = CheckPassword(field.value);
-
-    }
-
- 
-    function ButtonClicked(field)
-    {
-
-        var strength = document.getElementById("PasswordStrength").innerHTML;
-
-         
-
-        if (strength.indexOf("Strong") < 0)
-
-        {
-            alert("Password is not strong enough!");
-
-            return false;
-
-        }
-
-    }
-    function CheckREPassword()
-      {
-    var password= document.getElementById("txtPassword");
-    var rePassword= document.getElementById("txtRetypePassword");
-    var badColor="#ff6666";
-    var textBdColor="#F0EE86"
-    var mess=document.getElementById("PasswordCheck");
-    if (password.value!=rePassword.value)
-    {
-      rePassword.style.backgroundColor = textBdColor;
-      mess.style.color = badColor;
-      mess.style.fontWeight="bold";
-      mess.innerHTML = "Passwords do not match!";
-    
-    }
-    else
-    {
-      rePassword.style.backgroundColor = "#FFF";
-      mess.innerHTML = " ";
-    
-    }
-      }
-     function Check_TermsAndCondition(value)
-      {
-          
-        
-    if (document.getElementById("checkCodition_01").checked)
-    { 
-      document.getElementById("Continue").disabled=true;
-    
-      //document.getElementById("Continue").className="BDJtabDisabled";
-    }
-    else
-      {
-      if (document.getElementById("checkCodition").checked)
-      { 
-        document.getElementById("Continue").disabled=false;
-        document.getElementById("Continue").className="btn view-btn";
-      }
-      else
-      {
-        document.getElementById("Continue").disabled=true;
-      
-        //document.getElementById("Continue").className="BDJtabDisabled";
-      
-      }
-    }
-       }
-   </script>
-<script type="text/javascript">
-//
-//    var _gaq = _gaq || [];
-//    _gaq.push(['_setAccount', 'UA-36961160-1']);
-//    _gaq.push(['_trackPageview']);
-//  
-//    (function() {
-//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-//    })();
-//  
-  </script>
-
-</head>
-
 <body>
-<noscript>
-  <style>
-.c1{
-  position:fixed;
-  background-color:#AE0000;
-  text-align:center;
-  width:100%;
-  height:21px;
-  color:#FFF;
-  font-size:13px;
-  font-weight:bold;
-  font-family:Arial, Helvetica, sans-serif;
-  top:0;
-  padding-top:3px;
-  margin-top:6px;
-  z-index: 101;
-  }
- </style>
- <noscript>
-<div class="c1">
-
-This site works best with Javascript enabled. Your browser's Javascript is disabled.To enable <a href="EnablingJSTbl.asp" target="_blank" style="color:#0FF;">click here</a>
-
-</div>
-</noscript>
-
-
-    
-
-
-
-</noscript>
-
-
-   <div class='notifications top-left'></div>
-   
-                  </div>
- <!--- END OF NOTIFICATION BAR-->
-
-
-               <!--- START MENU NEV AREA-->       
-              <header id="header" class="header-style-1">
+  <div id="main-wrapper"> 
+<header id="header" class="header-style-1">
     <div class="header-top-bar">
       <div class="container">
 
@@ -281,7 +38,8 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
         </div> <!-- end .header-language -->
 
         <!-- Bookmarks -->
-       
+        <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
+
         <!-- Header Register -->
         <div class="header-register">
           <a href="#" class="btn btn-link">Register</a>
@@ -318,7 +76,7 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
         <div class="css-table logo">
           <div class="css-table-cell">
             <a href="index.html">
-             {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+               {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
             </a> <!-- end .logo -->
           </div>
         </div>
@@ -329,27 +87,17 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
         <!-- Primary Nav -->
         <nav>
           <ul class="primary-nav">
-            <li class="active has-submenu">
+            <li>
               <a href="index.html">Home</a>
-              <ul>
-                <li><a href="index.html">Home with Boxes</a></li>
-                <li><a href="homepage-slider.html">Home with Slider</a></li>
-              </ul>
             </li>
-            <li class="has-submenu">
+            <li class="active has-submenu">
               <a href="jobs.html">Jobs</a>
               <ul>
                 <li><a href="jobs.html">Jobs Listings</a></li>
-                <li><a href="jobs-single.html">Jobs Details</a></li>
               </ul>
             </li>
-            <li class="has-submenu">
+            <li>
               <a href="candidates.html">Candidates</a>
-              <ul>
-                <li><a href="candidates.html">Candidates Listings</a></li>
-                <li><a href="candidates-sidebar.html">Candidates Listings Sidebar</a></li>
-                <li><a href="candidates-single.html">Candidates Details</a></li>
-              </ul>
             </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
@@ -369,294 +117,189 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
       </div>
     </div> <!-- end .header-nav-bar -->
 
+    <div class="header-page-title">
+      <div class="container">
+        <h1>JOBSEEKER SIGN UP PAGE</h1>
+
+        <ul class="breadcrumbs">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Jobs</a></li>
+        </ul>
+      </div>
+    </div>
   </header> <!-- end #header -->
-                  <!--- START MENU NEV AREA-->
-             
-         <FORM id="table1" action="{{ URL::route('jobseeker-resume-post') }}" method="post">
-  <div class="">
-    <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row" style="background-color: #fff; margin-left: 0px; margin-bottom: 25px; border-radius: 4px 4px 0px 0px;">
-          <div class="modal-dialog" style="width: 100%; margin-top: 0px;">
-            <div class="modal-title-top modal-header" style="text-align: left; border-radius: 4px 4px 0px 0px;">
-              <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Personal Details</h4>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid" style="float:right;">
-                <div class="col-md-12 col-xs-12" style="margin-bottom: 15px; padding-right: 40px;">
-                  <div class="required-message" style="margin-right: 10px; font-weight: bold;"><span style="color: #cc443d;">*</span><i>Required Fields</i></div>
-                  <div class="required-message" style="font-weight: bold;"><span style="color: #69aa44; ">*</span><i>Special Instructions</i></div>
+<div id="page-content">
+<div class="container"> 
+     <form id="defaultForm" method="post" class="form-horizontal" action="{{ URL::route('jobseeker-resume-post') }}">
+     {{ Form::token() }}
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="page-header">
+                    <h2>Personal Details</h2>
                 </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Name:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text" name="txtName" id="txtName" value="" >
-                  <span class="required"></span> 
-                </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Father's Name:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text" name="txtFName"  id="txtFName" value="">
-                </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Mother's Name:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text"  name="txtMName"  id="txtMName" value="">
-                </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Date of Birth:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal datepicker" placeholder="MM/DD/YYYY" type="text" id="cboBDate" name="cboBDate" style="padding-left: 15px;"value="">
-                  <span class="required"></span> </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Gender:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <select required="required"  class="form-control from-control-modal combo" id="cboGender"  name="cboGender" >
+
+               
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Full name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtName" placeholder="Full name here" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Father's Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtFName" placeholder="your father's name here" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Mother's Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtMName" placeholder="your mother's name here" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Date Of Birth</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-datepicker dobText"  name="cboBdate" placeholder="MM/DD/YYYY" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Gender</label>
+                        <div class="col-sm-8">
+                            <select name="cboGender" >
                     <OPTION value="-1" selected>Select</OPTION>
                     <OPTION value="Male" >Male</OPTION>
                     <OPTION value="Female" >Female</OPTION>
                   </select>
-                  <span class="required"></span> 
-                </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Marital Status:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <select required="required"  class="form-control from-control-modal combo" id="cboMStatus" name="cboMStatus" >
+                        </div>
+                    </div> 
+                   <div class="form-group">
+                        <label class="col-sm-3 control-label">Marital Status</label>
+                        <div class="col-sm-8">
+                            <select name="cboMStatus" >
                     <OPTION value="-1" selected>Select</OPTION>
                     <OPTION value="2" >Unmarried</OPTION>
                     <OPTION value="1" >Married</OPTION>
                     <OPTION value="3" >Single</OPTION>
                   </select>
-                  <span class="required"></span> </div>
-              </div>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">National ID No</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtNationalId"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Religion</label>
+                        <div class="col-sm-8">
+                                                        <select name="txtReligion" >
+                    <OPTION value="-1" selected>Select</OPTION>
+                    <OPTION value="2" >Islam</OPTION>
+                    <OPTION value="1" >Hindu</OPTION>
+                    <OPTION value="3" >Buddhist</OPTION>
+                    <OPTION value="4" >Other</OPTION>
+                  </select>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Present Address</label>
+                        <div class="col-sm-8">
+                        <textarea class="form-control" type="text" id="txtPresentAdd" maxLength="250"  size="80" name="txtPresentAdd"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Permanent Address</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" type="text" id="txtPermanentAdd" maxLength="250"  size="80" name="txtPresentAdd"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Mobile</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtMobile"/>
+                        </div>
+                    </div>     
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email address</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="txtEmail1"{{ (Input::old('txtEmail1')) ? ' value="' . e(Input::old('txtmail1')) . '"' : '' }} />
+                       @if ($errors->has('txtEmail1'))<p style="color:red;">{{ $errors->first('txtEmail1') }}</p>@endif
+                        </div>
+                         @if(Session::has('global'))
+    <p style="text-align:center; color:red;">{{ Session::get('global') }}</p>
+  @endif
+                    </div>
             </div>
-          
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>National ID No:</p>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="page-header">
+                    <h2>PROVIDE PASSWORD TO EDIT/UPDATE YOUR RESUME</h2>
                 </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text" id="txtNationalId"  name="txtNationalId" onKeyPress="return blockNonNumbers(this,event,true,false);" value="" >
-                </div>
-              </div>
+                    
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="txtPassword" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Retype Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="txtRetypePassword" />
+                        </div>
+                    </div>
             </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Religion:</p>
+        </div>
+            
+            <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="page-header">
+                    <h2>PLEASE FILL UP THE BELOW CODE</h2>
                 </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text" id="txtReligion"  name="txtReligion" value="">
-                </div>
-              </div>
+              
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" id="captchaOperation"></label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="captcha" />
+                        </div>
+                    </div>
+                                        <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="agree" value="agree" /> Agree with the terms and conditions
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+                        </div>
+                    </div>                                                   
+              
+            </div>     
+            </div> 
+
+            </form>
             </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Present Address:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <textarea class="form-control from-control-modal text-area" type="text" id="txtPresentAdd" maxLength="250"  size="80" name="txtPresentAdd"  ></textarea>
-                  <span class="required"></span> </div>
-              </div>
-            </div>
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Permanent Address:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <textarea class="form-control from-control-modal text-area" type="text" id="txtPermanentAdd" maxLength="250"  size="80" name="txtPermanentAdd"></textarea>
-                </div>
-              </div>
             </div>
             
-           
-            <div class="row modal-row">
-              
-            </div>
-           
-            <div class="row modal-row">
-    <div class="container-fluid">
-      <div class="col-md-3 col-xs-3 field-title">
-        <p>Mobile :</p>
-      </div>
-      <div class="col-md-9 col-xs-9">
-        <input class="form-control from-control-modal" placeholder="Mobile ..." type="text" id="txtMobile"  name="txtMobile" value="">
-        <span style="color: #69aa44; ">*</span> </div>
-    </div>
-  </div>
-   
-            <div class="row modal-row">
-              <div class="container-fluid">
-                <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-                  <p>Email:</p>
-                </div>
-                <div class="col-md-9 col-xs-9 field-mobile-view">
-                  <input class="form-control from-control-modal" placeholder="" type="text" id="txtEmail1"  name="txtEmail1" value="" >
-                  <span class="required"></span> </div>
-              </div>
-            </div>
-            
-          </div>
-     
-          
-          <!--- END ORGANIZATION TYPE--> 
-        
-        <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
 
-
-      <!--- END ORGANIZATION TYPE--> 
-
-    <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
-     
-      <div class="row modal-row">
-     
-      
-    <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
-      <div class="modal-title-top modal-header" style="text-align: left;">
-        <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Provide Password to edit/update your resume</h4>
-      </div>
-      <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-3 col-sm-3 col-xs-3 field-title field-mobile-view-title">
-            <p>User Name :</p>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 user-form">
-            <div class="row">
-              <div class="col-md-5 col-sm-5 col-xs-12 field-mobile-view">
-                <input class="form-control from-control-modal" placeholder="" type="text" id="txtUserName" maxLength="15" name="txtUserName" onFocus="document.getElementById('spnCheck').style.fontWeight='bold';document.getElementById('spnCheck').style.fontSize='12'"  value=""   onblur="CheckUserName1(this.value)" >
-                <span class="required"></span><br>
-                <Span id ="message"></Span>
-              </div>
-              
-              <div class="col-md-4 col-sm-7 col-xs-12 note-texts">
-                <p style="font-size: 13px; font-weight: normal;"> [Use at least 5 to 15 characters.] </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-            <p>Password :</p>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 user-form">
-            <div class="row">
-              <div class="col-md-5 col-sm-5 col-xs-12 field-mobile-view">
-                <input class="form-control from-control-modal" placeholder=""  id="txtPassword" type="password" maxLength="12"  name="txtPassword" value="" onkeyup="PasswordChanged(this)"> <span class="required"></span>&nbsp;<br><span id="PasswordStrength"></span>
-               
-              </div>
-              <div class="col-md-4 col-sm-7 col-xs-12 note-texts">
-                <p style="font-size: 13px; font-weight: normal;"> [Use at least 8 to 12 characters.]<br/><span id="spnCheck" name="spnCheck"></span> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-3 col-xs-3 field-title field-mobile-view-title">
-            <p>Retype Password :</p>
-          </div>
-          <div class="col-md-9 col-sm-9 col-xs-9 user-form">
-          <div class="row">
-           <div class="col-md-5 col-sm-5 col-xs-12 field-mobile-view">
-            <input class="form-control from-control-modal" placeholder=""  id="txtRetypePassword" type="password" maxLength="12" size="14" name="txtRetypePassword" value=""    onBlur="CheckREPassword()">&nbsp;<span id="PasswordCheck"></span>
-            <span class="required"></span>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-dialog" style="width: 100%; margin-top: 20px;">
-      <div class="modal-title-top modal-header" style="text-align: left;">
-        <h4 class="modal-title title-custom" id="myModalLabel" style="padding-left: 10px;">Terms And Condition</h4>
-      </div>
-      <div class="row modal-row">
-        <div class="container-fluid">
-          <div class="col-md-12 col-xs-12 field-title field-mobile-view-title" style="text-align: left; padding-left: 25px;">
-            <p>Please accept following terms and conditions before submitting your CV at jobportal.com CV Bank.</p>
-            <ul style="list-style: none;">
-              <li> 1. The CV can be viewed by any corporate client of jobportal.com (unless you change that feature from the control panel). </li>
-              <li> 2. Your CV will be automatically de-activated if you don't update it once in every six (6 ) months. </li>
-            </ul>
-          </div>
-          <div class="col-md-12 col-xs-12">
-            <div class="field-mobile-view" style="margin: 0 auto; width: 250px;">
-              <div style="float: left; margin-right: 10px; margin-bottom: 10px;">
-                <input type="radio" id="checkCodition" name="checkCodition" value="0" class="email-notification-checkbox checkbox-style" onClick="Check_TermsAndCondition(this.value);" >
-                <span style="font-weight: bold;">I agree</span> </div>
-              <div style="float: left; margin-right: 10px;">
-                <input type="radio" id="checkCodition_01" name="checkCodition" value="0"  class="email-notification-checkbox checkbox-style" onClick="Check_TermsAndCondition(this.value);"  checked>
-                <span style="font-weight: bold;">I do not agree</span>
-                <div style="margin-top: 20px; margin-bottom: 20px;">
-                  <button type="submit" id="Continue" class="btn view-btn" disabled><i class="glyphicon glyphicon-circle-arrow-right btn-padding icon-padding"></i>Continue</button>
-                  {{ Form::token() }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-</FORM>
-<!--- STAT FOOTER ADVERTISMENT-->
-
-  
-<!--- END FOOTER ADVERTISMENT--> 
-<!-- START FOOTER AD MOBILE-->
-
-<!-- END FOOTER AD MOBILE-->
-<div id="main-wrapper">
- <footer id="footer">
+  <footer id="footer">
     <div class="container">
       <div class="row">
         <div class="col-sm-3 col-md-4">
           <div class="widget">
             <div class="widget-content">
-              {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
-              <p>This is the site where you will get everything about jobs</p>
+               {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+              <p></p>
             </div>
           </div>
         </div>
@@ -725,79 +368,191 @@ This site works best with Javascript enabled. Your browser's Javascript is disab
       <div class="container">
         <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
 
+        <ul class="footer-social">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-linkedin"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+          <li><a href="#" class="fa fa-pinterest"></a></li>
+          <li><a href="#" class="fa fa-dribbble"></a></li>
+        </ul>
       </div>
     </div>
-  </footer>
-
-</div>
-<!--- END FOOTER AREA-->
-<div class="scroll-top-wrapper "> <span class="scroll-top-inner"> <i class="glyphicon glyphicon-circle-arrow-up"></i> </span> </div>
-<!-- JQUERY OFFICIAL CDN --> 
-<!-- BOOSTRAP JQUERY SCRIPT -->
-<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-
-<!--- CUSTOM JQUERY SCRIPTS -->
-<script src="{{ URL::asset('js/responsive-tabs.js') }}"></script>
-<!--- CUSTOM JQUERY SCRIPTS --> 
-<!-- GO TO TOP--> 
-<script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
-
-<script>
-                     $(function(){
-                      
-                         $(document).on( 'scroll', function(){
-                      
-                             if ($(window).scrollTop() > 100) {
-                                 $('.scroll-top-wrapper').addClass('show');
-                             } else {
-                                 $('.scroll-top-wrapper').removeClass('show');
-                             }
-                         });
-                      
-                         $('.scroll-top-wrapper').on('click', scrollToTop);
-                     });
-                      
-                     function scrollToTop() {
-                         verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-                         element = $('body');
-                         offset = element.offset();
-                         offsetTop = offset.top;
-                         $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
-                     }
-           $( document ).ready(function() {
-  $('.datepicker').datepicker({ format: "mm/dd/yyyy" }).on('changeDate', function(ev){
-    $(this).datepicker('hide');
-});
-});
-
-$(function(){
-// Enabling Popover 
-    $("[data-toggle=popover]").popover();
-
-   
-});
-
-   $(document).ready(function() {
-    $('.intp').hide();
-        $('.showintp').click(function() {
-                $('.intp').slideToggle(500);
-        $("html, body").animate({ scrollTop: $(document).height() }, 500);
-        });
-    $('.intp ul li').click(function() {
-                $('.intp').slideUp(500);
-        });
-    });
-
-                  </script>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
-{{ HTML::script('assets/js/jquery.ba-outside-events.min.js') }}
-{{ HTML::script('assets/js/jquery.responsive-tabs.js') }}
-{{ HTML::script('assets/js/jquery.flexslider-min.js') }}
-{{ HTML::script('assets/js/jquery-ui-1.10.4.custom.min.js') }}
+  </footer> <!-- end #footer -->
+  </div>
 {{ HTML::script('assets/js/script.js') }}
+<script type="text/javascript">
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
 
-</div>
+    $('#defaultForm').formValidation({
+        message: 'This value is not valid',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            txtName: {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The name is required'
+                    },
+                   regexp: {
+                        regexp: /^[a-z A-Z]+$/,
+                        message: 'The username can only consist of alphabetical, number, dot and underscore'
+                    }
+                }
+            },
+            txtFName: {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The name is required'
+                    },
+                    regexp: {
+                        regexp: /^[a-z A-Z]+$/,
+                        message: 'The name can only consist of alphabetical'
+                    }
+                }
+            },
+            txtMName: {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The name is required'
+                    },
+                    regexp: {
+                        regexp: /^[a-z A-Z]+$/,
+                        message: 'The name can only consist of alphabetical'
+                    }
+                }
+            },            
+            cboBdate: {
+                validators: {
+                    notEmpty: {
+                        message: 'The date field is required'
+                    }
+                }
+            },
+            txtNationalId: {
+                message: 'The National Id is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The name is required'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'The National Id can only consist of number'
+                    }
+                }
+            },   
+            txtPresentAdd: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },
+                }
+            },
+
+            txtPermanentAdd: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },
+                }
+            },  
+
+            txtMobile: {
+                message: 'The Mobile number is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'The Mobile number can only consist of number'
+                    }
+                }
+            },    
+            txtEmail1: {
+                validators: {
+                  notEmpty: {
+                        message: 'The name is required'
+                    },
+                        regexp: {
+                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                            message: 'The value is not a valid email address'
+                        }
+                    }
+            },                          
+            
+            txtPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required'
+                    },
+                    different: {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            txtPassword: {
+                validators: {
+                  notEmpty: {
+                        message: 'The password is required'
+                    },
+                }
+            },
+            txtRetypePassword: {
+                validators: {
+                  notEmpty: {
+                        message: 'The password is required'
+                    },
+                    identical: {
+                    field: 'txtPassword',
+                    message: 'The password and its confirm are not the same'
+                }
+                }
+            },                                               
+            captcha: {
+                validators: {
+                    callback: {
+                        message: 'Wrong answer',
+                        callback: function(value, validator, $field) {
+                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                            return value == sum;
+                        }
+                    }
+                }
+            },
+            agree: {
+                validators: {
+                    notEmpty: {
+                        message: 'You must agree with the terms and conditions'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+    <script type="text/javascript">
+        $(function () {
+            // datepicker plugin
+            $('.input-datepicker').datepicker({
+                format: 'DD, d MM, yyyy'
+            }).on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });     
+        });
+    </script>
+
 </body>
 </html>

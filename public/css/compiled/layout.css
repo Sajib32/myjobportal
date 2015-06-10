@@ -238,7 +238,7 @@ input.search {
     margin-bottom: 5px;
     border-bottom: 1px solid #dae1e8;
     box-shadow: 0 2px 1px -1px #FFFFFF;
-    color: #ff0000;
+    color: #000000;
     outline: 0px;
     line-height: 21px; }
 #sidebar-nav #dashboard-menu > li {
@@ -309,7 +309,7 @@ input.search {
     float: right;
     top: 5px;
     font-size: 11px;
-    color: #ff0000;
+    color: #000000;
     width: initial;
     height: initial; }
 #sidebar-nav #dashboard-menu > li.active .dropdown-toggle,

@@ -198,7 +198,7 @@ class JobseekerController extends \BaseController {
 		}
 
 		return Redirect::route('jobseeker-sign-in')
-			   ->with('global', 'There was a problem signing in you.');
+			   ->with('failure', 'There was a problem signing in you.');
 	}
 
 	public function getSignOut() {

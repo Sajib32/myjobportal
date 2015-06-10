@@ -3,8 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><title>
     Online Job Portal
-</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</title>
+   <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    {{ HTML::style('assets/css/flexslider.css') }}
+    {{ HTML::style('assets/css/style.css') }}
+    {{ HTML::style('assets/css/responsive.css') }}
+    {{ HTML::style('assets/css/seekerfooter.css') }}
+    {{ HTML::style('assets/css/font-awesome.min.css') }}
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
@@ -55,52 +60,118 @@
     </style>
 </head>
 <body>
+<div id="main-wrapper"> 
+<header id="header" class="header-style-1">
+    <div class="header-top-bar">
+      <div class="container">
+
+        <!-- Header Language -->
+        <div class="header-language clearfix">
+          <ul>
+            <li class="active"><a href="#">En</a></li>
+            <li><a href="#">Fr</a></li>
+            <li><a href="#">De</a></li>
+            <li><a href="#">It</a></li>
+          </ul>
+        </div> <!-- end .header-language -->
+
+        <!-- Bookmarks -->
+        <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
+
+        <!-- Header Register -->
+        <div class="header-register">
+          <a href="#" class="btn btn-link">Register</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="email" class="form-control" placeholder="Email">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Register">
+            </form>
+          </div>
+        </div> <!-- end .header-register -->
+
+        <!-- Header Login -->
+        <div class="header-login">
+          <a href="#" class="btn btn-link">Login</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Login">
+              <a href="#" class="btn btn-link">Forgot Password?</a>
+            </form>
+          </div>
+        </div> <!-- end .header-login -->
+
+      </div> <!-- end .container -->
+    </div> <!-- end .header-top-bar -->
+
+    <div class="header-nav-bar">
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="css-table logo">
+          <div class="css-table-cell">
+            <a href="index.html">
+               {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+            </a> <!-- end .logo -->
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <a href="#" id="mobile-menu-toggle"><span></span></a>
+
+        <!-- Primary Nav -->
+        <nav>
+          <ul class="primary-nav">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li class="active has-submenu">
+              <a href="jobs.html">Jobs</a>
+              <ul>
+                <li><a href="jobs.html">Jobs Listings</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="candidates.html">Candidates</a>
+            </li>
+            <li class="has-submenu">
+              <a href="about-us.html">About Us</a>
+              <ul>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+      </div> <!-- end .container -->
+
+      <div id="mobile-menu-container" class="container">
+        <div class="login-register"></div>
+        <div class="menu"></div>
+      </div>
+    </div> <!-- end .header-nav-bar -->
+
+    <div class="header-page-title">
+      <div class="container">
+        <h1>Jobseekers Area</small></h1>
+@if(Auth::jobseeker()->check())
+        <ul class="breadcrumbs">
+          <li><a href="#">Welcome {{ Auth::jobseeker()->get()->fullname }}</a></li>
+          <li><a href="{{ URL::route('jobseeker-sign-out') }}">Sign Out</a></li>
+        </ul>
+@endif
+      </div>
+    </div>
+  </header> <!-- end #header -->
+  <div class="container">
     <form method="post" action="{{ URL::route('jobseeker-proquaedit-post') }}" id="mainForm" class="form-horizontal" role="form">
         {{ Form::hidden('id', $proq->id) }}
         {{ Form::token() }}
-        <!-- navbar -->
-        <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px;">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" title="" href="Career">
-                   
-                </a>
-            </div>
-            <ul class="nav navbar-nav pull-right hidden-xs">
-                <li class="settings hidden-xs hidden-sm">
-                    <a role="button">
-                        <span id="informationStatus"></span>
-                    </a>
-                </li>
-                <li class="settings">
-                    
-                    <a href='Profile' role='button'>
-                        <span id="userNameLabel">Welcome Md. Monirul Islam</span>
-                    </a>
-                    
-                </li>
-                
-                <li class="settings">
-                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
-                        <span id="logoutNameLabel">Logout</span>
-                    </a>
-                </li>
-                
-                <li class="settings">
-                    <a href="Faq" role="button">
-                        <span id="Label2">FAQ</span>
-                    </a>
-                </li>
-
-                <li class="settings hidden-xs hidden-sm">&nbsp;</li>
-            </ul>
-        </header>
-        <!-- end navbar -->
+        
 
         <div class="col-md-12">
             <!-- sidebar -->
@@ -262,11 +333,100 @@
                 </div>
             </div>
         </div>
-        <div class="loading" align="center">
-         
+        <div class="loading" align="center">      
+        </div>
+    </form>
+    </div>
+    </div>
+      <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <div class="widget-content">
+              {{ HTML::image('/assets/img/Logo.jpg', '', array('width'=>'205px','height'=>'50px')) }}
+              <p>This is the site where you will get everything about jobs</p>
+            </div>
+          </div>
         </div>
 
-    </form>
+        <div class="col-sm-3 col-md-4">
+          <div class="widget">
+            <h6 class="widget-title">Navigation</h6>
+
+            <div class="widget-content">
+              <div class="row">
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Candidates</a></li>
+                    <li><a href="#">Partners</a></li>
+                  </ul>
+                </div>
+
+                <div class="col-xs-6 col-sm-12 col-md-6">
+                  <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Follow Us</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Youtube</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2">
+          <div class="widget">
+            <h6 class="widget-title">Popular Jobs</h6>
+
+            <div class="widget-content">
+              <ul class="footer-links">
+                <li><a href="#">Web Developer</a></li>
+                <li><a href="#">Web Designer</a></li>
+                <li><a href="#">UX Engineer</a></li>
+                <li><a href="#">Account Manager</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="container">
+        <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
+
+        <ul class="footer-social">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-linkedin"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+          <li><a href="#" class="fa fa-pinterest"></a></li>
+          <li><a href="#" class="fa fa-dribbble"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer> <!-- end #footer -->
+    <!--/.footer-bottom--> 
+</div>
     <!-- scripts -->
     <script src="{{ URL::asset('js/jquery-2.1.0.min.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -493,7 +653,7 @@
         //$('.AcademicGridView').dataTable({ "sPaginationType": "full_numbers" });
 
     </script>
-
+{{ HTML::script('assets/js/script.js') }}
 </body>
 </html>
 

@@ -20,8 +20,9 @@ class EmployerController extends \BaseController {
 	public function postEmpAccount()
 	{
 		$rules = array (
-			'username' => 'required',
-			'password' => 'required',
+			'username' => 'required|unique:employers',
+			'email' => 'required|email|unique:employers',
+			'password' => 'required|min:6'
 		);
 		$messages = array(
 				'required' => 'This field is required'
@@ -31,7 +32,9 @@ class EmployerController extends \BaseController {
 
 
 			if($validator->fails()) {
-				return 'fails';
+				return Redirect::route('EmpAccount')
+				   ->withErrors($validator)
+				   ->withInput();
 			} else {
 			$companyname = Input::get('companyname');
 			$contactperson = Input::get('person');
@@ -133,13 +136,13 @@ class EmployerController extends \BaseController {
 
 			if($auth) {
 				// Redirect to the intended page
-
 				// return Redirect::route('jobseeker-step_02_view');
-				return Redirect::route('EmpHome');
+				return Redirect::route('EmpHome');	
 			} else {
 				return Redirect::route('employer-sign-in')
-			   			->with('global', 'Email/password wrong, or account not activated.');
+			   			->with('failure', 'Email/password wrong, or account not activated.');
 			}
+
 		}
 
 		return Redirect::route('employer-sign-in')

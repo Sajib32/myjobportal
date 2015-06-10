@@ -20,7 +20,7 @@
    {{ HTML::style('assets/css/boot.css') }}
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->>
     {{ HTML::script('assets/js/ie-emulation-modes-warning.js') }}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -38,32 +38,19 @@
 {{ Form::token() }}
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-
-        <input type="email" name="email"{{ (Input::old('email')) ? ' value="' . e(Input::old('email')) . '"' : '' }} id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      @if($errors->has('email'))
-        {{ $errors->first('email') }}
-      @endif
-
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        @if($errors->has('password'))
-        {{ $errors->first('password') }}
-      @endif
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
-          </label>
-          <label>
-            <a href="{{ URL::route('jobseeker-forgot-password') }}"> Forgot Password</a>
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div> <!-- /container -->
 
- @if(Session::has('global'))
-    <p style="text-align:center; color:red;">{{ Session::get('global') }}</p>
-  @endif
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     {{ HTML::script('assets/js/ie10-viewport-bug-workaround.js') }}
   </body>

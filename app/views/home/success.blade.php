@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Employer Zone</title>
- 
-    {{ HTML::style('assets/css/bootstrapemp.css') }}
-    {{ HTML::style('assets/css/formValidationemp.css') }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
-    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
-    {{ HTML::script('assets/js/jquery.minemp.js') }}
-    {{ HTML::script('assets/js/bootstrap.min.js') }}
-    {{ HTML::script('assets/js/formValidation.js') }}
-    {{ HTML::script('assets/js/bootstrap.js') }}
+  <title>Jobs - Careers</title>
 
-      <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+  <!-- Stylesheets -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     {{ HTML::style('assets/css/bootstrap.css') }}
     {{ HTML::style('assets/css/font-awesome.min.css') }}
     {{ HTML::style('assets/css/flexslider.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('assets/css/responsive.css') }}
+
+  <!--[if IE 9]>
+    <script src="js/media.match.min.js"></script>
+  <![endif]-->
 </head>
+
 <body>
-  <div id="main-wrapper"> 
-<header id="header" class="header-style-1">
+<div id="main-wrapper">
+
+  <header id="header" class="header-style-1">
     <div class="header-top-bar">
       <div class="container">
 
@@ -118,7 +119,7 @@
 
     <div class="header-page-title">
       <div class="container">
-        <h1>EMPLOYER AREA</h1>
+        <h1>Available Jobs <small>(350)</small></h1>
 
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
@@ -127,23 +128,102 @@
       </div>
     </div>
   </header> <!-- end #header -->
-<div id="page-content">
-  <div class="container"> 
-       <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-body panel-body-02 message-details">
-          <h4 style="font-size: 18px; font-weight: bold;  color: #69aa44;"> <i class="glyphicon glyphicon-ok-sign" style=""></i> Signup successful! </h4>
-          <ul style="margin-bottom: 30px;">
-            <h4 style="font-weight: bold;"> Email address verification needed. </h4>
-            <p style="line-height: 20px;"> Welcome to Online Job Portal <br>
-              Before you can login, please check your email to activate your user account. If you don't receive an email within a few seconds, please check your spam filter. You've to activate your account within 72 hours. If you have multiple accounts, you will need to go through the verification process on each account. </p>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+  <div id="page-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 page-sidebar">
+          <aside>
+            <div class="white-container mb0">
+             
+
+              <div class="widget sidebar-widget jobs-filter-widget">
+                
+
+                <div class="widget-content">
+         
+                  <h6>By Industry</h6>
+
+                  <div>
+                    <ul class="filter-list">
+                      <li><a href="#">Administration <span>(75)</span></a></li>
+                      <li><a href="#">Manufactoring <span>(3741)</span></a></li>
+                      <li><a href="#">Healthcare &amp; Science <span>(115)</span></a></li>
+                      <li><a href="#">Media &amp; Creative <span>(347)</span></a></li>
+                      <li><a href="#">Transportation <span>(52)</span></a></li>
+                    </ul>
+
+                    <a href="#" class="toggle"></a>
+                  </div>
+
+                  <h6>By Type</h6>
+
+                  <div>
+                    <ul class="filter-list">
+                      <li><a href="#">Banking/Finance <span>(300)</span></a></li>
+                      <li><a href="#">Administration <span>(758)</span></a></li>
+                      <li><a href="#">Art/Design/Creative <span>(20)</span></a></li>
+                      <li><a href="#">Customer Service <span>(165)</span></a></li>
+                      <li><a href="#">Education/Training <span>(11)</span></a></li>
+                      <li><a href="#">Banking/Finance <span>(9)</span></a></li>
+                    </ul>
+
+                    <a href="#" class="toggle"></a>
+                  </div>
+
             
+
+                  <input type="submit" class="btn btn-default mt30" value="Filter">
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div> <!-- end .page-sidebar -->
+
+        <div class="col-sm-8 page-content">
+          
+
+          <div class="title-lines">
+            <h3 class="mt0">Available Jobs</h3>
+          </div>
+
+          <div class="clearfix mb30">
+
+            <ul class="pull-right">
+              {{ $jobs->links() }}
+            </ul>
+          </div>
+@foreach($jobs as $j)
+          <div class="jobs-item with-thumb">
+            <div class="clearfix visible-xs"></div>
+            <h6 class="title"><a href="{{URL::route('view', $j->id)}}">{{ $j->job_title }}</h6>
+            <span class="meta">{{ $j->employer->empcompany->company_name }}</span><br >
+            <span class="meta">Deadline: {{ $j->applying_last_date }}</span>
+            <p class="description"><a href="{{ URL::route('view', array($j->id)) }}">Read Details</a></p>
+
+            <ul class="top-btns">
+              <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
+              <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
+              <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
+            </ul>
+
+          </div>
+
+   @endforeach       
+
+      
+
+
+           <div class="clearfix mb30">
+
+            <ul class="pull-right">
+              {{ $jobs->links() }}
+            </ul>
+          </div>
+        </div> <!-- end .page-content -->
+      </div>
+    </div> <!-- end .container -->
+  </div> <!-- end #page-content -->
 
   <footer id="footer">
     <div class="container">
@@ -232,153 +312,19 @@
       </div>
     </div>
   </footer> <!-- end #footer -->
-  </div>
-{{ HTML::script('assets/js/script.js') }}
-<script type="text/javascript">
-$(document).ready(function() {
-    // Generate a simple captcha
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
 
-    $('#defaultForm').formValidation({
-        message: 'This value is not valid',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            username: {
-                message: 'The username is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                        regexp: {
-                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
-                            message: 'The value is not a valid email address'
-                        }
-                    }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 10,
-                        message: 'The password must be more than 6 and less than 10 characters long'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
-            },
-            companyname: {
-                validators: {
-                    notEmpty: {
-                        message: 'The company name is required'
-                    }
-                }
-            },
-            person: {
-                validators: {
-                    notEmpty: {
-                        message: 'This field is required'
-                    }
-                }
-            },
-            designation: {
-                validators: {
-                    notEmpty: {
-                        message: 'The field is required'
-                    }
-                }
-            },
-            address: {
-                validators: {
-                    notEmpty: {
-                        message: 'This field is required'
-                    }
-                }
-            },
-            country: {
-                validators: {
-                    notEmpty: {
-                        message: 'This field is required'
-                    }
-                }
-            },
-            city: {
-                validators: {
-                    notEmpty: {
-                        message: 'This field is required'
-                    }
-                }
-            },
-            contact_mobile: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required'
-                    }
-                    }
-                },
-            
-            contact_email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required'
-                    },
-                    emailAddress: {
-                        message: 'The input is not a valid email address'
-                    }
-                }
-            },    
-            url: {
-                validators: {
-                    notEmpty: {
-                        message: 'This field is required'
-                    }
-                }
-            },                                                       
-            captcha: {
-                validators: {
-                    callback: {
-                        message: 'Wrong answer',
-                        callback: function(value, validator, $field) {
-                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-                            return value == sum;
-                        }
-                    }
-                }
-            },
-            agree: {
-                validators: {
-                    notEmpty: {
-                        message: 'You must agree with the terms and conditions'
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
+</div> <!-- end #main-wrapper -->
+
+<!-- Scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+
+{{ HTML::script('assets/js/jquery.ba-outside-events.min.js') }}
+{{ HTML::script('assets/js/jquery.responsive-tabs.js') }}
+{{ HTML::script('assets/js/jquery.flexslider-min.js') }}
+{{ HTML::script('assets/js/jquery-ui-1.10.4.custom.min.js') }}
+{{ HTML::script('assets/js/script.js') }}
+
 </body>
 </html>
+

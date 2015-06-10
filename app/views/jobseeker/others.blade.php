@@ -4,8 +4,12 @@
 <head><title>
 	Online Job Portal
 </title>
-{{ HTML::style('assets/css/seekerfooter.css') }}
-{{ HTML::style('assets/css/font-awesome.min.css') }}
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    {{ HTML::style('assets/css/flexslider.css') }}
+    {{ HTML::style('assets/css/style.css') }}
+    {{ HTML::style('assets/css/responsive.css') }}
+    {{ HTML::style('assets/css/seekerfooter.css') }}
+    {{ HTML::style('assets/css/font-awesome.min.css') }}
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-overrides.css') }}">
@@ -49,50 +53,118 @@
     <link rel="stylesheet" href="{{ URL::asset('css/compiled/form-wizard.css') }}">
 </head>
 <body>
+<div id="main-wrapper"> 
+<header id="header" class="header-style-1">
+    <div class="header-top-bar">
+      <div class="container">
+
+        <!-- Header Language -->
+        <div class="header-language clearfix">
+          <ul>
+            <li class="active"><a href="#">En</a></li>
+            <li><a href="#">Fr</a></li>
+            <li><a href="#">De</a></li>
+            <li><a href="#">It</a></li>
+          </ul>
+        </div> <!-- end .header-language -->
+
+        <!-- Bookmarks -->
+        <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
+
+        <!-- Header Register -->
+        <div class="header-register">
+          <a href="#" class="btn btn-link">Register</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="email" class="form-control" placeholder="Email">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Register">
+            </form>
+          </div>
+        </div> <!-- end .header-register -->
+
+        <!-- Header Login -->
+        <div class="header-login">
+          <a href="#" class="btn btn-link">Login</a>
+          <div>
+            <form action="#">
+              <input type="text" class="form-control" placeholder="Username">
+              <input type="password" class="form-control" placeholder="Password">
+              <input type="submit" class="btn btn-default" value="Login">
+              <a href="#" class="btn btn-link">Forgot Password?</a>
+            </form>
+          </div>
+        </div> <!-- end .header-login -->
+
+      </div> <!-- end .container -->
+    </div> <!-- end .header-top-bar -->
+
+    <div class="header-nav-bar">
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="css-table logo">
+          <div class="css-table-cell">
+            <a href="index.html">
+               {{ HTML::image('/assets/images/header-logo.png', '', array('width'=>'205px','height'=>'50px')) }}
+            </a> <!-- end .logo -->
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <a href="#" id="mobile-menu-toggle"><span></span></a>
+
+        <!-- Primary Nav -->
+        <nav>
+          <ul class="primary-nav">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li class="active has-submenu">
+              <a href="jobs.html">Jobs</a>
+              <ul>
+                <li><a href="jobs.html">Jobs Listings</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="candidates.html">Candidates</a>
+            </li>
+            <li class="has-submenu">
+              <a href="about-us.html">About Us</a>
+              <ul>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+      </div> <!-- end .container -->
+
+      <div id="mobile-menu-container" class="container">
+        <div class="login-register"></div>
+        <div class="menu"></div>
+      </div>
+    </div> <!-- end .header-nav-bar -->
+
+    <div class="header-page-title">
+      <div class="container">
+        <h1>Jobseekers Area</small></h1>
+@if(Auth::jobseeker()->check())
+        <ul class="breadcrumbs">
+          <li><a href="#">Welcome {{ Auth::jobseeker()->get()->fullname }}</a></li>
+          <li><a href="{{ URL::route('jobseeker-sign-out') }}">Sign Out</a></li>
+        </ul>
+@endif
+      </div>
+    </div>
+  </header> <!-- end #header -->
 <div class="container">
     <form method="post" action="{{ URL::route('jobseeker-others-post') }}" id="mainForm" class="form-horizontal" role="form">
     {{ Form::token() }}
         <!-- navbar -->
-        <header class="navbar navbar-inverse" role="banner" style="margin-top: -15px;">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" title="" href="Career">
-                </a>
-            </div>
-            <ul class="nav navbar-nav pull-right hidden-xs">
-                <li class="settings hidden-xs hidden-sm">
-                    <a role="button">
-                        <span id="informationStatus"></span>
-                    </a>
-                </li>
-                <li class="settings">
-                    
-                    <a href='Profile' role='button'>
-                        <span id="userNameLabel">Welcome Md. Monirul Islam</span>
-                    </a>
-                    
-                </li>
-                
-                <li class="settings">
-                    <a href="{{ URL::route('jobseeker-sign-out') }}" role="button" onclick="confirmLogout()">
-                        <span id="logoutNameLabel">Logout</span>
-                    </a>
-                </li>
-                
-                <li class="settings">
-                    <a href="Faq" role="button">
-                        <span id="Label2">FAQ</span>
-                    </a>
-                </li>
-
-                <li class="settings hidden-xs hidden-sm">&nbsp;</li>
-            </ul>
-        </header>
+        
         <!-- end navbar -->
 
         <div class="col-md-12">
@@ -574,59 +646,11 @@
 
         </div>
 
-        <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="chatHr">Chat with HR</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row form-wrapper">
-                            <div class="col-md-12">
-                                <div class="field-box">
-                                    <label style="width: 115px;">Subject:</label>
-                                    <div class="ui-select" style="width: 78%;">
-                                        <select name="ctl00$chatItemName" id="chatItemName" class="chatItemName">
-	<option value="I Can’t Login The Career Site">I Can’t Login The Career Site</option>
-	<option value="I Can’t Create Login ID">I Can’t Create Login ID</option>
-	<option value="I Can’t Apply By using the Web Site">I Can’t Apply By using the Web Site</option>
-	<option value="I Forgotten Entire Login Information">I Forgotten Entire Login Information</option>
-	<option value="I Can’t Edit My Resume">I Can’t Edit My Resume</option>
-	<option value="others">Others</option>
-
-</select>
-                                    </div>
-                                </div>
-                                <div class="field-box chatOtherDiv" style="display: none;">
-                                    <label style="width: 115px;">Please specify:</label>
-                                    <input name="ctl00$otherItemName" type="text" id="otherItemName" class="form-control otherItemName" placeholder="Specify" style="width: 100%;" />
-                                </div>
-                                <div class="field-box">
-                                    <label style="width: 115px;">Email Address:</label>
-                                    <input name="ctl00$chatEmail" type="text" id="chatEmail" class="form-control chatEmail" placeholder="E-mail address" style="width: 100%;" />
-                                </div>
-                                <div class="field-box">
-                                    <label style="width: 115px;">Contact Number</label>
-                                    <input name="ctl00$chatContact" type="text" id="chatContact" class="form-control chatContact" placeholder="Contact Number" style="width: 100%;" />
-                                </div>
-                                <div class="field-box">
-                                    <label style="width: 115px;">Message:</label>
-                                    <textarea name="ctl00$chatMessage" rows="2" cols="20" id="chatMessage" class="form-control chatMessage" placeholder="" style="width: 100%;">
-</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                        <input type="submit" name="ctl00$btnChat" value="Submit" id="btnChat" class="btn btn-primary btn-sm pull-left btnChat" />
-                    </div>
-                </div>
-            </div>
-        </div>
+      
     </form>
     </div>
+    </div>
+
     <footer id="footer">
     <div class="container">
       <div class="row">
@@ -714,6 +738,7 @@
       </div>
     </div>
   </footer>
+  </div>
     <!-- scripts -->
     <script src="{{ URL::asset('js/jquery-2.1.0.min.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -883,7 +908,7 @@
              document.forms[0].appendChild(confirm_value);
          }
     </script>
-
+{{ HTML::script('assets/js/script.js') }}
 </body>
 </html>
 

@@ -146,6 +146,12 @@
       <p class="form-control-static">{{ $job->empcompany->company_name }}</p>
     </div>
   </div>
+   <div class="form-group">
+    <label for="inputPassword" class="col-sm-2 control-label">Name Of The Post</label>
+    <div class="col-sm-10">
+     <p class="form-control-static">{{ $job->job_title }}</p>
+    </div>
+  </div> 
     <div class="form-group">
     <label for="inputPassword" class="col-sm-2 control-label">Expected Salary</label>
     <div class="col-sm-10">

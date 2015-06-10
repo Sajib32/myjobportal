@@ -66,6 +66,7 @@
     <div class="large-12 columns">
       <label>job Responsibility
         <textarea placeholder="job Responsibility" name="responsibility"></textarea>
+        <span><h6>[if more than one line pls enter]</h6></span>
       </label>
     </div>
   </div>
