@@ -1,29 +1,28 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Submission Message</title>
+ 
+    {{ HTML::style('assets/css/bootstrapemp.css') }}
+    {{ HTML::style('assets/css/formValidationemp.css') }}
 
-  <title>Jobs - Careers</title>
+    <!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+    {{ HTML::script('assets/js/jquery.minemp.js') }}
+    {{ HTML::script('assets/js/bootstrap.min.js') }}
+    {{ HTML::script('assets/js/formValidation.js') }}
+    {{ HTML::script('assets/js/bootstrap.js') }}
 
-  <!-- Stylesheets -->
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     {{ HTML::style('assets/css/bootstrap.css') }}
     {{ HTML::style('assets/css/font-awesome.min.css') }}
     {{ HTML::style('assets/css/flexslider.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('assets/css/responsive.css') }}
-
-  <!--[if IE 9]>
-    <script src="js/media.match.min.js"></script>
-  <![endif]-->
 </head>
-
 <body>
-<div id="main-wrapper">
-
-  <header id="header" class="header-style-1">
+  <div id="main-wrapper"> 
+<header id="header" class="header-style-1">
     <div class="header-top-bar">
       <div class="container">
 
@@ -41,30 +40,10 @@
         <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
 
         <!-- Header Register -->
-        <div class="header-register">
-          <a href="#" class="btn btn-link">Register</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="email" class="form-control" placeholder="Email">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Register">
-            </form>
-          </div>
-        </div> <!-- end .header-register -->
+    
 
         <!-- Header Login -->
-        <div class="header-login">
-          <a href="#" class="btn btn-link">Login</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Login">
-              <a href="#" class="btn btn-link">Forgot Password?</a>
-            </form>
-          </div>
-        </div> <!-- end .header-login -->
+      
 
       </div> <!-- end .container -->
     </div> <!-- end .header-top-bar -->
@@ -96,9 +75,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -106,7 +82,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -119,7 +94,7 @@
 
     <div class="header-page-title">
       <div class="container">
-        <h1>Available Jobs <small>(350)</small></h1>
+        <h1>Submission Message</h1>
 
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
@@ -128,102 +103,23 @@
       </div>
     </div>
   </header> <!-- end #header -->
-
-  <div id="page-content">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4 page-sidebar">
-          <aside>
-            <div class="white-container mb0">
+<div id="page-content">
+  <div class="container"> 
+       <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body panel-body-02 message-details">
+          <h4 style="font-size: 18px; font-weight: bold;  color: #69aa44;"> <i class="glyphicon glyphicon-ok-sign" style=""></i> Submission Successful! </h4>
+          <ul style="margin-bottom: 30px;">
+            <h4 style="font-weight: bold;"> Thanks For Your Submission. </h4>
+            <p style="line-height: 20px;">You will be notified very soon. <br>
              
-
-              <div class="widget sidebar-widget jobs-filter-widget">
-                
-
-                <div class="widget-content">
-         
-                  <h6>By Industry</h6>
-
-                  <div>
-                    <ul class="filter-list">
-                      <li><a href="#">Administration <span>(75)</span></a></li>
-                      <li><a href="#">Manufactoring <span>(3741)</span></a></li>
-                      <li><a href="#">Healthcare &amp; Science <span>(115)</span></a></li>
-                      <li><a href="#">Media &amp; Creative <span>(347)</span></a></li>
-                      <li><a href="#">Transportation <span>(52)</span></a></li>
-                    </ul>
-
-                    <a href="#" class="toggle"></a>
-                  </div>
-
-                  <h6>By Type</h6>
-
-                  <div>
-                    <ul class="filter-list">
-                      <li><a href="#">Banking/Finance <span>(300)</span></a></li>
-                      <li><a href="#">Administration <span>(758)</span></a></li>
-                      <li><a href="#">Art/Design/Creative <span>(20)</span></a></li>
-                      <li><a href="#">Customer Service <span>(165)</span></a></li>
-                      <li><a href="#">Education/Training <span>(11)</span></a></li>
-                      <li><a href="#">Banking/Finance <span>(9)</span></a></li>
-                    </ul>
-
-                    <a href="#" class="toggle"></a>
-                  </div>
-
-            
-
-                  <input type="submit" class="btn btn-default mt30" value="Filter">
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div> <!-- end .page-sidebar -->
-
-        <div class="col-sm-8 page-content">
-          
-
-          <div class="title-lines">
-            <h3 class="mt0">Available Jobs</h3>
-          </div>
-
-          <div class="clearfix mb30">
-
-            <ul class="pull-right">
-              {{ $jobs->links() }}
-            </ul>
-          </div>
-@foreach($jobs as $j)
-          <div class="jobs-item with-thumb">
-            <div class="clearfix visible-xs"></div>
-            <h6 class="title"><a href="{{URL::route('view', $j->id)}}">{{ $j->job_title }}</h6>
-            <span class="meta">{{ $j->employer->empcompany->company_name }}</span><br >
-            <span class="meta">Deadline: {{ $j->applying_last_date }}</span>
-            <p class="description"><a href="{{ URL::route('view', array($j->id)) }}">Read Details</a></p>
-
-            <ul class="top-btns">
-              <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
-              <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
-              <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
-            </ul>
-
-          </div>
-
-   @endforeach       
-
-      
-
-
-           <div class="clearfix mb30">
-
-            <ul class="pull-right">
-              {{ $jobs->links() }}
-            </ul>
-          </div>
-        </div> <!-- end .page-content -->
+          </ul>
+        </div>
       </div>
-    </div> <!-- end .container -->
-  </div> <!-- end #page-content -->
+    </div>
+  </div>
+</div>
+            
 
   <footer id="footer">
     <div class="container">
@@ -312,19 +208,8 @@
       </div>
     </div>
   </footer> <!-- end #footer -->
-
-</div> <!-- end #main-wrapper -->
-
-<!-- Scripts -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
-
-{{ HTML::script('assets/js/jquery.ba-outside-events.min.js') }}
-{{ HTML::script('assets/js/jquery.responsive-tabs.js') }}
-{{ HTML::script('assets/js/jquery.flexslider-min.js') }}
-{{ HTML::script('assets/js/jquery-ui-1.10.4.custom.min.js') }}
+  </div>
 {{ HTML::script('assets/js/script.js') }}
 
 </body>
 </html>
-

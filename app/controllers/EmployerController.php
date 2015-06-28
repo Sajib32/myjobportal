@@ -13,9 +13,10 @@ class EmployerController extends \BaseController {
 	{
 		return View::make('employers.employer');
 	}
-		public function getEmpAccount()
+	public function getEmpAccount()
 	{
-		return View::make('employers.createnew');
+		$all_categories = CompanyType::lists('name','id');
+		return View::make('employers.createnew')->with(compact('all_categories'));
 	}
 	public function postEmpAccount()
 	{
@@ -154,29 +155,8 @@ class EmployerController extends \BaseController {
 	public function postAddJobs() {
 		$user = Auth::employer()->get();
 		$input = Input::all();
-		$validator = Validator::make($input,
-				array(
-					'job_title' => 'required',
-					'vacancy' => 'required',
-					'job_location' => 'required',
-					'salary' => 'required',
-					'applying_last_date' => 'required',
-					'job_responsibility' => 'required',
-					'edu_qualification' => 'required',
-					'add_requirements' => 'required',
-					'experience' => 'required',
-					'other_benefits' => 'required',
-					'apply_procedure' => 'required',
-					'online_submit' => 'required',
-					'job_nature' => 'required',
-					'approved' => 'required'
-					)
-			);
-		if($validator->fails()){
-			return Redirect::route('add_jobs')
-					->withErrors($validator)
-					->withInput();
-		} else {
+		
+		
 			$jobdetails = new JobDetail;	
 			$jobdetails->job_title = $input['title'];
 			$jobdetails->vacancy = $input['vacancy'];
@@ -202,7 +182,7 @@ class EmployerController extends \BaseController {
 				$jobdetails->save();
 			}
 		}
-	}
+	
 		return Redirect::route('manage_jobs');
 	}
 	public function getManage()

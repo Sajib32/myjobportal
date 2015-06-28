@@ -9,9 +9,9 @@ class Testing {
 		for ($start=0; $start < count($lines); $start++) {   
 		//echo "<div align=\"left\" class=\"detailsnoncap\">";
 		 //echo "<ul>";
-		//echo "<li>";   
+		echo "<li>";   
 		 echo $lines[$start];
-		 //echo "</li>";
+		 echo "</li>";
 		//echo "</ul>";
 		// echo "</div>";
 		 }

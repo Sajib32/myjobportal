@@ -50,7 +50,8 @@ class HomeController extends BaseController {
 		   		$seeker = Jobseeker::find($user);
 
 		   		if ($jobdetail->jobseekers->contains($seeker->id)) {
-   					 echo "You have already submitted your CV. Thanks";
+   					 // echo "You have already submitted your CV. Thanks";
+   					 return View::make('home.submission');
    					 //$cart->items()->save($newItem);
 				} else {
 		   		$jobdetail->jobseekers()->save($seeker, ['salary' => $salary]);
@@ -70,7 +71,8 @@ class HomeController extends BaseController {
 		   	    $salary = Input::get('salary');
 		   		$seeker = Jobseeker::find($u->id);
 		   		if ($jobdetail->jobseekers->contains($seeker->id)) {
-   					 echo "You have already submitted your CV. Thanks";
+   					 //echo "You have already submitted your CV. Thanks";
+		   			return View::make('home.submission');
    					 //$cart->items()->save($newItem);
 				}else {
 

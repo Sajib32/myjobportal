@@ -1,7 +1,7 @@
 @extends('employers.employer')
 @section('content')
     <h2 class="post-listings">Job listings</h2><hr>
-{{ Form::open(['route'=>['add_jobs-post']]) }}
+    <form method="post" action="{{ URL::route('add_jobs-post') }}">
 {{ Form::token() }}
   <div class="row">
     <div class="large-6 columns">
@@ -49,8 +49,10 @@
 <div class="row">
     <div class="large-6 columns">
       <label>Application Submit Online</label>
-      <input type="radio" name="apply" value="1" id="pokemonRed"><label for="pokemonRed">yes</label>
-      <input type="radio" name="apply" value="0" id="pokemonBlue"><label for="pokemonBlue">no</label>
+      <input type="radio" name="apply" value="1" id="pokemonRed">
+      <label for="pokemonRed">yes</label>
+      <input type="radio" name="apply" value="0" id="pokemonBlue">
+      <label for="pokemonBlue">no</label>
     </div>
     <div class="large-6 columns">
       <label>Job Nature</label>
@@ -70,6 +72,14 @@
       </label>
     </div>
   </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Educational Requirements
+        <textarea  name="edu_require"></textarea>
+        <span><h6>[if more than one line pls enter]</h6></span>
+      </label>
+    </div>
+  </div>  
     <div class="row">
     <div class="large-12 columns">
       <label>Job Experience

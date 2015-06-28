@@ -95,9 +95,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -105,7 +102,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -118,7 +114,7 @@
 
     <div class="header-page-title">
       <div class="container">
-        <h1>EMPLOYER AREA</h1>
+        <h1>EMPLOYER SIGN UP</h1>
 
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
@@ -206,7 +202,8 @@
                    <div class="form-group">
                         <label class="col-sm-3 control-label">Company Type</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="company_type" />
+                            
+                            {{ Form::select('company_type', ['' => 'Select a category'] + $all_categories) }}
                         </div>
                     </div>
               
@@ -253,7 +250,7 @@
                      <div class="form-group">
                         <label class="col-sm-3 control-label">Website Address (URL)</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="url" />
+                            <input type="text" class="form-control" name="url" placeholder="http://www.example.com"/>
                         </div>
                     </div>   
                     <div class="form-group">
@@ -490,22 +487,23 @@ $(document).ready(function() {
                 },
             
             contact_email: {
-              notEmpty: {
-                        message: 'This field is required'
-                    },
                 validators: {
-                    notEmpty: {
-                        message: 'The email address is required'
+                 notEmpty: {
+                        message: 'The password is required'
                     },
-                    emailAddress: {
-                        message: 'The input is not a valid email address'
+                        regexp: {
+                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                            message: 'The value is not a valid email address'
+                        }
                     }
-                }
-            },    
+            },
             url: {
                 validators: {
                     notEmpty: {
                         message: 'This field is required'
+                    },
+                    uri: {
+                        message: 'The website address is not valid'
                     }
                 }
             },                                                       

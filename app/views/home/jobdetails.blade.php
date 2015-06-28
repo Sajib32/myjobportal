@@ -39,31 +39,8 @@
         <!-- Bookmarks -->
         <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
 
-        <!-- Header Register -->
-        <div class="header-register">
-          <a href="#" class="btn btn-link">Register</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="email" class="form-control" placeholder="Email">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Register">
-            </form>
-          </div>
-        </div> <!-- end .header-register -->
-
-        <!-- Header Login -->
-        <div class="header-login">
-          <a href="#" class="btn btn-link">Login</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Login">
-              <a href="#" class="btn btn-link">Forgot Password?</a>
-            </form>
-          </div>
-        </div> <!-- end .header-login -->
+ 
+   
 
       </div> <!-- end .container -->
     </div> <!-- end .header-top-bar -->
@@ -95,9 +72,6 @@
                 <li><a href="{{ URL::route('job-listing') }}">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="#">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -105,7 +79,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -163,10 +136,7 @@
                     <tr>
                       <td>Experience</td>
                       <td>{{ $j->experience }}</td>
-                    </tr>
-                    <tr>
-                      <td>Age</td>
-                      <td></td>
+
                     </tr>
                     <tr>
                       <td>Salary</td>
@@ -211,7 +181,7 @@
             <h5>Job Description/Responsibility</h5>
 
             <ul>
-              <li>{{ Testing::chk($j->edu_qualification) }}</li>
+              {{ Testing::chk($j->job_responsibility) }}
             </ul>
 
             <h5>Job Nature</h5>
@@ -219,13 +189,13 @@
 
             <h5>Educational Requirements</h5>
             <ul>
-              <li>{{ Testing::chk($j->edu_qualification) }}</li>
+              {{ Testing::chk($j->add_requirements) }}
             </ul>
 
 
             <h5>Additional Job Requirements</h5>
             <ul>
-              <li>{{ Testing::chk($j->edu_qualification) }}</li>
+              {{ Testing::chk($j->add_requirements) }}
             </ul>
 
             <h5>Job Location</h5>
@@ -233,8 +203,9 @@
             <h5>Salary</h5>
             <span class="vacancy">{{ $j->salary }}</span>
             <h5>Other Benefits</h5>
-           <li>{{ Testing::chk($j->edu_qualification) }}</li>
-
+            <ul>
+             {{ Testing::chk($j->other_benefits) }}
+            </ul>
        
             <hr>
 

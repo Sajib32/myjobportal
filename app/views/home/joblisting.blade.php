@@ -96,9 +96,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -106,7 +103,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->

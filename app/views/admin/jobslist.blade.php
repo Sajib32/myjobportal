@@ -25,7 +25,7 @@
                     {{Form::select('status',['yes'=>'Yes','no'=>'No'],$j->approved,['style'=>'margin-bottom:0','onchange'=>'submit()'])}}
                     {{Form::close()}}
                 </td>
-                <td>Last date</td>
+                <td>{{ $j->applying_last_date }}</td>
                 <td>{{HTML::linkRoute('jobdetails.delete','Delete',$j->id)}}</td>
             </tr>
         @endforeach

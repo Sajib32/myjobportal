@@ -41,30 +41,8 @@
         <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
 
         <!-- Header Register -->
-        <div class="header-register">
-          <a href="#" class="btn btn-link">Register</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="email" class="form-control" placeholder="Email">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Register">
-            </form>
-          </div>
-        </div> <!-- end .header-register -->
 
-        <!-- Header Login -->
-        <div class="header-login">
-          <a href="#" class="btn btn-link">Login</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Login">
-              <a href="#" class="btn btn-link">Forgot Password?</a>
-            </form>
-          </div>
-        </div> <!-- end .header-login -->
+
 
       </div> <!-- end .container -->
     </div> <!-- end .header-top-bar -->
@@ -96,9 +74,6 @@
                 <li><a href="{{ URL::route('job-listing') }}">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a> 
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -106,7 +81,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -123,7 +97,7 @@
 
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Online Application Form</a></li>
+          <li><a href="#">Jobs</a></li>
         </ul>
       </div>
     </div>

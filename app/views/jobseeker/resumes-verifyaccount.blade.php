@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employer Zone</title>
+    <title>Jobseeker Registration</title>
  
     {{ HTML::style('assets/css/bootstrapemp.css') }}
     {{ HTML::style('assets/css/formValidationemp.css') }}
@@ -95,9 +95,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -105,7 +102,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->

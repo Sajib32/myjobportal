@@ -68,34 +68,7 @@
           </ul>
         </div> <!-- end .header-language -->
 
-        <!-- Bookmarks -->
-        <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
 
-        <!-- Header Register -->
-        <div class="header-register">
-          <a href="#" class="btn btn-link">Register</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="email" class="form-control" placeholder="Email">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Register">
-            </form>
-          </div>
-        </div> <!-- end .header-register -->
-
-        <!-- Header Login -->
-        <div class="header-login">
-          <a href="#" class="btn btn-link">Login</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Login">
-              <a href="#" class="btn btn-link">Forgot Password?</a>
-            </form>
-          </div>
-        </div> <!-- end .header-login -->
 
       </div> <!-- end .container -->
     </div> <!-- end .header-top-bar -->
@@ -127,9 +100,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -137,7 +107,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -176,7 +145,7 @@
             <div id="sidebar-nav" class="col-md-2">
                 <ul id="dashboard-menu">
                     <li>
-                        <a href="JobList">
+                        <a href="{{ URL::route('home') }}">
                             <i class="icon-home"></i>
                             <span>Home</span>
                         </a>
@@ -190,9 +159,9 @@
                             <i class="icon-chevron-down"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="Profile">View Resume</a></li>
-                            <li><a href="Default">Edit Resume</a></li>
-                            <li><a href="ChangePassword">Change Password</a></li>
+                            <li><a href="{{ URL::route('jobseeker-profile') }}">View Resume</a></li>
+                            <li><a href="{{ URL::route('jobseeker-start') }}">Edit Resume</a></li>
+                            <li><a href="{{ URL::route('jobseeker-change-password') }}">Change Password</a></li>
                         </ul>
                     </li>
                     <li>
@@ -269,7 +238,23 @@
                  
                      
                 
+                            
+                        </div>
+
+                        <div class="col-md-6">
                             <div class="field-box">
+                                <label>Date of Birth:<span style="color: #ff0000;"> *</span></label>
+                                <input name="ctl00$MainBodyContent$dobText" type="text" value="{{ $jobseeker->dateofbirth }}" id="MainBodyContent_dobText" class="form-control input-datepicker dobText" />
+                            </div>
+                            <div class="field-box">
+                                <label>Email Address:<span style="color: #ff0000;"> *</span></label>
+                                <input name="ctl00$MainBodyContent$emailText" value="{{ $jobseeker->email }}" id="MainBodyContent_emailText" class="form-control emailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
+                            </div>
+                            <div class="field-box">
+                                <label>National ID:</label>
+                                <input name="ctl00$MainBodyContent$nationalText" type="text" value="{{ $jobseeker->nationalid }}" id="MainBodyContent_nationalText" class="form-control" />
+                            </div>
+                          <div class="field-box">
                                 <div style="width: 87%;">
                                     <div class="col-md-6" style="margin-left: -15px;">
                                         <label>Gender:<span style="color: #ff0000;"> *</span></label>
@@ -285,26 +270,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="field-box">
-                                <label>Date of Birth:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$dobText" type="text" value="{{ $jobseeker->dateofbirth }}" id="MainBodyContent_dobText" class="form-control input-datepicker dobText" />
-                            </div>
-                            <div class="field-box">
-                                <label>Email Address:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$emailText" value="{{ $jobseeker->email }}" id="MainBodyContent_emailText" class="form-control emailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
-                            </div>
-                            <div class="field-box">
-                                <label>Confirm Email Address:<span style="color: #ff0000;"> *</span></label>
-                                <input name="ctl00$MainBodyContent$confirmEmailText" value="{{ $jobseeker->confirm_email }}" id="MainBodyContent_confirmEmailText" class="form-control confirmEmailText" data-toggle="tooltip" data-trigger="focus" title="Please insert a valid email address" data-placement="top" type="text" />
-                            </div>
-                            <div class="field-box">
-                                <label>National ID:</label>
-                                <input name="ctl00$MainBodyContent$nationalText" type="text" value="{{ $jobseeker->nationalid }}" id="MainBodyContent_nationalText" class="form-control" />
-                            </div>
-                          
                             <div class="field-box">
                                 <div class="col-md-6" style="margin-left: -15px;">
                                     <label>Religion:<span style="color: #ff0000;"> *</span></label>

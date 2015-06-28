@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employer Zone</title>
+    <title>Submission</title>
  
     {{ HTML::style('assets/css/bootstrapemp.css') }}
     {{ HTML::style('assets/css/formValidationemp.css') }}
@@ -40,30 +40,9 @@
         <a href="#" class="btn btn-link bookmarks">Bookmarks</a>
 
         <!-- Header Register -->
-        <div class="header-register">
-          <a href="#" class="btn btn-link">Register</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="email" class="form-control" placeholder="Email">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Register">
-            </form>
-          </div>
-        </div> <!-- end .header-register -->
+    
 
-        <!-- Header Login -->
-        <div class="header-login">
-          <a href="#" class="btn btn-link">Login</a>
-          <div>
-            <form action="#">
-              <input type="text" class="form-control" placeholder="Username">
-              <input type="password" class="form-control" placeholder="Password">
-              <input type="submit" class="btn btn-default" value="Login">
-              <a href="#" class="btn btn-link">Forgot Password?</a>
-            </form>
-          </div>
-        </div> <!-- end .header-login -->
+   
 
       </div> <!-- end .container -->
     </div> <!-- end .header-top-bar -->
@@ -95,9 +74,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -105,7 +81,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -118,7 +93,7 @@
 
     <div class="header-page-title">
       <div class="container">
-        <h1>EMPLOYER SIGN UP</h1>
+        <h1>Submission Message</h1>
 
         <ul class="breadcrumbs">
           <li><a href="#">Home</a></li>
@@ -128,61 +103,22 @@
     </div>
   </header> <!-- end #header -->
 <div id="page-content">
-<div class="container"> 
-     <form id="defaultForm" method="post" class="form-horizontal" action="{{ URL::route('jobseeker-change-password-post') }}">
-     {{ Form::token() }}
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <div class="page-header">
-                    <h2>Change Password</h2>
-                </div>
-
- 					<div class="form-group">
-                        <label class="col-sm-3 control-label">Old Password</label>
-                        <div class="col-sm-5">
-                            <input type="password" class="form-control" name="old_password" />
-                        @if($errors->has('old_password'))
-							<p style="color:red;">{{ $errors->first('old_password') }}</p>
-						@endif
-                        </div>
-                    </div>
-
- 					<div class="form-group">
-                        <label class="col-sm-3 control-label">New Password</label>
-                        <div class="col-sm-5">
-                            <input type="password" class="form-control" name="password" />
-                        @if($errors->has('password'))
-							<p style="color:red;">{{ $errors->first('password') }}</p>
-						@endif
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">New Password Again</label>
-                        <div class="col-sm-5">
-                            <input type="password" class="form-control" name="password_again" />
-                        @if($errors->has('password_again'))
-							<p style="color:red;">{{ $errors->first('password_again') }}</p>
-						@endif
-                        </div>
-                    </div>
-            </div>
+  <div class="container"> 
+       <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body panel-body-02 message-details">
+          <h4 style="font-size: 18px; font-weight: bold;  color: #69aa44;"> <i class="glyphicon glyphicon-ok-sign" style=""></i> You have already submitted. </h4>
+          <ul style="margin-bottom: 30px;">
+            <h4 style="font-weight: bold;"> You will be notified very soon. </h4>
+              
+          </ul>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
 
-         
-
-            <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">          
-                    <div class="form-group">
-                        <div class="col-sm-9 col-sm-offset-3">
-                            <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
-                        </div>
-                    </div>                                                                
-            </div>     
-            </div>   
-            </form>
-            </div>
-            </div>
   <footer id="footer">
     <div class="container">
       <div class="row">
@@ -257,7 +193,7 @@
 
     <div class="copyright">
       <div class="container">
-        <p>&copy; Copyright 2014 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">UOU Apps</a></p>
+        <p>&copy; Copyright 2015 <a href="#">Careers</a> | All Rights Reserved | Powered by <a href="#">Careers</a></p>
 
         <ul class="footer-social">
           <li><a href="#" class="fa fa-facebook"></a></li>
@@ -272,5 +208,6 @@
   </footer> <!-- end #footer -->
   </div>
 {{ HTML::script('assets/js/script.js') }}
+
 </body>
 </html>

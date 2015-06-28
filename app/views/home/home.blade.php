@@ -96,9 +96,6 @@
                 <li><a href="{{ URL::route('job-listing') }}">Jobs Listings</a></li>              
               </ul>
             </li>
-            <li>
-              <a href="{{ URL::route('candidate') }}">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -106,7 +103,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->

@@ -55,6 +55,8 @@ class JobseekerController extends \BaseController {
 			$gender = Input::get('cboGender');
 			$marital = Input::get('cboMStatus');
 			$religion = Input::get('txtReligion');
+			$present_address = Input::get('txtPresentAdd');
+			$permanent_address = Input::get('txtPermanentAdd');
  			$dateofbirth = Input::get('cboGender');
  			$nationalid = Input::get('txtNationalId');
 			$email = Input::get('txtEmail1');
@@ -70,6 +72,8 @@ class JobseekerController extends \BaseController {
 				'gender' => $gender,
 				'marital' => $marital,
 				'religion' => $religion,
+				'present_address' => $present_address,
+				'permanent_address' => $permanent_address,
 				'dateofbirth' => $dateofbirth,
 				'nationalid' => $nationalid,
 				'email' => $email,
@@ -220,7 +224,8 @@ class JobseekerController extends \BaseController {
 
 		if($validator->fails()) {
 			return Redirect::route('jobseeker-change-password')
-				   ->withErrors($validator);
+				   ->withErrors($validator)
+				   ->withInput();
 		} else {
 			$jobseeker = Jobseeker::find(Auth::jobseeker()->get()->id);
 
@@ -273,8 +278,7 @@ class JobseekerController extends \BaseController {
 					Mail::send('emails.auth.forgot', array('link' => URL::route('jobseeker-recover', $code), 'fullname' => $jobseeker->fullname, 'password' =>$password), function($message) use ($jobseeker) {
 					$message->to($jobseeker->email, $jobseeker->fullname)->subject('Your new password');
 				});
-					return Redirect::route('jobseeker-showprofile')
-						   ->with('global', 'We have sent a new password by email.');
+					return Redirect::route('jobseeker-sign-in');
 				}
 			}
 		}

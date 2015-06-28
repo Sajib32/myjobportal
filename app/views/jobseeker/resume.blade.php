@@ -96,9 +96,6 @@
                 <li><a href="jobs.html">Jobs Listings</a></li>
               </ul>
             </li>
-            <li>
-              <a href="candidates.html">Candidates</a>
-            </li>
             <li class="has-submenu">
               <a href="about-us.html">About Us</a>
               <ul>
@@ -106,7 +103,6 @@
                 <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
             </li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </nav>
       </div> <!-- end .container -->
@@ -211,7 +207,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Permanent Address</label>
                         <div class="col-sm-8">
-                            <textarea class="form-control" type="text" id="txtPermanentAdd" maxLength="250"  size="80" name="txtPresentAdd"></textarea>
+                            <textarea class="form-control" type="text" id="txtPermanentAdd" maxLength="250"  size="80" name="txtPermanentAdd"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -404,8 +400,8 @@ $(document).ready(function() {
                         message: 'The name is required'
                     },
                    regexp: {
-                        regexp: /^[a-z A-Z]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
+                        regexp: /^[a-z A-Z_.]+$/,
+                        message: 'The username can only consist of alphabetical, dot.'
                     }
                 }
             },
@@ -416,8 +412,8 @@ $(document).ready(function() {
                         message: 'The name is required'
                     },
                     regexp: {
-                        regexp: /^[a-z A-Z]+$/,
-                        message: 'The name can only consist of alphabetical'
+                        regexp: /^[a-z A-Z_.]+$/,
+                        message: 'The name can only consist of alphabetical, dot.'
                     }
                 }
             },
@@ -428,8 +424,8 @@ $(document).ready(function() {
                         message: 'The name is required'
                     },
                     regexp: {
-                        regexp: /^[a-z A-Z]+$/,
-                        message: 'The name can only consist of alphabetical'
+                        regexp: /^[a-z A-Z_.]+$/,
+                        message: 'The name can only consist of alphabetical, dot.'
                     }
                 }
             },            

@@ -267,23 +267,9 @@
 	</table>
 </div>
                     </div>
-                    <br />
-                    <div class="section">
-                        <h4 style="clear: both;">Contact Information</h4>
-                        <div>
-
-</div>
-                        <span id="MainBodyContent_noContactInfo"></span>
-                    </div>
-                    <br />
-                    <div class="section">
-                        <h4 style="clear: both;">Address Information</h4>
-                        <div>
-
-</div>
-                        <span id="MainBodyContent_noCareerLabel">Currently no data exist! </span>
-                    </div>
-                    <br />
+                  
+              
+                
                     <div class="section">
                         <h4 style="clear: both;">Academic Qualification</h4>
                         <div>
